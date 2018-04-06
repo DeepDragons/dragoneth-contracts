@@ -1,0 +1,24 @@
+1) RNG.sol (RNG)
+0x10e391eb0289a13b37f84442f45a480fe7e2a083
+Gas Used By Txn: 607300
+https://ropsten.etherscan.io/tx/0xa9fc19175a882e619f157a45d83ac3309bcd635442d67a2df9b2cf8cb9e414fa
+
+2) GenRNG.sol (GenRNG) + address RNG
+0xd7755e80bf33d3ca17831d749e21fe78dce46786
+Gas Used By Txn: 899521
+https://ropsten.etherscan.io/tx/0xaee80cc1c7342465f1b1773931964bec1ddb99a05bf48ce953672cb366471cdc
+
+3) FixMarketPlace.sol (FixMarketPlace) + address wallet
+0x09bf41c090df02db3310efc6896385667b8a7e70
+Gas Used By Txn: 1166974
+https://ropsten.etherscan.io/tx/0xe5dccd0003ad50374b45f0ec7271aaf8adfdd87f9a86ae79fd5eb8d94be269ab
+
+4) DragonETH.sol (DragonETH) + address GenRNG + address FixMarketPlace
+0x2513e385f7052d3ebb9cb715a6f173bb35689426
+Gas Used By Txn: 1933869
+https://ropsten.etherscan.io/tx/0xb556a1bbc8e0fd71be485cd4fa0c7c5b18c66bf4a550168fb948b60def82392f
+
+5) CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
+0x5ac3ba76273182399b1177cd7d64b70d669f8dd7
+Gas Used By Txn: 631635
+https://ropsten.etherscan.io/tx/0x39920ea002c0bba076426e57b4389cae9f7f90d7002586ac8892940ac3559ab8
