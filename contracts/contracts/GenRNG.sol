@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import "./ownership/Whitelist.sol";
+import "./security/Whitelist.sol";
 
 contract RNG {
 function get2b32(address _from, uint256 _dragonID) external returns (bytes32[2] b32);

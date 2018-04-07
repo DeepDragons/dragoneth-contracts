@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
 
 
-import "./ownership/PrivateWitelist.sol";
+import "./security/PrivateWitelist.sol";
 
 contract RNG is PrivateWhitelist {
 

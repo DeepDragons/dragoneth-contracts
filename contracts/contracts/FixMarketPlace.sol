@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import "./ownership/Pausable.sol";
+import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
 
 contract DragonETH {

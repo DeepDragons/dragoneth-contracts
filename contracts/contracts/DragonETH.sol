@@ -2,7 +2,7 @@ pragma solidity ^0.4.21;
 
 import "./ERC721/ERC721Token.sol";
 import "./ContractInterface.sol";
-import "./ownership/Whitelist.sol";
+import "./security/Whitelist.sol";
 
 contract DragonETH is ERC721Token("DragonETH", "DETH"), Whitelist {
     uint256 public totalDragons;
