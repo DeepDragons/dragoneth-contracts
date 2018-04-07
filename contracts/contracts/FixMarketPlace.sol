@@ -1,18 +1,20 @@
 pragma solidity ^0.4.21;
 
 import "./ownership/Pausable.sol";
+import "./math/SafeMath.sol";
 
 contract DragonETH {
 function transferFrom(address _from, address _to, uint256 _tokenId) public;
 }
 
 contract FixMarketPlace is Pausable {
+    using SafeMath for uint256;
     DragonETH public mainContract;
     address wallet;
     uint256 public totalDragonsToSale;
-    uint256 public MIN_BLOCK_TIME = 13; //~2 min
-    uint256 public MAX_BLOCK_TIME = 259200; //~30 days??????
-    uint256 public PERCENT = 50; // eq 5%
+    uint256 public minSellTime = 13; //~2 min
+    uint256 public maxSellTime = 259200; //~30 days??????
+    uint256 public ownersPercent = 50; // eq 5%
     mapping(uint256 => address) dragonsOwner;
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsEndBlock;
@@ -40,8 +42,8 @@ contract FixMarketPlace is Pausable {
     }
     function addToFixMarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool sucsses) {
         require(msg.sender == address(mainContract));
-        require(_endBlockNumber  > block.number + MIN_BLOCK_TIME);
-        require(_endBlockNumber < block.number + MAX_BLOCK_TIME ); //??????
+        require(_endBlockNumber  > block.number + minSellTime);
+        require(_endBlockNumber < block.number + maxSellTime ); //??????
         require(_dragonPrice > 0);
         dragonsOwner[_dragonID] = _dragonOwner;
         dragonPrices[_dragonID] = _dragonPrice;
@@ -60,9 +62,9 @@ contract FixMarketPlace is Pausable {
 
     function buyDragon(uint256 _dragonID) external payable whenNotPaused {
         require(block.number <= dragonsEndBlock[_dragonID]);
-        uint256 _dragonCommisions = dragonPrices[_dragonID] * PERCENT / 1000;
-        require(msg.value >= dragonPrices[_dragonID] + _dragonCommisions);
-        uint256 valueToReturn = msg.value - dragonPrices[_dragonID] - _dragonCommisions;
+        uint256 _dragonCommisions = dragonPrices[_dragonID].mul(ownersPercent).div(1000);
+        require(msg.value >= dragonPrices[_dragonID].add(_dragonCommisions));
+        uint256 valueToReturn = msg.value.sub(dragonPrices[_dragonID]).sub(_dragonCommisions);
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
         }
@@ -116,16 +118,16 @@ contract FixMarketPlace is Pausable {
         wallet = _wallet;
     }
 
-    function changeMinBlockTime(uint256 _minBlockTime) external onlyOwner {
-        MIN_BLOCK_TIME = _minBlockTime;
+    function changeMinSellTime(uint256 _minSellTime) external onlyOwner {
+        minSellTime = _minSellTime;
     }
 
-    function changeMaxBlockTime(uint256 _maxBlockTime) external onlyOwner {
-        MAX_BLOCK_TIME = _maxBlockTime;
+    function changeMaxSellTime(uint256 _maxSellTime) external onlyOwner {
+        maxSellTime = _maxSellTime;
     }
 
-    function changePercent(uint256 _percent) external onlyOwner {
-        PERCENT = _percent;
+    function changeOwnersPercent(uint256 _ownersPercent) external onlyOwner {
+        ownersPercent = _ownersPercent;
     }
 
     function withdrawAllEther() external onlyOwner {
