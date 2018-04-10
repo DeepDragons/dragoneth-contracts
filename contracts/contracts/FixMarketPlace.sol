@@ -44,12 +44,12 @@ contract FixMarketPlace is Pausable {
     }
     function addToFixMarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool sucsses) {
         require(msg.sender == address(mainContract));
-        require(_endBlockNumber  > block.number + minSellTime);
-        require(_endBlockNumber < block.number + maxSellTime ); //??????
+        require(_endBlockNumber  > minSellTime);
+        require(_endBlockNumber < maxSellTime ); //??????
         require(_dragonPrice > 0);
         dragonsOwner[_dragonID] = _dragonOwner;
         dragonPrices[_dragonID] = _dragonPrice;
-        dragonsEndBlock[_dragonID] = _endBlockNumber;
+        dragonsEndBlock[_dragonID] = block.number + _endBlockNumber;
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
         totalDragonsToSale++;
