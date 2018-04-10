@@ -5,6 +5,8 @@ import "./math/SafeMath.sol";
 
 contract DragonETH {
 function transferFrom(address _from, address _to, uint256 _tokenId) public;
+function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
+  
 }
 
 contract FixMarketPlace is Pausable {
@@ -69,7 +71,7 @@ contract FixMarketPlace is Pausable {
             msg.sender.transfer(valueToReturn);
         }
     
-        mainContract.transferFrom(address(this), msg.sender, _dragonID);
+        mainContract.safeTransferFrom(address(this), msg.sender, _dragonID);
         wallet.transfer(_dragonCommisions);
         dragonsOwner[_dragonID].transfer(msg.value - valueToReturn - _dragonCommisions);
         _delItem(_dragonID);        
