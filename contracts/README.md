@@ -1,6 +1,7 @@
 1) RNG.sol (RNG)
+
 0x10e391eb0289a13b37f84442f45a480fe7e2a083
-Gas Used By Txn: 607300
+*Gas Used By Txn: 607300
 https://ropsten.etherscan.io/tx/0xa9fc19175a882e619f157a45d83ac3309bcd635442d67a2df9b2cf8cb9e414fa
 
 2) GenRNG.sol (GenRNG) + address RNG
@@ -26,3 +27,21 @@ https://ropsten.etherscan.io/tx/0x9d98e9794761e09ef065566dbeada87d2c0c612f5863a4
 
 6) wallet 
 0x638a05783dB75e08095A45362E3f207601277dAe
+Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
+
+1) RNG.sol (RNG)
+2) GenRNG.sol (GenRNG) + address RNG
+3) FixMarketPlace.sol (FixMarketPlace) + address wallet 
+4) DragonETH.sol (DragonETH)
+5) CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
+
+Settings
+1) RNG run addAddressToWhitelist(address GenRNG)
+2) GenRNG run addAddressToWhitelist(address DragonETH)
+3) FixMarketPlace run ChangeAddressMainContract(address DragonETH)
+4) DragonETH run adminAddRole(address CrowdSaleDragonETH,string "CreateAgent" )
+5) DragonETH run changeGenRNGcontractAddress(address GenRNG)
+6) DragonETH run changeFMPcontractAddress(address FixMarketPlace)
+
+
+
