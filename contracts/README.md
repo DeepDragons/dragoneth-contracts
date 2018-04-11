@@ -41,9 +41,9 @@
 https://ropsten.etherscan.io/tx/0x9d98e9794761e09ef065566dbeada87d2c0c612f5863a45fd91929b92d31b128
 
 
-6. wallet
+* wallet
  
-0x638a05783dB75e08095A45362E3f207601277dAe
+ 0x638a05783dB75e08095A45362E3f207601277dAe
 
 ### Deployment
 
