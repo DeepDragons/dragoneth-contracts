@@ -1,5 +1,11 @@
 pragma solidity ^0.4.18;
 
+// , DESTROYER, DESTROYER, DESTROYER
+import "../../SelfDestruct.sol";
+// , DESTROYER, DESTROYER, DESTROYER
+
+
+
 import "./RBAC.sol";
 
 
