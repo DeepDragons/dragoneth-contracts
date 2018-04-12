@@ -47,7 +47,7 @@ contract DragonStats is RBACWithAdmin {
         deathBlock[_dragonID] = _deathBloc;
     }
     
-    function setParens(uint256 _dragonID, uint256 _parentOne, uint256 _parentTwo) external onlyRole("MainContract") {
+    function setParents(uint256 _dragonID, uint256 _parentOne, uint256 _parentTwo) external onlyRole("MainContract") {
         
         require(birthBlock[_dragonID] == 0);
         
@@ -67,11 +67,14 @@ contract DragonStats is RBACWithAdmin {
             lastActions[_dragonID].lastActionDragonID = uint248(_lastActionDragonID);
         }
     }
-    function incFightWin(uint256 _dragonID) external onlyRole("MainContract") {
+    function incFightWin(uint256 _dragonID) external onlyRole("FightContract") {
         dragonStats[_dragonID].fightWin++;
     }
-    function incFightLose(uint256 _dragonID) external onlyRole("MainContract") {
+    function incFightLose(uint256 _dragonID) external onlyRole("FightContract") {
         dragonStats[_dragonID].fightLose++;
+    }
+    function incFightToDeathWin(uint256 _dragonID) external onlyRole("DeathFightContract") {
+        dragonStats[_dragonID].fightToDeathWin++;
     }
     function incChildren(uint256 _dragonID) external onlyRole("MainContract") {
         dragonStats[_dragonID].children++;
