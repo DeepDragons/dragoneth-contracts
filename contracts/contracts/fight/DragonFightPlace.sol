@@ -27,6 +27,14 @@ contract DragonsFightPlace is DragonFightGC {
         delete(dragonsListIndex[_dragonID]);
         totalDragonsToFight--;
     }
+    function _setFightResult(uint256 _dragonWin, uint256 _dragonLose) private {
+        dragonStatsContract.incFightWin(_dragonWin);
+        dragonStatsContract.incFightLose(_dragonLose);
+        dragonStatsContract.setLastAction(_dragonWin, _dragonLose, 13);
+        dragonStatsContract.setLastAction(_dragonLose, _dragonWin, 14);
+            
+    }
+    
     function addToFightPlace(uint256 _dragonID, uint256 _endBlockNumber) external payable whenNotPaused {
         require(_endBlockNumber  > minFightWaitBloc);
         require(_endBlockNumber < maxFightWaitBloc); //??????
@@ -68,21 +76,21 @@ contract DragonsFightPlace is DragonFightGC {
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
         }
-        // TODO fight
-        // TODO change stat + rest time
-        // TODO add mutagen
+
         if (dragonFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
             
-            dragonStatsContract.incFightWin(_yourDragonID);
-            dragonStatsContract.incFightLose(_thisDragonID);
+            mutagenContract.mint(msg.sender,mutagenToWin);
+            mutagenContract.mint(dragonsOwner[_thisDragonID],mutagenToLose);
+            _setFightResult(_yourDragonID, _thisDragonID);
             
         } else {
             
-            dragonStatsContract.incFightWin(_thisDragonID);
-            dragonStatsContract.incFightLose(_yourDragonID);
-            
+            mutagenContract.mint(dragonsOwner[_thisDragonID],mutagenToWin);
+            mutagenContract.mint(msg.sender,mutagenToLose);
+            _setFightResult(_thisDragonID, _yourDragonID);
         }
         // TODO add dragon unblocking
+        // TODO add rest time
         
         _delItem(_thisDragonID);        
     }

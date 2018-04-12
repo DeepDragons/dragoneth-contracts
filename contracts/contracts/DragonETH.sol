@@ -3,7 +3,7 @@ pragma solidity ^0.4.21;
 import "./ERC721/ERC721Token.sol";
 import "./DragonETH_GC.sol";
 
-contract DragonETH is ERC721Token("DragonETH", "DETH"), DragonETHgameControl {
+contract DragonETH is ERC721Token("DragonETH game", "DragonETH"), DragonETHgameControl {
     uint256 public totalDragons;
     struct Dragon {
         uint256 gen1;

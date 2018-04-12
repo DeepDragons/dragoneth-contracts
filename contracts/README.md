@@ -37,17 +37,22 @@
 
 * DragonStats.sol (DragonStats)
  
- 0xdfbe32489909f74d656eb783e1fba892db59a9be
+ 0xe32b7978ac808c691c014a887cf80a91c8239647
 
- *Gas Used By Txn: 1319489*
+ *old Gas Used By Txn: 1319489*
 
-Перезалить тк поменял имя DethFightContract????
+
+* Mutagen.sol (Mutagen)
+
+ 0x7b411d2a493f88c3a69d28e0debbca98c3263322
+
+ *Gas Used By Txn: 1257640*
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
- 0x60a99d7c76a64a29d344f2b951799686726f4f12
+ 0x0da46dc0b028f41994d2a6b536496dfe89f5cabb
 
- *Gas Used By Txn: 1306217*
+ *Gas Used By Txn: 1636625*
 
 * DragonsFight.sol (DragonsFight)
 
@@ -67,6 +72,7 @@
 4. DragonETH.sol (DragonETH)
 5. CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 6. DragonStats.sol (DragonStats) + address DragonETH
+7. Mutagen.sol
 
 *Other*
 
@@ -88,9 +94,12 @@
 *Other*
 
 7. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract")
+8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
 8. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
+8. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
 9. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
 10. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
+11. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
 
 ### How to use remix with local files
 

@@ -31,12 +31,13 @@ contract DragonStats is RBACWithAdmin {
     mapping(uint256 => parent)  public parents;
     mapping(uint256 => lastAction) public lastActions;
     mapping(uint256 => dragonStat) public dragonStats;
-    
+
+/*    
     function DragonStats(address _mainContract) public {
         adminAddRole(_mainContract, "MainContract");
         
     }
-    
+*/    
     function setBirthBlock(uint256 _dragonID, uint256 _birthBloc) external onlyRole("MainContract") {
         require(birthBlock[_dragonID] == 0);
         birthBlock[_dragonID] = _birthBloc;
@@ -59,7 +60,7 @@ contract DragonStats is RBACWithAdmin {
             parents[_dragonID].parentTwo = uint128(_parentTwo);
         }
     }
-    function setLastAction(uint256 _dragonID, uint256 _lastActionDragonID, uint8 _lastActionID) external onlyRole("MainContract") {
+    function setLastAction(uint256 _dragonID, uint256 _lastActionDragonID, uint8 _lastActionID) external onlyRole("ActionContract") {
         lastActions[_dragonID].lastActionID = _lastActionID;
         if (_lastActionDragonID > UINT248_MAX) {
             lastActions[_dragonID].lastActionDragonID = 0;
