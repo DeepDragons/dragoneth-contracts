@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
 
 import "./ERC721/ERC721Token.sol";
-import "./DragonETHgameControl.sol";
+import "./DragonETH_GC.sol";
 
 contract DragonETH is ERC721Token("DragonETH", "DETH"), DragonETHgameControl {
     uint256 public totalDragons;
