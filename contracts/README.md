@@ -1,4 +1,4 @@
-### Contract address
+### Contract address in Ropsten
 
 * RNG.sol (RNG)
 
@@ -20,15 +20,15 @@
 
 * DragonETH.sol (DragonETH)
 
- 0x3dbf45dc3665441455bd32e71568a2f4bdbd12b6
+ 0x834cc5856b2a08aa62439555914081f7604f48ec
 
- *Gas Used By Txn: 2147468*
+ *Gas Used By Txn: 2388930*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
- 0x1d71e3aebe526275054d5ba3422df642d534efba
+ 0x2e85c4898938738b54ffcc2d9ceb0f9d35278e94
 
- *Gas Used By Txn: 638814*
+ *Gas Used By Txn: 763391*
 
 
 * wallet
@@ -37,9 +37,9 @@
 
 * DragonStats.sol (DragonStats)
  
- 0xe32b7978ac808c691c014a887cf80a91c8239647
+ 0x3adca8a6cd338bf8456e2eaadf8a06bb9d831411
 
- *old Gas Used By Txn: 1319489*
+ *Gas Used By Txn: 1319489*
 
 
 * Mutagen.sol (Mutagen)
@@ -71,13 +71,13 @@
 3. FixMarketPlace.sol (FixMarketPlace) + address wallet 
 4. DragonETH.sol (DragonETH)
 5. CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
-6. DragonStats.sol (DragonStats) + address DragonETH
+6. DragonStats.sol (DragonStats)
 7. Mutagen.sol
 
 *Other*
 
-7. DragonsFightPlace.sol (DragonsFightPlace) + address wallet
-8. DragonsFight.sol (DragonsFight)
+8. DragonsFightPlace.sol (DragonsFightPlace) + address wallet
+9. DragonsFight.sol (DragonsFight)
 
 
 #### Settings
@@ -90,16 +90,18 @@
 4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateAgent" )
 5. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
 6. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
+7. DragonETH		*func*	changeDragonStatsContractAddress(address DragonStats)
+8. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
 
 *Other*
 
-7. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract")
-8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
-8. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
-8. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
-9. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
-10. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
-11. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
+8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract")
+9. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
+10. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
+11. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
+12. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
+13. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
+14. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
 
 ### How to use remix with local files
 
