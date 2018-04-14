@@ -1,4 +1,4 @@
-### Contract address
+### Contract address in Ropsten
 
 * RNG.sol (RNG)
 
@@ -6,15 +6,11 @@
 
  *Gas Used By Txn: 607300*
 
- https://ropsten.etherscan.io/tx/0xa9fc19175a882e619f157a45d83ac3309bcd635442d67a2df9b2cf8cb9e414fa
-
 * GenRNG.sol (GenRNG) + address RNG
 
  0x1519c35984f3cbf9e5afc2e9104f2f1293029289
 
  *Gas Used By Txn: 889266*
-
- https://ropsten.etherscan.io/tx/0xa66b27adc1fc9f7daaf6e5317babee85a8bf8841da3eec8018bcb307d012535e
 
 * FixMarketPlace.sol (FixMarketPlace) + address wallet
 
@@ -22,47 +18,90 @@
 
  *Gas Used By Txn: 1218021*
 
- https://ropsten.etherscan.io/tx/0x1e4b9b450c9db2b5bb43bf661134f01f7300486328c97b33d833e9d2bc7b55c9
-
 * DragonETH.sol (DragonETH)
 
- 0x3dbf45dc3665441455bd32e71568a2f4bdbd12b6
+ 0x834cc5856b2a08aa62439555914081f7604f48ec
 
- *Gas Used By Txn: 2147468*
-
- https://ropsten.etherscan.io/tx/0xed1b1c15e0347899fc6cbe2aad74375fc3b19eb58fe23a0b7229f1c7de3f9f1d
+ *Gas Used By Txn: 2388930*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
- 0x1d71e3aebe526275054d5ba3422df642d534efba
+ 0x2e85c4898938738b54ffcc2d9ceb0f9d35278e94
 
- *Gas Used By Txn: 638814*
-
-https://ropsten.etherscan.io/tx/0x9d98e9794761e09ef065566dbeada87d2c0c612f5863a45fd91929b92d31b128
+ *Gas Used By Txn: 763391*
 
 
 * wallet
  
  0x638a05783dB75e08095A45362E3f207601277dAe
 
+* DragonStats.sol (DragonStats)
+ 
+ 0x3adca8a6cd338bf8456e2eaadf8a06bb9d831411
+
+ *Gas Used By Txn: 1319489*
+
+
+* Mutagen.sol (Mutagen)
+
+ 0x7b411d2a493f88c3a69d28e0debbca98c3263322
+
+ *Gas Used By Txn: 1257640*
+
+* DragonsFightPlace.sol (DragonsFightPlace)
+
+ 0x0da46dc0b028f41994d2a6b536496dfe89f5cabb
+
+ *Gas Used By Txn: 1636625*
+
+* DragonsFight.sol (DragonsFight)
+
+ 0x7995234f5871138c2b80e1829eddaa40b5976690
+ 
+ *Gas Used By Txn: 609959*
+
 ### Deployment
 
 #### Deploy
+
+*MVP*
 
 1. RNG.sol (RNG)
 2. GenRNG.sol (GenRNG) + address RNG
 3. FixMarketPlace.sol (FixMarketPlace) + address wallet 
 4. DragonETH.sol (DragonETH)
 5. CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
+6. DragonStats.sol (DragonStats)
+7. Mutagen.sol
+
+*Other*
+
+8. DragonsFightPlace.sol (DragonsFightPlace) + address wallet
+9. DragonsFight.sol (DragonsFight)
+
 
 #### Settings
 
-1. RNG            *func*	addAddressToWhitelist(address GenRNG)
-2. GenRNG         *func*	addAddressToWhitelist(address DragonETH)
-3. FixMarketPlace *func*	ChangeAddressMainContract(address DragonETH)
-4. DragonETH      *func*	adminAddRole(address CrowdSaleDragonETH,string "CreateAgent" )
-5. DragonETH      *func*	changeGenRNGcontractAddress(address GenRNG)
-6. DragonETH      *func*	changeFMPcontractAddress(address FixMarketPlace)
+*MVP*
+
+1. RNG			*func*	addAddressToWhitelist(address GenRNG)
+2. GenRNG		*func*	addAddressToWhitelist(address DragonETH)
+3. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
+4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateAgent" )
+5. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
+6. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
+7. DragonETH		*func*	changeDragonStatsContractAddress(address DragonStats)
+8. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
+
+*Other*
+
+8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract")
+9. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
+10. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
+11. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
+12. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
+13. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
+14. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
 
 ### How to use remix with local files
 
