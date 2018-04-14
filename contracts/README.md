@@ -1,62 +1,66 @@
-### Contract address in Ropsten
+### Contract address in Main Net
 
 * RNG.sol (RNG)
 
- 0x10e391eb0289a13b37f84442f45a480fe7e2a083
+ 0x8775b37b5726535c8b83ec05da45d69e4fa62095
 
- *Gas Used By Txn: 607300*
+ *Gas Used By Txn: 733254*
+ 0.000733254
 
 * GenRNG.sol (GenRNG) + address RNG
 
- 0x1519c35984f3cbf9e5afc2e9104f2f1293029289
+ 0xf3f0cfa81a8d4524383828b0766e651bec37416f
 
- *Gas Used By Txn: 889266*
+ *Gas Used By Txn: 1735106*
+ 0.006940424
 
 * FixMarketPlace.sol (FixMarketPlace) + address wallet
 
- 0xa3e8cfbc93efb4b1c40e830a372608dbde1c726c
+ 0x01bd5ca2f532749e3e9b32ca605c21a70f4683a7
 
- *Gas Used By Txn: 1218021*
+ *Gas Used By Txn: 1385343*
+ 0.001385343
 
 * DragonETH.sol (DragonETH)
 
- 0x834cc5856b2a08aa62439555914081f7604f48ec
+ 0xc8fdebfc676731b329335930b9de670f956b04e1
 
- *Gas Used By Txn: 2388930*
+ *Gas Used By Txn: 2749905*
+ 0.002749905
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
- 0x2e85c4898938738b54ffcc2d9ceb0f9d35278e94
+ 0x54bab51f0ba35fa8b0057f3fea158ae2321bbdc0
 
- *Gas Used By Txn: 763391*
+ *Gas Used By Txn: 861451*
+ 0.000861451
 
-
-* wallet
+* wallet Renat
  
- 0x638a05783dB75e08095A45362E3f207601277dAe
+ 0x1a069d69F42C0D7848cF1f14CbE9d6B1615D4E17
 
 * DragonStats.sol (DragonStats)
  
- 0x3adca8a6cd338bf8456e2eaadf8a06bb9d831411
+ 0x26ca36809ada2ff648263e2c501bb1c45e6153eb
 
  *Gas Used By Txn: 1319489*
-
+ 0.001382163
 
 * Mutagen.sol (Mutagen)
 
- 0x7b411d2a493f88c3a69d28e0debbca98c3263322
+ 
 
  *Gas Used By Txn: 1257640*
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
- 0x0da46dc0b028f41994d2a6b536496dfe89f5cabb
+ 
 
  *Gas Used By Txn: 1636625*
 
 * DragonsFight.sol (DragonsFight)
 
- 0x7995234f5871138c2b80e1829eddaa40b5976690
+ 
  
  *Gas Used By Txn: 609959*
 
@@ -84,14 +88,14 @@
 
 *MVP*
 
-1. RNG			*func*	addAddressToWhitelist(address GenRNG)
-2. GenRNG		*func*	addAddressToWhitelist(address DragonETH)
-3. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
-4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateAgent" )
-5. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
-6. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
-7. DragonETH		*func*	changeDragonStatsContractAddress(address DragonStats)
-8. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
+1. RNG			*func*	addAddressToWhitelist(address GenRNG) 0.000045602
+2. GenRNG		*func*	addAddressToWhitelist(address DragonETH) 0.000045602
+3. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH) 0.000043949
+4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateAgent" ) 0.000049098
+5. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG) 0.000044474
+6. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace) 0.000044496
+7. DragonETH		*func*	changeDragonStatsContractAddress(address DragonStats) 0.000045046
+8. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract") 0.00004883
 
 *Other*
 
@@ -107,4 +111,4 @@
 
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
 
-
+0.000340606 покупка дракона
