@@ -5,7 +5,7 @@ import "./math/SafeMath.sol";
 
 contract DragonETH {
 
-function createDragon(address _to) external;
+function createDragon(address _to, uint256 _timeToBorn, uint256 _parentOne, uint256 _parentTwo, uint256 _gen1, uint240 _gen2) external;
 
 }
 contract CrowdSaleDragonETH is Pausable {
@@ -15,7 +15,8 @@ contract CrowdSaleDragonETH is Pausable {
     uint256 public crowdSaleDragonPrice = 0.01 ether;
     uint256 public soldDragons;
     uint256 public priceChanger = 0.00005 ether;
-
+    uint256 public timeToBorn = 5760; // ~ 24h 
+    uint256 public timeToFirstBorn = 0; // Change to Birth Date of first dragon 
     function CrowdSaleDragonETH(address _wallet, address _mainContract) public {
         wallet = _wallet;
         mainContract = _mainContract;
@@ -36,9 +37,14 @@ contract CrowdSaleDragonETH is Pausable {
         if (return_value > 0) msg.sender.transfer(return_value);
         wallet.transfer(msg.value - return_value);
         for(uint256 len = 1; len <= count_to_buy; len += 1) {
-          DragonETH(mainContract).createDragon(msg.sender);
-          soldDragons++;
-          crowdSaleDragonPrice = crowdSaleDragonPrice + priceChanger;
+        // TODO rewrite parameter
+            if (block.number < timeToFirstBorn) {
+                DragonETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
+            } else {
+                DragonETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
+            }
+            soldDragons++;
+            crowdSaleDragonPrice = crowdSaleDragonPrice + priceChanger;
         }
         //TODO Add promo for CryptoKitty owners
         
@@ -54,6 +60,12 @@ contract CrowdSaleDragonETH is Pausable {
 
     function changeWallet(address _wallet) external onlyOwner {
         wallet = _wallet;
+    }
+    
+    function setTimeToBorn(uint256 _timeToBorn, uint256 _timeToFirstBorn) external onlyOwner {
+        timeToBorn = _timeToBorn;
+        timeToFirstBorn = _timeToFirstBorn;
+        
     }
 
     function withdrawAllEther() external onlyOwner {
