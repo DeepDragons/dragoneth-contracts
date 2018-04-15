@@ -7,17 +7,19 @@ import "./DragonETH_GC.sol";
 // contract DragonETH is ERC721Token("DragonETH game", "DragonETH"), DragonETH_GC {
 contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC {
     uint256 public totalDragons;
+    uint256 public liveDragons;
+    uint256 public deadDragons;
     struct Dragon {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
-        uint8 currentAction; // 0 - free, 1 - fight place,  
+        uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  
         uint240 gen2;
         uint256 nextBlock2Action;
     }
-    Dragon[] dragons;
+    Dragon[] public dragons;
     
    
-    function DragonETH(address _wallet) public {
+    function DragonETH(address _wallet, address _necropolisContract) public {
         
         _mint(msg.sender, 0);
         Dragon memory _dragon = Dragon({
@@ -25,10 +27,10 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC {
             stage: 0,
             currentAction: 0,
             gen2: 0,
-            nextBlock2Action: 0
+            nextBlock2Action: UINT256_MAX
         });
         dragons.push(_dragon);
-        
+        necropolisContract = Necropolis(_necropolisContract);
         wallet = _wallet;
     }
    
@@ -45,6 +47,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC {
     
     function createDragon(address _to, uint256 _timeToBorn, uint256 _parentOne, uint256 _parentTwo, uint256 _gen1, uint240 _gen2) external onlyRole("CreateAgent") {
         totalDragons++;
+        liveDragons++;
         // TODO add chek to safeTransfer
         _mint(_to, totalDragons);
         uint256[2] memory twoGen;
@@ -72,6 +75,18 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC {
     function birthDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
         require(dragons[_dragonID].nextBlock2Action <= block.number);
         dragons[_dragonID].stage = 2;
+    }
+    function killDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
+        checkDragonStatus(_dragonID, 2);
+        dragons[_dragonID].stage = 0;
+        dragons[_dragonID].currentAction = 0xFF;
+        dragons[_dragonID].nextBlock2Action = UINT256_MAX;
+        necropolisContract.addDragon(ownerOf(_dragonID), _dragonID, 1);
+        transferFrom(msg.sender,necropolisContract,_dragonID);
+        dragonStatsContract.setDeathBlock(_dragonID);
+        liveDragons--;
+        deadDragons++;
+        
     }
     function decraseTimeToAction(uint256 _dragonID) external payable onlyOwnerOf(_dragonID) {
         require(msg.value >= price2DecraseTime2Action);

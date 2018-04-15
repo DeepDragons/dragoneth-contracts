@@ -16,15 +16,21 @@ contract DragonStats {
     function setParents(uint256 _dragonID, uint256 _parentOne, uint256 _parentTwo) external;
     function setBirthBlock(uint256 _dragonID) external;
     function incChildren(uint256 _dragonID) external;
+    function setDeathBlock(uint256 _dragonID) external;
+}
+contract Necropolis {
+     function addDragon(address _lastDragonOwner, uint256 _dragonID, uint256 _deathReason) external;
 }
 contract DragonETH_GC is RBACWithAdmin {
     GenRNG public genRNGContractAddress;
     FixMarketPlace public fmpContractAddress;
     DragonStats public dragonStatsContract;
+    Necropolis public necropolisContract;
     address wallet;
     
     uint256 public secondsInBlock = 15;
     uint256 public price2DecraseTime2Action = 0.00005 ether; //  1 block
+    uint256 constant UINT256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
 
     function changeGenRNGcontractAddress(address _genRNGContractAddress) external onlyAdmin {
         genRNGContractAddress = GenRNG(_genRNGContractAddress);
