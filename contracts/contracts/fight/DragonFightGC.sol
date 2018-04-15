@@ -35,39 +35,39 @@ contract DragonFightGC is Pausable {
     uint256 public mutagenToLose =1;
     uint256 public mutagenToDeathWin = 100;
     
-    function changeAddressMutagenContract(address _newAddress) external onlyOwner {
+    function changeAddressMutagenContract(address _newAddress) external onlyAdmin {
         mutagenContract = Mutagen(_newAddress);
     }
-    function changeAddressMainContract(address _newAddress) external onlyOwner {
+    function changeAddressMainContract(address _newAddress) external onlyAdmin {
         mainContract = DragonETH(_newAddress);
     }
-    function changeAddressFightContract(address _newAddress) external onlyOwner {
+    function changeAddressFightContract(address _newAddress) external onlyAdmin {
         dragonFightContract = DragonFight(_newAddress);
     }
-    function changeAddressStatsContract(address _newAddress) external onlyOwner {
+    function changeAddressStatsContract(address _newAddress) external onlyAdmin {
         dragonStatsContract = DragonStats(_newAddress);
     }
-    function changeWallet(address _wallet) external onlyOwner {
+    function changeWallet(address _wallet) external onlyAdmin {
         wallet = _wallet;
     }
 
-    function changeMinFightWaitBloc(uint256 _minFightWaitBloc) external onlyOwner {
+    function changeMinFightWaitBloc(uint256 _minFightWaitBloc) external onlyAdmin {
         minFightWaitBloc = _minFightWaitBloc;
     }
 
-    function changeMaxFightWaitBloc(uint256 _maxFightWaitBloc) external onlyOwner {
+    function changeMaxFightWaitBloc(uint256 _maxFightWaitBloc) external onlyAdmin {
         maxFightWaitBloc = _maxFightWaitBloc;
     }
     
-    function changeMutagenToWin(uint256 _mutagenToWin) external onlyOwner {
+    function changeMutagenToWin(uint256 _mutagenToWin) external onlyAdmin {
         mutagenToWin = _mutagenToWin;
     }
     
-    function changeMutagenToLose(uint256 _mutagenToLose) external onlyOwner {
+    function changeMutagenToLose(uint256 _mutagenToLose) external onlyAdmin {
         mutagenToLose = _mutagenToLose;
     }
     
-    function changeMutagenToDeathWin(uint256 _mutagenToDeathWin) external onlyOwner {
+    function changeMutagenToDeathWin(uint256 _mutagenToDeathWin) external onlyAdmin {
         mutagenToDeathWin = _mutagenToDeathWin;
     }
 }

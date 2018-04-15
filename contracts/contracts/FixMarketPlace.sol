@@ -28,9 +28,6 @@ contract FixMarketPlace is Pausable {
         wallet = _wallet;
     }
 
-    function changeAddressMainContract(address _newAddress) external onlyOwner {
-        mainContract = DragonETH(_newAddress);
-    }
     function _delItem(uint256 _dragonID) private {
         delete(dragonsOwner[_dragonID]);
         delete(dragonPrices[_dragonID]);
@@ -115,24 +112,27 @@ contract FixMarketPlace is Pausable {
         }
     }
    
+    function changeAddressMainContract(address _newAddress) external onlyAdmin {
+        mainContract = DragonETH(_newAddress);
+    }
     
-    function changeWallet(address _wallet) external onlyOwner {
+    function changeWallet(address _wallet) external onlyAdmin {
         wallet = _wallet;
     }
 
-    function changeMinSellTime(uint256 _minSellTime) external onlyOwner {
+    function changeMinSellTime(uint256 _minSellTime) external onlyAdmin {
         minSellTime = _minSellTime;
     }
 
-    function changeMaxSellTime(uint256 _maxSellTime) external onlyOwner {
+    function changeMaxSellTime(uint256 _maxSellTime) external onlyAdmin {
         maxSellTime = _maxSellTime;
     }
 
-    function changeOwnersPercent(uint256 _ownersPercent) external onlyOwner {
+    function changeOwnersPercent(uint256 _ownersPercent) external onlyAdmin {
         ownersPercent = _ownersPercent;
     }
 
-    function withdrawAllEther() external onlyOwner {
+    function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
     }

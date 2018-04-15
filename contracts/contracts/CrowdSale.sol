@@ -50,25 +50,25 @@ contract CrowdSaleDragonETH is Pausable {
         
     }
 
-    function changePrice(uint256 _price) external onlyOwner {
+    function changePrice(uint256 _price) external onlyAdmin {
        crowdSaleDragonPrice = _price;
     }
 
-    function setPriceChanger(uint256 _priceChanger) external onlyOwner {
+    function setPriceChanger(uint256 _priceChanger) external onlyAdmin {
        priceChanger = _priceChanger;
     }
 
-    function changeWallet(address _wallet) external onlyOwner {
+    function changeWallet(address _wallet) external onlyAdmin {
         wallet = _wallet;
     }
     
-    function setTimeToBorn(uint256 _timeToBorn, uint256 _timeToFirstBorn) external onlyOwner {
+    function setTimeToBorn(uint256 _timeToBorn, uint256 _timeToFirstBorn) external onlyAdmin {
         timeToBorn = _timeToBorn;
         timeToFirstBorn = _timeToFirstBorn;
         
     }
 
-    function withdrawAllEther() external onlyOwner {
+    function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
     }

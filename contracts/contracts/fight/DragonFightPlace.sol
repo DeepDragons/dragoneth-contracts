@@ -136,12 +136,12 @@ contract DragonsFightPlace is DragonFightGC {
     
 
 
-    function changePrices(uint256 _priceToFight,uint256 _priceToAdd) external onlyOwner {
+    function changePrices(uint256 _priceToFight,uint256 _priceToAdd) external onlyAdmin {
         priceToFight = _priceToFight;
         priceToAdd = _priceToAdd;
     }
 
-    function withdrawAllEther() external onlyOwner {
+    function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
     }

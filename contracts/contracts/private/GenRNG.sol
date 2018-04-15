@@ -13,7 +13,7 @@ contract GenRNG is Whitelist {
   addressRNG = _addressRNG;
 }
 
-function changeAddressRNG(address _addressRNG) external onlyOwner {
+function changeAddressRNG(address _addressRNG) external onlyAdmin {
   addressRNG = _addressRNG;
 }
 
