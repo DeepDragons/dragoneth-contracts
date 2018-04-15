@@ -104,6 +104,7 @@
 14. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
 добавить в основной контракт роль "ActionContract" для всех котрактов действия которые имеют право дергть сответсвующую функцию
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
+добавить в контракт статистики роль "DeathContract" Для DragonETH и остальных смертельных контрактов
 
 ### How to use remix with local files
 

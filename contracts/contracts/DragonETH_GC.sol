@@ -11,6 +11,18 @@ contract FixMarketPlace {
 
     function addToFixMarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external returns (bool sucsses);
 }
+contract Auction {
+    function add2Auction(address _dragonOwner, uint256 _dragonID, uint256 _startPrice, uint256 _step, uint256 _endPrice, uint256 _endBlockNumber) external returns (bool sucsses);
+}
+contract DragonSelectFight2Death {
+    function add2SelctFight2Death(address _dragonOwner, uint256 _yourDragonID, uint256 _oppDragonID, uint256 _endBlockNumber) external;
+}
+contract DragonsRandomFight2Death {
+    function add2RandomFight2Death(address _dragonOwner, uint256 _DragonID) external;
+}
+contract Mutagen2Face {
+    function addDragon(address _dragonOwner, uint256 _dragonID, uint256 mutagenCount) external;
+}
 
 contract DragonStats {
     function setParents(uint256 _dragonID, uint256 _parentOne, uint256 _parentTwo) external;
@@ -26,6 +38,11 @@ contract DragonETH_GC is RBACWithAdmin {
     FixMarketPlace public fmpContractAddress;
     DragonStats public dragonStatsContract;
     Necropolis public necropolisContract;
+    Auction public auctionContract;
+    DragonSelectFight2Death public selectFight2DeathContract;
+    DragonsRandomFight2Death public randomFight2DeathContract;
+    Mutagen2Face public mutagen2FaceContract;
+    
     address wallet;
     
     uint256 public secondsInBlock = 15;
@@ -43,6 +60,18 @@ contract DragonETH_GC is RBACWithAdmin {
     }
     function changeDragonStatsContract(address _dragonStatsContract) external onlyAdmin {
         dragonStatsContract = DragonStats(_dragonStatsContract);
+    }
+    function changeAuctionContract(address _auctionContract) external onlyAdmin {
+        auctionContract = Auction(_auctionContract);
+    }
+    function changeSelectFight2DeathContract(address _selectFight2DeathContract) external onlyAdmin {
+        selectFight2DeathContract = DragonSelectFight2Death(_selectFight2DeathContract);
+    }
+    function changeRandomFight2DeathContract(address _randomFight2DeathContract) external onlyAdmin {
+        randomFight2DeathContract = DragonsRandomFight2Death(_randomFight2DeathContract);
+    }
+    function changeMutagen2FaceContract(address _mutagen2FaceContract) external onlyAdmin {
+        mutagen2FaceContract = Mutagen2Face(_mutagen2FaceContract);
     }
     function changeWallet(address _wallet) external onlyAdmin {
         wallet = _wallet;

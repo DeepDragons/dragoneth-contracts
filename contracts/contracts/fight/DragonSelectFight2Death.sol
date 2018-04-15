@@ -6,5 +6,5 @@ contract DragonFight {
 
 
 contract DragonSelectFight2Death is DragonFight {
-    
+    function add2SelctFight2Death(address _dragonOwner, uint256 _yourDragonID, uint256 _oppDragonID, uint256 _endBlockNumber) external;
 }

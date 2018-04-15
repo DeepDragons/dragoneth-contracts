@@ -5,5 +5,6 @@ contract DragonFight {
 }
 
 contract DragonsRandomFight2Death is DragonFight {
-    
+    function add2RandomFight2Death(address _dragonOwner, uint256 _DragonID) external;
+
 }
