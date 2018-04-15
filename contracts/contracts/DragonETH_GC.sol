@@ -21,8 +21,10 @@ contract DragonETH_GC is RBACWithAdmin {
     GenRNG public genRNGContractAddress;
     FixMarketPlace public fmpContractAddress;
     DragonStats public dragonStatsContract;
+    address wallet;
     
     uint256 public secondsInBlock = 15;
+    uint256 public price2DecraseTime2Action = 0.00005 ether; //  1 block
 
     function changeGenRNGcontractAddress(address _genRNGContractAddress) external onlyAdmin {
         genRNGContractAddress = GenRNG(_genRNGContractAddress);
@@ -35,5 +37,15 @@ contract DragonETH_GC is RBACWithAdmin {
     }
     function changeDragonStatsContract(address _dragonStatsContract) external onlyAdmin {
         dragonStatsContract = DragonStats(_dragonStatsContract);
+    }
+    function changeWallet(address _wallet) external onlyAdmin {
+        wallet = _wallet;
+    }
+    function changePrice2DecraseTime2Action(uint256 _price2DecraseTime2Action) external onlyAdmin {
+        price2DecraseTime2Action = _price2DecraseTime2Action;
+    }
+    function withdrawAllEther() external onlyAdmin {
+        require(wallet != 0);
+        wallet.transfer(address(this).balance);
     }
 }

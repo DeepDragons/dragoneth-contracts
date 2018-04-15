@@ -41,6 +41,7 @@ contract DragonsFightPlace is DragonFightGC {
         address dragonOwner = mainContract.ownerOf(_dragonID);
         require(dragonOwner == msg.sender);
         require(msg.value >= priceToAdd);
+        mainContract.checkDragonStatus(_dragonID, 2);
         uint256 valueToReturn = msg.value - priceToAdd;
         if (priceToFight != 0) {
         wallet.transfer(priceToAdd);
@@ -54,12 +55,13 @@ contract DragonsFightPlace is DragonFightGC {
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
         totalDragonsToFight++;
-        // TODO add dragon blocking
+        mainContract.setCurrentAction(_dragonID, 1);
+        
     }
     
     function delFromFightPlace(uint256 _dragonID) external {
         require(msg.sender == dragonsOwner[_dragonID] || dragonsEndBlock[_dragonID] < block.number);
-         // TODO add dragon unblocking   
+         mainContract.setCurrentAction(_dragonID, 0);
         _delItem(_dragonID);
     }
 
@@ -67,7 +69,7 @@ contract DragonsFightPlace is DragonFightGC {
         require(block.number <= dragonsEndBlock[_thisDragonID]);
         require(msg.value >= priceToFight);
         require(mainContract.ownerOf(_yourDragonID) == msg.sender);
-        
+        mainContract.checkDragonStatus(_yourDragonID, 2);
         uint256 valueToReturn = msg.value - priceToFight;
         if (priceToFight != 0) {
         wallet.transfer(priceToFight);
@@ -89,9 +91,11 @@ contract DragonsFightPlace is DragonFightGC {
             mutagenContract.mint(msg.sender,mutagenToLose);
             _setFightResult(_thisDragonID, _yourDragonID);
         }
-        // TODO add dragon unblocking
+        mainContract.setCurrentAction(_yourDragonID, 0);
+        mainContract.setCurrentAction(_thisDragonID, 0);
         // TODO add rest time
-        
+        mainContract.setTime2Rest(_yourDragonID, addTime2Rest);
+        mainContract.setTime2Rest(_thisDragonID, addTime2Rest);
         _delItem(_thisDragonID);        
     }
     function getAllDragonsFight() external view returns(uint256[]) {
@@ -126,7 +130,7 @@ contract DragonsFightPlace is DragonFightGC {
         for(_dragonIndex=_start; _dragonIndex < _start + _count && _dragonIndex < dragonsList.length; _dragonIndex++) {
             uint256 _dragonID = dragonsList[_dragonIndex];
             if (dragonsEndBlock[_dragonID] < block.number) {
-                // TODO add dragon unblocking
+                mainContract.setCurrentAction(_dragonID, 0);
                 _delItem(_dragonID);
                 _deleted++;
             }
@@ -141,9 +145,6 @@ contract DragonsFightPlace is DragonFightGC {
         priceToAdd = _priceToAdd;
     }
 
-    function withdrawAllEther() external onlyAdmin {
-        require(wallet != 0);
-        wallet.transfer(address(this).balance);
-    }
+   
 }
 

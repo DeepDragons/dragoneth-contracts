@@ -2,31 +2,31 @@
 
 * RNG.sol (RNG)
 
- 0x10e391eb0289a13b37f84442f45a480fe7e2a083
+ 
 
  *Gas Used By Txn: 607300*
 
 * GenRNG.sol (GenRNG) + address RNG
 
- 0x1519c35984f3cbf9e5afc2e9104f2f1293029289
+ 
 
  *Gas Used By Txn: 889266*
 
 * FixMarketPlace.sol (FixMarketPlace) + address wallet
 
- 0xa3e8cfbc93efb4b1c40e830a372608dbde1c726c
+ 
 
  *Gas Used By Txn: 1218021*
 
 * DragonETH.sol (DragonETH)
 
- 0x834cc5856b2a08aa62439555914081f7604f48ec
+ 
 
  *Gas Used By Txn: 2388930*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
- 0x2e85c4898938738b54ffcc2d9ceb0f9d35278e94
+ 
 
  *Gas Used By Txn: 763391*
 
@@ -37,26 +37,26 @@
 
 * DragonStats.sol (DragonStats)
  
- 0x3adca8a6cd338bf8456e2eaadf8a06bb9d831411
+ 
 
  *Gas Used By Txn: 1319489*
 
 
 * Mutagen.sol (Mutagen)
 
- 0x7b411d2a493f88c3a69d28e0debbca98c3263322
+ 
 
  *Gas Used By Txn: 1257640*
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
- 0x0da46dc0b028f41994d2a6b536496dfe89f5cabb
+ 
 
  *Gas Used By Txn: 1636625*
 
 * DragonsFight.sol (DragonsFight)
 
- 0x7995234f5871138c2b80e1829eddaa40b5976690
+ 
  
  *Gas Used By Txn: 609959*
 
@@ -68,8 +68,8 @@
 
 1. RNG.sol (RNG)
 2. GenRNG.sol (GenRNG) + address RNG
-3. FixMarketPlace.sol (FixMarketPlace) + address wallet 
-4. DragonETH.sol (DragonETH)
+3. FixMarketPlace.sol (FixMarketPlace) + address wallet
+4. DragonETH.sol (DragonETH) + address wallet
 5. CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 6. DragonStats.sol (DragonStats)
 7. Mutagen.sol
@@ -102,6 +102,7 @@
 12. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
 13. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
 14. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
+добавить в основной контракт роль "ActionContract" для всех котрактов действия 
 
 ### How to use remix with local files
 

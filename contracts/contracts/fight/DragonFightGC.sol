@@ -4,7 +4,13 @@ import "../security/Pausable.sol";
 //import "./math/SafeMath.sol";
 
 contract DragonETH {
+    
     function ownerOf(uint256 _tokenId) public view returns (address);
+    function checkDragonStatus(uint256 _dragonID, uint8 _stage) public view;
+    function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external;
+    function setTime2Rest(uint256 _dragonID, uint256 _addNextBlock2Action) external;
+
+    
 }
 
 contract DragonFight {
@@ -29,11 +35,13 @@ contract DragonFightGC is Pausable {
     DragonFight public dragonFightContract;
     DragonStats public dragonStatsContract;
     address wallet;
-    uint256 public minFightWaitBloc = 80; //~20 min
-    uint256 public maxFightWaitBloc = 172800; //~30 days??????
+    uint256 public minFightWaitBloc = 80; // ~20 min
+    uint256 public maxFightWaitBloc = 172800; // ~30 days??????
     uint256 public mutagenToWin = 10;
     uint256 public mutagenToLose =1;
     uint256 public mutagenToDeathWin = 100;
+    uint256 public addTime2Rest = 240; // ~ 60 min
+    
     
     function changeAddressMutagenContract(address _newAddress) external onlyAdmin {
         mutagenContract = Mutagen(_newAddress);
@@ -69,5 +77,12 @@ contract DragonFightGC is Pausable {
     
     function changeMutagenToDeathWin(uint256 _mutagenToDeathWin) external onlyAdmin {
         mutagenToDeathWin = _mutagenToDeathWin;
+    }
+    function changeAddTime2Rest(uint256 _addTime2Rest) external onlyAdmin {
+        addTime2Rest = _addTime2Rest;
+    }
+    function withdrawAllEther() external onlyAdmin {
+        require(wallet != 0);
+        wallet.transfer(address(this).balance);
     }
 }
