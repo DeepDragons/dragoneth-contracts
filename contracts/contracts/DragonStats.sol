@@ -38,7 +38,7 @@ contract DragonStats is RBACWithAdmin {
         birthBlock[_dragonID] = block.number;
     }
     
-    function setDeathBlock(uint256 _dragonID) external onlyRole("DeathContract") {
+    function setDeathBlock(uint256 _dragonID) external onlyRole("MainContract") {
         require(deathBlock[_dragonID] == 0);
         deathBlock[_dragonID] = block.number;
     }
@@ -75,10 +75,10 @@ contract DragonStats is RBACWithAdmin {
     function incChildren(uint256 _dragonID) external onlyRole("MainContract") {
         dragonStats[_dragonID].children++;
     }
-    function addMutagenFace(uint256 _dragonID, uint256 _mutagenCount) external onlyRole("DeathContract") {
+    function addMutagenFace(uint256 _dragonID, uint256 _mutagenCount) external onlyRole("MutagenFaceContract") {
         dragonStats[_dragonID].mutagenFace = dragonStats[_dragonID].mutagenFace + uint32(_mutagenCount);
     }
-    function addMutagenFight(uint256 _dragonID, uint256 _mutagenCount) external onlyRole("MutagenContract") {
+    function addMutagenFight(uint256 _dragonID, uint256 _mutagenCount) external onlyRole("MutagenFightContract") {
         dragonStats[_dragonID].mutagenFight = dragonStats[_dragonID].mutagenFight + uint32(_mutagenCount);
     }
     function incGenLabFace(uint256 _dragonID) external onlyRole("GenLabContract") {
