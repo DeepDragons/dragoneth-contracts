@@ -41,6 +41,7 @@ contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
         wallet.transfer(msg.value - return_value);
         for(uint256 i = 1; i <= count_to_buy; i += 1) {
             if (block.number < timeToFirstBorn) {
+                // TODO add safe transfer
                 DragonETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
             } else {
                 DragonETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
