@@ -87,7 +87,7 @@
 1. RNG			*func*	addAddressToWhitelist(address GenRNG)
 2. GenRNG		*func*	addAddressToWhitelist(address DragonETH)
 3. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
-4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateAgent" )
+4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
 5. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
 6. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
 7. DragonETH		*func*	changeDragonStatsContractAddress(address DragonStats)

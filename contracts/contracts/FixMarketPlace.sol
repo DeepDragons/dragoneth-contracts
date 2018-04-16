@@ -39,7 +39,7 @@ contract FixMarketPlace is Pausable {
         delete(dragonsListIndex[_dragonID]);
         totalDragonsToSale--;
     }
-    function addToFixMarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool sucsses) {
+    function add2MarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool sucsses) {
         require(msg.sender == address(mainContract));
         require(_endBlockNumber  > minSellTime);
         require(_endBlockNumber < maxSellTime ); //??????
