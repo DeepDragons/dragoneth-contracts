@@ -23,28 +23,34 @@ contract DragonsRandomFight2Death {
 contract Mutagen2Face {
     function addDragon(address _dragonOwner, uint256 _dragonID, uint256 mutagenCount) external;
 }
-
+contract SuperContract {
+    function checkDragon(uint256 _dragonID) external returns (bool);
+}
 contract DragonStats {
     function setParents(uint256 _dragonID, uint256 _parentOne, uint256 _parentTwo) external;
     function setBirthBlock(uint256 _dragonID) external;
     function incChildren(uint256 _dragonID) external;
     function setDeathBlock(uint256 _dragonID) external;
+    function getDragonFight(uint256 _dragonID) external view returns (uint256);
 }
 contract Necropolis {
      function addDragon(address _lastDragonOwner, uint256 _dragonID, uint256 _deathReason) external;
 }
+
 contract DragonETH_GC is RBACWithAdmin {
     GenRNG public genRNGContractAddress;
     FixMarketPlace public fmpContractAddress;
     DragonStats public dragonStatsContract;
     Necropolis public necropolisContract;
     Auction public auctionContract;
+    SuperContract public superContract;
     DragonSelectFight2Death public selectFight2DeathContract;
     DragonsRandomFight2Death public randomFight2DeathContract;
     Mutagen2Face public mutagen2FaceContract;
     
     address wallet;
     
+    uint8 adultDragonStage = 3;
     uint256 constant UINT256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
     uint256 public secondsInBlock = 15;
     uint256 public priceDecraseTime2Action = 0.00005 ether; //  1 block
@@ -56,9 +62,6 @@ contract DragonETH_GC is RBACWithAdmin {
     }
     function changeFMPcontractAddress(address _fmpContractAddress) external onlyAdmin {
         fmpContractAddress = FixMarketPlace(_fmpContractAddress);
-    }
-    function changeSecondsInBlock(uint256 _secondsInBlock) external onlyAdmin {
-        secondsInBlock = _secondsInBlock;
     }
     function changeAuctionContract(address _auctionContract) external onlyAdmin {
         auctionContract = Auction(_auctionContract);
@@ -72,6 +75,9 @@ contract DragonETH_GC is RBACWithAdmin {
     function changeMutagen2FaceContract(address _mutagen2FaceContract) external onlyAdmin {
         mutagen2FaceContract = Mutagen2Face(_mutagen2FaceContract);
     }
+    function changeSuperContract(address _superContract) external onlyAdmin {
+        superContract = SuperContract(_superContract);
+    }
     function changeWallet(address _wallet) external onlyAdmin {
         wallet = _wallet;
     }
@@ -83,6 +89,12 @@ contract DragonETH_GC is RBACWithAdmin {
     }
     function changePriceSelectFight2Death(uint256 _priceSelectFight2Death) external onlyAdmin {
         priceSelectFight2Death = _priceSelectFight2Death;
+    }
+     function changeSecondsInBlock(uint256 _secondsInBlock) external onlyAdmin {
+        secondsInBlock = _secondsInBlock;
+    }
+    function changeAdultDragonStage(uint8 _adultDragonStage) external onlyAdmin {
+        adultDragonStage = _adultDragonStage;
     }
     function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);

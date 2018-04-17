@@ -87,4 +87,7 @@ contract DragonStats is RBACWithAdmin {
     function incGenLabFight(uint256 _dragonID) external onlyRole("GenLabContract") {
         dragonStats[_dragonID].genLabFight++;
     }
+    function getDragonFight(uint256 _dragonID) external view returns (uint256){
+        return  (dragonStats[_dragonID].fightWin + dragonStats[_dragonID].fightLose + dragonStats[_dragonID].fightToDeathWin);
+    }
 }

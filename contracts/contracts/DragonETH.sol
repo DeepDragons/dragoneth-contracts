@@ -9,7 +9,6 @@ import "./security/ReentrancyGuard.sol";
 contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, ReentrancyGuard {
     uint256 public totalDragons;
     uint256 public liveDragons;
-    uint8 adultDragonStage = 2;
     struct Dragon {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
@@ -42,7 +41,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
             checkDragonStatus(_dragonID, 2);
         }
         if (fmpContractAddress.add2MarketPlace(msg.sender, _dragonID, _dragonPrice, _endBlockNumber)) {
-        transferFrom(msg.sender,fmpContractAddress,_dragonID);
+        transferFrom(msg.sender, fmpContractAddress, _dragonID);
         }
     }
 
@@ -52,7 +51,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
             checkDragonStatus(_dragonID, 2);
         }
         if (auctionContract.add2Auction(msg.sender, _dragonID, _startPrice, _step, _endPrice, _endBlockNumber)) {
-        transferFrom(msg.sender,auctionContract,_dragonID);
+        transferFrom(msg.sender, auctionContract, _dragonID);
         }
     }
     
@@ -124,6 +123,17 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         require(dragons[_dragonID].stage != 0); // dragon not dead
         require(dragons[_dragonID].nextBlock2Action <= block.number);
         dragons[_dragonID].stage = 2;
+    }
+    function matureDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
+        checkDragonStatus(_dragonID, 2);
+        require(dragonStatsContract.getDragonFight(_dragonID) >= 100);
+        dragons[_dragonID].stage = 3;
+        
+    }
+    function superDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
+        checkDragonStatus(_dragonID, 3);
+        require(superContract.checkDragon(_dragonID));
+        dragons[_dragonID].stage = 4;
     }
     function killDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
         checkDragonStatus(_dragonID, 2);
