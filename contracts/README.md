@@ -65,7 +65,7 @@
 #### Deploy
 
 *MVP*
-
+0. MultiWallet.sol (MultiWallet)
 1. RNG.sol (RNG)
 2. GenRNG.sol (GenRNG) + address RNG
 3. FixMarketPlace.sol (FixMarketPlace) + address wallet
