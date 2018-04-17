@@ -17,6 +17,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         uint256 nextBlock2Action;
     }
     Dragon[] public dragons;
+    mapping(uint256 => string) public dragonName;
     
    
     function DragonETH(address _wallet, address _necropolisContract, address _dragonStatsContract) public {
@@ -178,6 +179,22 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         }
         
     }
+    function addDragonName(uint256 _dragonID,string _newName) external payable nonReentrant onlyOwnerOf(_dragonID) {
+        checkDragonStatus(_dragonID, 2);
+        if (bytes(dragonName[_dragonID]).length == 0) {
+            dragonName[_dragonID] = _newName;
+        } else {
+            if (priceChangeName == 0) {
+                 dragonName[_dragonID] = _newName;
+            } else {
+                require(msg.value >= priceChangeName);
+                wallet.transfer(priceChangeName);
+                if (msg.value - priceChangeName > 0) msg.sender.transfer(msg.value - priceChangeName);
+                dragonName[_dragonID] = _newName;
+            }
+        }
+    }
+    
     function checkDragonStatus(uint256 _dragonID, uint8 _stage) public view {
         require(dragons[_dragonID].stage != 0); // dragon not dead
          // dragon not in action and not in rest  and not egg

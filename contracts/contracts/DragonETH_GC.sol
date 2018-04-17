@@ -56,6 +56,7 @@ contract DragonETH_GC is RBACWithAdmin {
     uint256 public priceDecraseTime2Action = 0.00005 ether; //  1 block
     uint256 public priceRandomFight2Death = 0.2 ether;
     uint256 public priceSelectFight2Death = 0.3 ether;
+    uint256 public priceChangeName = 0.01 ether;
 
     function changeGenRNGcontractAddress(address _genRNGContractAddress) external onlyAdmin {
         genRNGContractAddress = GenRNG(_genRNGContractAddress);
@@ -89,6 +90,9 @@ contract DragonETH_GC is RBACWithAdmin {
     }
     function changePriceSelectFight2Death(uint256 _priceSelectFight2Death) external onlyAdmin {
         priceSelectFight2Death = _priceSelectFight2Death;
+    }
+    function changePriceChangeName(uint256 _priceChangeName) external onlyAdmin {
+        priceChangeName = _priceChangeName;
     }
      function changeSecondsInBlock(uint256 _secondsInBlock) external onlyAdmin {
         secondsInBlock = _secondsInBlock;
