@@ -8,7 +8,7 @@ contract Necropolis is RBACWithAdmin {
     struct Dragon {
         address lastDragonOwner;
         uint256 dragonID;
-        uint256 deathReason; // 1 - suicide,
+        uint256 deathReason; // 1 - suicide, 2 - drunk, 3 - fight
     }
     Dragon[] public dragons;
     mapping(uint256 => uint256) public dragonIndex;
@@ -22,7 +22,7 @@ contract Necropolis is RBACWithAdmin {
         dragons.push(_dragon);
     }
     
-    function addDragon(address _lastDragonOwner, uint256 _dragonID, uint256 _deathReason) external onlyRole("DeathContract") {
+    function addDragon(address _lastDragonOwner, uint256 _dragonID, uint256 _deathReason) external onlyRole("MainContract") {
          Dragon memory _dragon = Dragon({
              lastDragonOwner: _lastDragonOwner,
              dragonID: _dragonID,
