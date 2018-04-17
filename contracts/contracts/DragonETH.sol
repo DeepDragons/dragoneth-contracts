@@ -9,7 +9,6 @@ import "./security/ReentrancyGuard.sol";
 contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, ReentrancyGuard {
     uint256 public totalDragons;
     uint256 public liveDragons;
-    uint256 public deadDragons;
     uint8 adultDragonStage = 2;
     struct Dragon {
         uint256 gen1;
@@ -135,8 +134,6 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         transferFrom(msg.sender, necropolisContract, _dragonID);
         dragonStatsContract.setDeathBlock(_dragonID);
         liveDragons--;
-        deadDragons++;
-        
     }
     function killDragonDeathContract(address _lastOwner, uint256 _dragonID, uint256 _deathReason) external onlyOwnerOf(_dragonID) onlyRole("DeathContract") {
         checkDragonStatus(_dragonID, 2);
@@ -147,7 +144,6 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         transferFrom(msg.sender, necropolisContract, _dragonID);
         dragonStatsContract.setDeathBlock(_dragonID);
         liveDragons--;
-        deadDragons++;
         
     }
     function decraseTimeToAction(uint256 _dragonID) external payable nonReentrant onlyOwnerOf(_dragonID) {
