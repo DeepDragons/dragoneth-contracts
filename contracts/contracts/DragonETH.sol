@@ -14,7 +14,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
     struct Dragon {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
-        uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  
+        uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ...
         uint240 gen2;
         uint256 nextBlock2Action;
     }
@@ -121,6 +121,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         }
     }
     function birthDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
+        require(dragons[_dragonID].stage != 0); // dragon not dead
         require(dragons[_dragonID].nextBlock2Action <= block.number);
         dragons[_dragonID].stage = 2;
     }
@@ -149,6 +150,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         
     }
     function decraseTimeToAction(uint256 _dragonID) external payable nonReentrant onlyOwnerOf(_dragonID) {
+        require(dragons[_dragonID].stage != 0); // dragon not dead
         require(msg.value >= priceDecraseTime2Action);
         require(dragons[_dragonID].nextBlock2Action > block.number);
         uint256 maxBlockCount = dragons[_dragonID].nextBlock2Action - block.number;
