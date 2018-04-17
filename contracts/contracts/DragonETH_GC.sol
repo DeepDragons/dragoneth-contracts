@@ -9,10 +9,10 @@ contract GenRNG {
 
 contract FixMarketPlace {
 
-    function add2MarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external returns (bool sucsses);
+    function add2MarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external returns (bool);
 }
 contract Auction {
-    function add2Auction(address _dragonOwner, uint256 _dragonID, uint256 _startPrice, uint256 _step, uint256 _endPrice, uint256 _endBlockNumber) external returns (bool sucsses);
+    function add2Auction(address _dragonOwner, uint256 _dragonID, uint256 _startPrice, uint256 _step, uint256 _endPrice, uint256 _endBlockNumber) external returns (bool);
 }
 contract DragonSelectFight2Death {
     function addSelctFight2Death(address _dragonOwner, uint256 _yourDragonID, uint256 _oppDragonID, uint256 _endBlockNumber, uint256 _priceSelectFight2Death) external;
