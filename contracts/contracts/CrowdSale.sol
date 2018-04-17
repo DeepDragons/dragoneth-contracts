@@ -3,6 +3,7 @@ pragma solidity ^0.4.21;
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
 import "./security/ReentrancyGuard.sol";
+import "./ERC721/AddressUtils.sol";
 
 contract DragonETH {
 
@@ -11,6 +12,7 @@ function createDragon(address _to, uint256 _timeToBorn, uint256 _parentOne, uint
 }
 contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
+    using AddressUtils for address;
     address private wallet;
     address public mainContract;
     uint256 public crowdSaleDragonPrice = 0.01 ether;
@@ -29,6 +31,7 @@ contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
     function() external payable whenNotPaused nonReentrant {
        require(soldDragons <= 100000);
        require(msg.value >= crowdSaleDragonPrice);
+       require(!msg.sender.isContract());
         uint256 count_to_buy;
         uint256 return_value;
   
