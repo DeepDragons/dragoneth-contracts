@@ -30,7 +30,7 @@ contract ERC721Token is ERC721, ERC721BasicToken {
   mapping(uint256 => uint256) internal allTokensIndex;
 
   // Optional mapping for token URIs
-  mapping(uint256 => string) internal tokenURIs;
+  // mapping(uint256 => string) internal tokenURIs;
 
   /**
   * @dev Constructor function
@@ -61,11 +61,41 @@ contract ERC721Token is ERC721, ERC721BasicToken {
   * @dev Throws if the token ID does not exist. May return an empty string.
   * @param _tokenId uint256 ID of the token to query
   */
+   bytes32 constant firstPartURI = "https://www.dragoneth.com/image/";
+    
+    function tokenURI(uint256  _tokenId) external view returns (string) {
+        require(exists(_tokenId));
+        bytes memory tmpBytes = new bytes(96);
+        uint256 i = 0;
+        uint256 tokenId = _tokenId;
+        // for same use case need "if (tokenId == 0)" 
+        while (tokenId != 0) {
+            uint256 remainderDiv = tokenId % 10;
+            tokenId = tokenId / 10;
+            tmpBytes[i++] = byte(48 + remainderDiv);
+        }
+ 
+        bytes memory resaultBytes = new bytes(firstPartURI.length + i);
+        
+        for (uint256 j = 0; j < firstPartURI.length; j++) {
+            resaultBytes[j] = firstPartURI[j];
+        }
+        
+        i--;
+        
+        for (j = 0; j <= i; j++) {
+            resaultBytes[j + firstPartURI.length] = tmpBytes[i - j];
+        }
+        
+        return string(resaultBytes);
+        
+    }
+/*    
   function tokenURI(uint256 _tokenId) public view returns (string) {
     require(exists(_tokenId));
     return tokenURIs[_tokenId];
   }
-
+*/
   /**
   * @dev Gets the token ID at a given index of the tokens list of the requested owner
   * @param _owner address owning the tokens list to be accessed
@@ -102,11 +132,12 @@ contract ERC721Token is ERC721, ERC721BasicToken {
   * @param _tokenId uint256 ID of the token to set its URI
   * @param _uri string URI to assign
   */
+/*
   function _setTokenURI(uint256 _tokenId, string _uri) internal {
     require(exists(_tokenId));
     tokenURIs[_tokenId] = _uri;
   }
-
+*/
   /**
   * @dev Internal function to add a token ID to the list of a given address
   * @param _to address representing the new owner of the given token ID
@@ -165,10 +196,11 @@ contract ERC721Token is ERC721, ERC721BasicToken {
     super._burn(_owner, _tokenId);
 
     // Clear metadata (if any)
+/*    
     if (bytes(tokenURIs[_tokenId]).length != 0) {
       delete tokenURIs[_tokenId];
     }
-
+*/
     // Reorg all tokens array
     uint256 tokenIndex = allTokensIndex[_tokenId];
     uint256 lastTokenIndex = allTokens.length.sub(1);

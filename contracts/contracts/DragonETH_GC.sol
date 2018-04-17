@@ -104,4 +104,23 @@ contract DragonETH_GC is RBACWithAdmin {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
     }
+    
+    // EIP-165 and EIP-721
+    bytes4 constant ERC165_Signature = 0x01ffc9a7;
+    bytes4 constant ERC721_Signature = 0x80ac58cd;
+    bytes4 constant ERC721Metadata_Signature = 0x5b5e139f;
+    bytes4 constant ERC721Enumerable_Signature = 0x780e9d63;
+    
+    function supportsInterface(bytes4 _interfaceID) external pure returns (bool)
+    {
+        
+
+        return ((_interfaceID == ERC165_Signature) || 
+                (_interfaceID == ERC721_Signature) ||
+                (_interfaceID == ERC721Metadata_Signature) ||
+                (_interfaceID == ERC721Enumerable_Signature)
+                
+        
+        );
+    }
 }
