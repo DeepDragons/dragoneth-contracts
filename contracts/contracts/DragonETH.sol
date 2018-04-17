@@ -21,7 +21,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
     Dragon[] public dragons;
     
    
-    function DragonETH(address _wallet, address _necropolisContract) public {
+    function DragonETH(address _wallet, address _necropolisContract, address _dragonStatsContract) public {
         
         _mint(msg.sender, 0);
         Dragon memory _dragon = Dragon({
@@ -32,6 +32,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
             nextBlock2Action: UINT256_MAX
         });
         dragons.push(_dragon);
+        dragonStatsContract = DragonStats(_dragonStatsContract);
         necropolisContract = Necropolis(_necropolisContract);
         wallet = _wallet;
     }

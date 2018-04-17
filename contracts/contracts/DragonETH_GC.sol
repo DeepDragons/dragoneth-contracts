@@ -60,9 +60,6 @@ contract DragonETH_GC is RBACWithAdmin {
     function changeSecondsInBlock(uint256 _secondsInBlock) external onlyAdmin {
         secondsInBlock = _secondsInBlock;
     }
-    function changeDragonStatsContract(address _dragonStatsContract) external onlyAdmin {
-        dragonStatsContract = DragonStats(_dragonStatsContract);
-    }
     function changeAuctionContract(address _auctionContract) external onlyAdmin {
         auctionContract = Auction(_auctionContract);
     }

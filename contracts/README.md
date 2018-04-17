@@ -66,18 +66,21 @@
 
 *MVP*
 0. MultiWallet.sol (MultiWallet)
-1. RNG.sol (RNG)
-2. GenRNG.sol (GenRNG) + address RNG
-3. FixMarketPlace.sol (FixMarketPlace) + address wallet
-4. DragonETH.sol (DragonETH) + address wallet
-5. CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
-6. DragonStats.sol (DragonStats)
-7. Mutagen.sol
+1. DragonStats.sol (DragonStats)
+2. Necropolis.sol (Necropolis)
+3. RNG.sol (RNG)
+4. GenRNG.sol (GenRNG) + address RNG
+5. DragonETH.sol (DragonETH) + address wallet + address Necropolis + address DragonStats
+6. CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
+
+
 
 *Other*
 
-8. DragonsFightPlace.sol (DragonsFightPlace) + address wallet
-9. DragonsFight.sol (DragonsFight)
+7. FixMarketPlace.sol (FixMarketPlace) + address wallet
+8. Mutagen.sol
+9. DragonsFightPlace.sol (DragonsFightPlace) + address wallet
+10. DragonsFight.sol (DragonsFight)
 
 
 #### Settings
