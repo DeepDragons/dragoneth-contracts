@@ -1,0 +1,584 @@
+{
+  "contractName": "DragonsRandomFight2Death",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_dragonOwner",
+          "type": "address"
+        },
+        {
+          "name": "_DragonID",
+          "type": "uint256"
+        }
+      ],
+      "name": "add2RandomFight2Death",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.21;\n\ncontract DragonFight {\n    function getWiner(uint256 _dragonOneID, uint256 _dragonTwoID) internal returns (uint256 _winerID);\n}\n\ncontract DragonsRandomFight2Death is DragonFight {\n    function add2RandomFight2Death(address _dragonOwner, uint256 _DragonID) external;\n\n}\n",
+  "sourcePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/fight/DragonsRandomFight2Death.sol",
+  "ast": {
+    "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/fight/DragonsRandomFight2Death.sol",
+    "exportedSymbols": {
+      "DragonFight": [
+        5345
+      ],
+      "DragonsRandomFight2Death": [
+        5355
+      ]
+    },
+    "id": 5356,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5335,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:26"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5345,
+        "linearizedBaseContracts": [
+          5345
+        ],
+        "name": "DragonFight",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5344,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getWiner",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5340,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5337,
+                  "name": "_dragonOneID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5344,
+                  "src": "71:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5336,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "71:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5339,
+                  "name": "_dragonTwoID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5344,
+                  "src": "93:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5338,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "93:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "70:44:26"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5343,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5342,
+                  "name": "_winerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5344,
+                  "src": "133:16:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5341,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "133:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "132:18:26"
+            },
+            "scope": 5345,
+            "src": "53:98:26",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 5356,
+        "src": "26:127:26"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": [],
+            "baseName": {
+              "contractScope": null,
+              "id": 5346,
+              "name": "DragonFight",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5345,
+              "src": "192:11:26",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DragonFight_$5345",
+                "typeString": "contract DragonFight"
+              }
+            },
+            "id": 5347,
+            "nodeType": "InheritanceSpecifier",
+            "src": "192:11:26"
+          }
+        ],
+        "contractDependencies": [
+          5345
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5355,
+        "linearizedBaseContracts": [
+          5355,
+          5345
+        ],
+        "name": "DragonsRandomFight2Death",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5354,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "add2RandomFight2Death",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5352,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5349,
+                  "name": "_dragonOwner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5354,
+                  "src": "241:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5348,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "241:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5351,
+                  "name": "_DragonID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5354,
+                  "src": "263:17:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5350,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "263:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "240:41:26"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5353,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "290:0:26"
+            },
+            "scope": 5355,
+            "src": "210:81:26",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5356,
+        "src": "155:139:26"
+      }
+    ],
+    "src": "0:295:26"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/fight/DragonsRandomFight2Death.sol",
+    "exportedSymbols": {
+      "DragonFight": [
+        5345
+      ],
+      "DragonsRandomFight2Death": [
+        5355
+      ]
+    },
+    "id": 5356,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5335,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:26"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5345,
+        "linearizedBaseContracts": [
+          5345
+        ],
+        "name": "DragonFight",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5344,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "getWiner",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5340,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5337,
+                  "name": "_dragonOneID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5344,
+                  "src": "71:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5336,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "71:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5339,
+                  "name": "_dragonTwoID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5344,
+                  "src": "93:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5338,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "93:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "70:44:26"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5343,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5342,
+                  "name": "_winerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5344,
+                  "src": "133:16:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5341,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "133:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "132:18:26"
+            },
+            "scope": 5345,
+            "src": "53:98:26",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 5356,
+        "src": "26:127:26"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": [],
+            "baseName": {
+              "contractScope": null,
+              "id": 5346,
+              "name": "DragonFight",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5345,
+              "src": "192:11:26",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DragonFight_$5345",
+                "typeString": "contract DragonFight"
+              }
+            },
+            "id": 5347,
+            "nodeType": "InheritanceSpecifier",
+            "src": "192:11:26"
+          }
+        ],
+        "contractDependencies": [
+          5345
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5355,
+        "linearizedBaseContracts": [
+          5355,
+          5345
+        ],
+        "name": "DragonsRandomFight2Death",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5354,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "add2RandomFight2Death",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5352,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5349,
+                  "name": "_dragonOwner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5354,
+                  "src": "241:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5348,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "241:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5351,
+                  "name": "_DragonID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5354,
+                  "src": "263:17:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5350,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "263:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "240:41:26"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5353,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "290:0:26"
+            },
+            "scope": 5355,
+            "src": "210:81:26",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5356,
+        "src": "155:139:26"
+      }
+    ],
+    "src": "0:295:26"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-04-17T04:04:35.470Z"
+}

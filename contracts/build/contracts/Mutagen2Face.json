@@ -1,0 +1,338 @@
+{
+  "contractName": "Mutagen2Face",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_dragonOwner",
+          "type": "address"
+        },
+        {
+          "name": "_dragonID",
+          "type": "uint256"
+        },
+        {
+          "name": "mutagenCount",
+          "type": "uint256"
+        }
+      ],
+      "name": "addDragon",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.21;\n\n\ncontract Mutagen2Face {\n    function addDragon(address _dragonOwner, uint256 _dragonID, uint256 mutagenCount) external;\n}",
+  "sourcePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/Mutagen2Face.sol",
+  "ast": {
+    "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/Mutagen2Face.sol",
+    "exportedSymbols": {
+      "Mutagen2Face": [
+        4329
+      ]
+    },
+    "id": 4330,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4319,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:19"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 4329,
+        "linearizedBaseContracts": [
+          4329
+        ],
+        "name": "Mutagen2Face",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4328,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "addDragon",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4326,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4321,
+                  "name": "_dragonOwner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4328,
+                  "src": "74:20:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4320,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "74:7:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4323,
+                  "name": "_dragonID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4328,
+                  "src": "96:17:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4322,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "96:7:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4325,
+                  "name": "mutagenCount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4328,
+                  "src": "115:20:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4324,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "115:7:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "73:63:19"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4327,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "145:0:19"
+            },
+            "scope": 4329,
+            "src": "55:91:19",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4330,
+        "src": "27:121:19"
+      }
+    ],
+    "src": "0:148:19"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/Mutagen2Face.sol",
+    "exportedSymbols": {
+      "Mutagen2Face": [
+        4329
+      ]
+    },
+    "id": 4330,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4319,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:19"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 4329,
+        "linearizedBaseContracts": [
+          4329
+        ],
+        "name": "Mutagen2Face",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4328,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "addDragon",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4326,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4321,
+                  "name": "_dragonOwner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4328,
+                  "src": "74:20:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4320,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "74:7:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4323,
+                  "name": "_dragonID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4328,
+                  "src": "96:17:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4322,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "96:7:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4325,
+                  "name": "mutagenCount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4328,
+                  "src": "115:20:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4324,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "115:7:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "73:63:19"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4327,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "145:0:19"
+            },
+            "scope": 4329,
+            "src": "55:91:19",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4330,
+        "src": "27:121:19"
+      }
+    ],
+    "src": "0:148:19"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-04-17T04:04:35.480Z"
+}

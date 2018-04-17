@@ -1,0 +1,319 @@
+{
+  "contractName": "DESTROYER",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60606040523415600e57600080fd5b609a8061001c6000396000f300606060405260043610603e5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166383197ef081146043575b600080fd5b3415604d57600080fd5b60536055565b005b3373ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a72305820dd461ca4f194e73a96e5ae9e58ab23cfd4cefa992cb1a8a58d1344cbd57147b40029",
+  "deployedBytecode": "0x606060405260043610603e5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166383197ef081146043575b600080fd5b3415604d57600080fd5b60536055565b005b3373ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a72305820dd461ca4f194e73a96e5ae9e58ab23cfd4cefa992cb1a8a58d1344cbd57147b40029",
+  "sourceMap": "25:96:21:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:96:21:-;;;;;;;;;;;;;;;;;;;;;;;50:69;;;;;;;;;;;;;;;101:10;88:24;;",
+  "source": "pragma solidity ^0.4.21;\ncontract DESTROYER {\n    function destroy() external {\n        selfdestruct(msg.sender);\n    }\n}\n",
+  "sourcePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/SelfDestruct.sol",
+  "ast": {
+    "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/SelfDestruct.sol",
+    "exportedSymbols": {
+      "DESTROYER": [
+        4424
+      ]
+    },
+    "id": 4425,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4414,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:21"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4424,
+        "linearizedBaseContracts": [
+          4424
+        ],
+        "name": "DESTROYER",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4422,
+              "nodeType": "Block",
+              "src": "78:41:21",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4418,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7440,
+                          "src": "101:3:21",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 4419,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "101:10:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 4417,
+                      "name": "selfdestruct",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7446,
+                      "src": "88:12:21",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 4420,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "88:24:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 4421,
+                  "nodeType": "ExpressionStatement",
+                  "src": "88:24:21"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4423,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "destroy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4415,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:21"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4416,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "78:0:21"
+            },
+            "scope": 4424,
+            "src": "50:69:21",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4425,
+        "src": "25:96:21"
+      }
+    ],
+    "src": "0:122:21"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/SelfDestruct.sol",
+    "exportedSymbols": {
+      "DESTROYER": [
+        4424
+      ]
+    },
+    "id": 4425,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4414,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:21"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4424,
+        "linearizedBaseContracts": [
+          4424
+        ],
+        "name": "DESTROYER",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4422,
+              "nodeType": "Block",
+              "src": "78:41:21",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4418,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7440,
+                          "src": "101:3:21",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 4419,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "101:10:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 4417,
+                      "name": "selfdestruct",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7446,
+                      "src": "88:12:21",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 4420,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "88:24:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 4421,
+                  "nodeType": "ExpressionStatement",
+                  "src": "88:24:21"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4423,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "destroy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4415,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:21"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4416,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "78:0:21"
+            },
+            "scope": 4424,
+            "src": "50:69:21",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4425,
+        "src": "25:96:21"
+      }
+    ],
+    "src": "0:122:21"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-04-17T04:04:35.495Z"
+}
