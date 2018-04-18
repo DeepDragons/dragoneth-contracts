@@ -30,17 +30,17 @@
     "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/fight/DragonsRandomFight2Death.sol",
     "exportedSymbols": {
       "DragonFight": [
-        5345
+        4652
       ],
       "DragonsRandomFight2Death": [
-        5355
+        4662
       ]
     },
-    "id": 5356,
+    "id": 4663,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5335,
+        "id": 4642,
         "literals": [
           "solidity",
           "^",
@@ -48,7 +48,7 @@
           ".21"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:26"
+        "src": "0:24:22"
       },
       {
         "baseContracts": [],
@@ -56,9 +56,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5345,
+        "id": 4652,
         "linearizedBaseContracts": [
-          5345
+          4652
         ],
         "name": "DragonFight",
         "nodeType": "ContractDefinition",
@@ -66,7 +66,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5344,
+            "id": 4651,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -74,16 +74,16 @@
             "name": "getWiner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5340,
+              "id": 4647,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5337,
+                  "id": 4644,
                   "name": "_dragonOneID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5344,
-                  "src": "71:20:26",
+                  "scope": 4651,
+                  "src": "71:20:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -91,10 +91,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5336,
+                    "id": 4643,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "71:7:26",
+                    "src": "71:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -105,11 +105,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5339,
+                  "id": 4646,
                   "name": "_dragonTwoID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5344,
-                  "src": "93:20:26",
+                  "scope": 4651,
+                  "src": "93:20:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -117,10 +117,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5338,
+                    "id": 4645,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "93:7:26",
+                    "src": "93:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -130,20 +130,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "70:44:26"
+              "src": "70:44:22"
             },
             "payable": false,
             "returnParameters": {
-              "id": 5343,
+              "id": 4650,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5342,
+                  "id": 4649,
                   "name": "_winerID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5344,
-                  "src": "133:16:26",
+                  "scope": 4651,
+                  "src": "133:16:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -151,10 +151,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5341,
+                    "id": 4648,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "133:7:26",
+                    "src": "133:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -164,17 +164,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "132:18:26"
+              "src": "132:18:22"
             },
-            "scope": 5345,
-            "src": "53:98:26",
+            "scope": 4652,
+            "src": "53:98:22",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 5356,
-        "src": "26:127:26"
+        "scope": 4663,
+        "src": "26:127:22"
       },
       {
         "baseContracts": [
@@ -182,31 +182,31 @@
             "arguments": [],
             "baseName": {
               "contractScope": null,
-              "id": 5346,
+              "id": 4653,
               "name": "DragonFight",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5345,
-              "src": "192:11:26",
+              "referencedDeclaration": 4652,
+              "src": "192:11:22",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_DragonFight_$5345",
+                "typeIdentifier": "t_contract$_DragonFight_$4652",
                 "typeString": "contract DragonFight"
               }
             },
-            "id": 5347,
+            "id": 4654,
             "nodeType": "InheritanceSpecifier",
-            "src": "192:11:26"
+            "src": "192:11:22"
           }
         ],
         "contractDependencies": [
-          5345
+          4652
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5355,
+        "id": 4662,
         "linearizedBaseContracts": [
-          5355,
-          5345
+          4662,
+          4652
         ],
         "name": "DragonsRandomFight2Death",
         "nodeType": "ContractDefinition",
@@ -214,7 +214,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5354,
+            "id": 4661,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -222,16 +222,16 @@
             "name": "add2RandomFight2Death",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5352,
+              "id": 4659,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5349,
+                  "id": 4656,
                   "name": "_dragonOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5354,
-                  "src": "241:20:26",
+                  "scope": 4661,
+                  "src": "241:20:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -239,10 +239,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5348,
+                    "id": 4655,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "241:7:26",
+                    "src": "241:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -253,11 +253,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5351,
+                  "id": 4658,
                   "name": "_DragonID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5354,
-                  "src": "263:17:26",
+                  "scope": 4661,
+                  "src": "263:17:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -265,10 +265,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5350,
+                    "id": 4657,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "263:7:26",
+                    "src": "263:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -278,43 +278,43 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "240:41:26"
+              "src": "240:41:22"
             },
             "payable": false,
             "returnParameters": {
-              "id": 5353,
+              "id": 4660,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "290:0:26"
+              "src": "290:0:22"
             },
-            "scope": 5355,
-            "src": "210:81:26",
+            "scope": 4662,
+            "src": "210:81:22",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5356,
-        "src": "155:139:26"
+        "scope": 4663,
+        "src": "155:139:22"
       }
     ],
-    "src": "0:295:26"
+    "src": "0:295:22"
   },
   "legacyAST": {
     "absolutePath": "/home/k/work/eth/CD/DragonETH/contracts/contracts/fight/DragonsRandomFight2Death.sol",
     "exportedSymbols": {
       "DragonFight": [
-        5345
+        4652
       ],
       "DragonsRandomFight2Death": [
-        5355
+        4662
       ]
     },
-    "id": 5356,
+    "id": 4663,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5335,
+        "id": 4642,
         "literals": [
           "solidity",
           "^",
@@ -322,7 +322,7 @@
           ".21"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:26"
+        "src": "0:24:22"
       },
       {
         "baseContracts": [],
@@ -330,9 +330,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5345,
+        "id": 4652,
         "linearizedBaseContracts": [
-          5345
+          4652
         ],
         "name": "DragonFight",
         "nodeType": "ContractDefinition",
@@ -340,7 +340,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5344,
+            "id": 4651,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -348,16 +348,16 @@
             "name": "getWiner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5340,
+              "id": 4647,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5337,
+                  "id": 4644,
                   "name": "_dragonOneID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5344,
-                  "src": "71:20:26",
+                  "scope": 4651,
+                  "src": "71:20:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -365,10 +365,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5336,
+                    "id": 4643,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "71:7:26",
+                    "src": "71:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -379,11 +379,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5339,
+                  "id": 4646,
                   "name": "_dragonTwoID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5344,
-                  "src": "93:20:26",
+                  "scope": 4651,
+                  "src": "93:20:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -391,10 +391,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5338,
+                    "id": 4645,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "93:7:26",
+                    "src": "93:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -404,20 +404,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "70:44:26"
+              "src": "70:44:22"
             },
             "payable": false,
             "returnParameters": {
-              "id": 5343,
+              "id": 4650,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5342,
+                  "id": 4649,
                   "name": "_winerID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5344,
-                  "src": "133:16:26",
+                  "scope": 4651,
+                  "src": "133:16:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -425,10 +425,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5341,
+                    "id": 4648,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "133:7:26",
+                    "src": "133:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -438,17 +438,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "132:18:26"
+              "src": "132:18:22"
             },
-            "scope": 5345,
-            "src": "53:98:26",
+            "scope": 4652,
+            "src": "53:98:22",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 5356,
-        "src": "26:127:26"
+        "scope": 4663,
+        "src": "26:127:22"
       },
       {
         "baseContracts": [
@@ -456,31 +456,31 @@
             "arguments": [],
             "baseName": {
               "contractScope": null,
-              "id": 5346,
+              "id": 4653,
               "name": "DragonFight",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5345,
-              "src": "192:11:26",
+              "referencedDeclaration": 4652,
+              "src": "192:11:22",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_DragonFight_$5345",
+                "typeIdentifier": "t_contract$_DragonFight_$4652",
                 "typeString": "contract DragonFight"
               }
             },
-            "id": 5347,
+            "id": 4654,
             "nodeType": "InheritanceSpecifier",
-            "src": "192:11:26"
+            "src": "192:11:22"
           }
         ],
         "contractDependencies": [
-          5345
+          4652
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5355,
+        "id": 4662,
         "linearizedBaseContracts": [
-          5355,
-          5345
+          4662,
+          4652
         ],
         "name": "DragonsRandomFight2Death",
         "nodeType": "ContractDefinition",
@@ -488,7 +488,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5354,
+            "id": 4661,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -496,16 +496,16 @@
             "name": "add2RandomFight2Death",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5352,
+              "id": 4659,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5349,
+                  "id": 4656,
                   "name": "_dragonOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5354,
-                  "src": "241:20:26",
+                  "scope": 4661,
+                  "src": "241:20:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -513,10 +513,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5348,
+                    "id": 4655,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "241:7:26",
+                    "src": "241:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -527,11 +527,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5351,
+                  "id": 4658,
                   "name": "_DragonID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5354,
-                  "src": "263:17:26",
+                  "scope": 4661,
+                  "src": "263:17:22",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -539,10 +539,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5350,
+                    "id": 4657,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "263:7:26",
+                    "src": "263:7:22",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -552,27 +552,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "240:41:26"
+              "src": "240:41:22"
             },
             "payable": false,
             "returnParameters": {
-              "id": 5353,
+              "id": 4660,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "290:0:26"
+              "src": "290:0:22"
             },
-            "scope": 5355,
-            "src": "210:81:26",
+            "scope": 4662,
+            "src": "210:81:22",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5356,
-        "src": "155:139:26"
+        "scope": 4663,
+        "src": "155:139:22"
       }
     ],
-    "src": "0:295:26"
+    "src": "0:295:22"
   },
   "compiler": {
     "name": "solc",
@@ -580,5 +580,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-17T04:04:35.470Z"
+  "updatedAt": "2018-04-18T06:07:54.846Z"
 }
