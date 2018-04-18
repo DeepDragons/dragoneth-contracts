@@ -22,13 +22,13 @@
 
  
 
- *Gas Used By Txn: 2388930*
+ *Gas Used By Txn: 4687314*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
  
 
- *Gas Used By Txn: 763391*
+ *Gas Used By Txn: 1262787*
 
 
 * wallet
@@ -39,7 +39,7 @@
  
  
 
- *Gas Used By Txn: 1319489*
+ *Gas Used By Txn: 1361774*
 
 
 * Mutagen.sol (Mutagen)
@@ -59,6 +59,12 @@
  
  
  *Gas Used By Txn: 609959*
+
+* Necropolis.sol (Necropolis)
+
+
+
+2 *Gas Used By Txn: 867597*
 
 ### Deployment
 
@@ -89,14 +95,16 @@
 
 1. RNG			*func*	addAddressToWhitelist(address GenRNG)
 2. GenRNG		*func*	addAddressToWhitelist(address DragonETH)
-3. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
-4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
-5. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
-6. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
-7. DragonETH		*func*	changeDragonStatsContractAddress(address DragonStats)
-8. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
+3. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
+4. DragonETH		*func*	changeDragonStatsContractAddress(address DragonStats)
+5. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
+6. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
+7. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract")
 
 *Other*
+
+7. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
+8. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
 
 8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract")
 9. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
@@ -109,6 +117,18 @@
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
 добавить в контракт статистики роль "DeathContract" Для DragonETH и остальных смертельных контрактов
 
+### Testing settings
+
+1. GenRNG		*func*	Whitelist(address DragonETH) == True
+2. DragonETH		*func*	genRNGContractAddress == address GenRNG
+3. DragonETH		*func*	dragonStatsContractAddress == address DragonStats
+4. DragonETH		*func*	hasRole(address CrowdSaleDragonETH,string "CreateContract" ) == True
+5. DragonStat		*func*	hasRole(address DragonETH,string "MainContract" ) == True
+6. Necropolis		*func*	hasRole(address DragonETH,string "MainContract" ) == True
+
+
+7. DragonETH		*func*	FMPcontractAddress == address FixMarketPlace
+8. FixMarketPlace	*func*	MainContract == address DragonETH
 ### How to use remix with local files
 
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
