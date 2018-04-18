@@ -100,6 +100,10 @@ contract DragonETH_GC is RBACWithAdmin {
     function changeAdultDragonStage(uint8 _adultDragonStage) external onlyAdmin {
         adultDragonStage = _adultDragonStage;
     }
+    function changeDragonStatsContract(address _dragonStatsContract) external onlyAdmin {
+        dragonStatsContract = DragonStats(_dragonStatsContract);
+    }
+
     function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
