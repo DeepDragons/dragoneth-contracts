@@ -37,7 +37,7 @@ contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
   
         count_to_buy = msg.value.div(crowdSaleDragonPrice);
         require(count_to_buy >= 1);
-        if (count_to_buy > 5) count_to_buy = 5;
+        if (count_to_buy > 10) count_to_buy = 10;
         // operation safety check with functions div() and require() above
         return_value = msg.value - count_to_buy * crowdSaleDragonPrice;
         if (return_value > 0) msg.sender.transfer(return_value);
