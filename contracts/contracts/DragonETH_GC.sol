@@ -51,6 +51,7 @@ contract DragonETH_GC is RBACWithAdmin {
     address wallet;
     
     uint8 adultDragonStage = 3;
+    bool stageThirdBegin = false;
     uint256 constant UINT256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
     uint256 public secondsInBlock = 15;
     uint256 public priceDecraseTime2Action = 0.00005 ether; //  1 block
@@ -63,6 +64,9 @@ contract DragonETH_GC is RBACWithAdmin {
     }
     function changeFMPcontractAddress(address _fmpContractAddress) external onlyAdmin {
         fmpContractAddress = FixMarketPlace(_fmpContractAddress);
+    }
+    function changeDragonStatsContract(address _dragonStatsContract) external onlyAdmin {
+        dragonStatsContract = DragonStats(_dragonStatsContract);
     }
     function changeAuctionContract(address _auctionContract) external onlyAdmin {
         auctionContract = Auction(_auctionContract);
@@ -100,9 +104,10 @@ contract DragonETH_GC is RBACWithAdmin {
     function changeAdultDragonStage(uint8 _adultDragonStage) external onlyAdmin {
         adultDragonStage = _adultDragonStage;
     }
-    function changeDragonStatsContract(address _dragonStatsContract) external onlyAdmin {
-        dragonStatsContract = DragonStats(_dragonStatsContract);
+    function setStageThirdBegin() external onlyAdmin {
+        stageThirdBegin = true;
     }
+    
 
     function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);

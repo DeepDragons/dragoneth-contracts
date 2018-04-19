@@ -126,6 +126,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         dragons[_dragonID].stage = 2;
     }
     function matureDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
+        require(stageThirdBegin);
         checkDragonStatus(_dragonID, 2);
         require(dragonStatsContract.getDragonFight(_dragonID) >= 100);
         dragons[_dragonID].stage = 3;
