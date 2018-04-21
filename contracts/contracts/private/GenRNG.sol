@@ -1,5 +1,6 @@
 pragma solidity ^0.4.21;
 
+
 import "../security/Whitelist.sol";
 
 contract RNG {
