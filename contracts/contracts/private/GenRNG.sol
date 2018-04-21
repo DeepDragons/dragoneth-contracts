@@ -24,7 +24,7 @@ function changeAddressRNG(address _addressRNG) external onlyOwner {
 //01 detailColorSchemaGen = 00h - 63h (99d)
     resultGen[0] = resultGen[0] + uint8(random_number[0][1]) % 100;
     resultGen[0] = resultGen[0] << 8;
-//02*detailAuraGen = 00h - 04h
+//02*detailAuraGen = 00h - 05h
     resultGen[0] = resultGen[0] + uint8(random_number[0][2]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //03 detailAuraColorGen = 00h - 04h
@@ -33,8 +33,8 @@ function changeAddressRNG(address _addressRNG) external onlyOwner {
 //04 *detailWingsGen = 00h - 05h
     resultGen[0] = resultGen[0] + uint8(random_number[0][4]) % 6;
     resultGen[0] = resultGen[0] << 8;
-//05 detailWingsColor1Gen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[0][5]) % 5;
+//05 reserved
+//    resultGen[0] = resultGen[0] + uint8(random_number[0][5]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //06 detailWingsColor2Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[0][6]) % 5;
@@ -42,8 +42,8 @@ function changeAddressRNG(address _addressRNG) external onlyOwner {
 //07 *detailTailGen = 00h - 07h
     resultGen[0] = resultGen[0] + uint8(random_number[0][7]) % 8;
     resultGen[0] = resultGen[0] << 8;
-//08 detailTailColor1Gen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[0][8]) % 5;
+//08 reserved
+//    resultGen[0] = resultGen[0] + uint8(random_number[0][8]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //09 detailTailColor2Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[0][9]) % 5;
@@ -75,8 +75,8 @@ function changeAddressRNG(address _addressRNG) external onlyOwner {
 //18 *detailHeadGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[0][18]) % 6;
     resultGen[0] = resultGen[0] << 8;
-//19 detailHeadColorGen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[0][19]) % 5;
+//19 reserved
+//    resultGen[0] = resultGen[0] + uint8(random_number[0][19]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //20 mutagenImutable 00h-FFh
     resultGen[0] = resultGen[0] + uint8(random_number[0][20]);
@@ -84,8 +84,8 @@ function changeAddressRNG(address _addressRNG) external onlyOwner {
 //21 *detailClawsGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[0][21]) % 5;
     resultGen[0] = resultGen[0] << 8;
-//22 detailClawsColor1Gen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[0][22]) % 5;
+//22 reserved
+//    resultGen[0] = resultGen[0] + uint8(random_number[0][22]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //23 detailClawsColor2Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[0][23]) % 5;
