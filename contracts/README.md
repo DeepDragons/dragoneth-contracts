@@ -9,7 +9,7 @@
 
 * GenRNG.sol (GenRNG) + address RNG
 
- 0xf3f0cfa81a8d4524383828b0766e651bec37416f
+ 0xd0c0b284ec89dc5d0598920c592a15e4721518ab
 
  *Gas Used By Txn: 1735106*
  0.006940424
