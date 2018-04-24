@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "../security/rbac/RBACWithAdmin.sol";
 
@@ -9,7 +9,7 @@ contract GenRNG is RBACWithAdmin {
 
   address private addressRNG;
 
-  function GenRNG(address _addressRNG) public {
+  constructor(address _addressRNG) public {
   addressRNG = _addressRNG;
 }
 

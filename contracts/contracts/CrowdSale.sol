@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
@@ -21,7 +21,7 @@ contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
     uint256 public timeToBorn = 5760; // ~ 24h 
     uint256 public timeToFirstBorn;
     
-    function CrowdSaleDragonETH(address _wallet, address _mainContract) public {
+    constructor(address _wallet, address _mainContract) public {
         wallet = _wallet;
         mainContract = _mainContract;
         timeToFirstBorn = block.number + 80640; // ~14 days 

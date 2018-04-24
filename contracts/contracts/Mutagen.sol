@@ -1,10 +1,10 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./ERC20/MintableToken.sol";
 import "./ERC20/BurnableToken.sol";
 
 contract Mutagen is MintableToken, BurnableToken {
-//    string public constant name = "DragonETH Mutagen";
+//    string public constant name = "DragonsETH Mutagen";
 //    string public constant symbol = "Mutagen";
     uint8  public constant decimals = 0;
     // TODO del on war deploy

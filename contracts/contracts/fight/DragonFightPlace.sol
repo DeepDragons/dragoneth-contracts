@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./DragonFightGC.sol";
 
@@ -13,7 +13,7 @@ contract DragonsFightPlace is DragonFightGC {
     mapping(uint256 => uint256) dragonsListIndex;
 
 
-    function DragonsFightPlace(address _wallet) public {
+    constructor(address _wallet) public {
         wallet = _wallet;
     }
 

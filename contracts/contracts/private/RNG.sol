@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 
 import "../security/rbac/RBACWithAdmin.sol";
@@ -8,9 +8,9 @@ contract RNG is RBACWithAdmin {
     uint256 private curAddressNum;
     uint256[10] private rndaddress;
    
-    function RNG()  public{
+    constructor()  public{
        for(uint256 i=0;i<10;i++) {
-           rndaddress[i] = uint256(keccak256(block.blockhash(block.number-2*i)));
+           rndaddress[i] = uint256(keccak256(blockhash(block.number-2*i)));
        }
     }
     //onlyWhitelisted

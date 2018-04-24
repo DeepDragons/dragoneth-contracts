@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
 // , DESTROYER, DESTROYER, DESTROYER
 import "../../SelfDestruct.sol";
@@ -39,7 +39,7 @@ contract RBACWithAdmin is RBAC, DESTROYER {
   /**
    * @dev constructor. Sets msg.sender as admin by default
    */
-  function RBACWithAdmin()
+  constructor()
     public
   {
     addRole(msg.sender, ROLE_ADMIN);

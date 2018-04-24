@@ -1,11 +1,11 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./ERC721/ERC721Token.sol";
 import "./DragonETH_GC.sol";
 import "./security/ReentrancyGuard.sol";
 
 // FOR TEST remove in war deploy
-// contract DragonETH is ERC721Token("DragonETH game", "DragonETH"), DragonETH_GC, ReentrancyGuard {
+// contract DragonETH is ERC721Token("DragonsETH.com game", "DragonsETH"), DragonETH_GC, ReentrancyGuard {
 contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, ReentrancyGuard {
     uint256 public totalDragons;
     uint256 public liveDragons;
@@ -20,7 +20,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
     mapping(uint256 => string) public dragonName;
     
    
-    function DragonETH(address _wallet, address _necropolisContract, address _dragonStatsContract) public {
+    constructor(address _wallet, address _necropolisContract, address _dragonStatsContract) public {
         
         _mint(msg.sender, 0);
         Dragon memory _dragon = Dragon({
