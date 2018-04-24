@@ -6,7 +6,7 @@ import "../security/ReentrancyGuard.sol";
 contract MultiWallet is ReentrancyGuard {
     address wallet1_18 = 0x98F04b28946C73D049c04A63Ac1F3352689F23bf; // Renat
     address wallet2_18 = 0x36d9399A33C4851526D541E0e4B577E5dAdc6be0; // Igor
-    address wallet3_18 = 0x6862088c5D7EEdB6B1Ae0C80c6656B5C7f038B61;
+    address wallet3_18 = 0x5eeE623EDC4FF9a72a85F5F40417E6AA8dEbC03d; // Alexander
     address wallet4_18 = 0xF66C90b5879405E6FD0b27F0077B13100c5b69c1;
     address wallet5_8  = 0xeC9FefdD828C28b4D1559548E5df6a460d83dB29; // disigner1 8 Masha
     address wallet6_2  = 0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78; // disgner2 2 Eugen
