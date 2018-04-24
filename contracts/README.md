@@ -1,16 +1,16 @@
-### Contract address in Ropsten
+### Contract address in Kovan
 
 * RNG.sol (RNG)
 
- 
+ 0x28b283ebd59d864d553ff5075f029d8ebb3d89ba
 
- *Gas Used By Txn: 607300*
+ *Gas Used By Txn: 907918*
 
 * GenRNG.sol (GenRNG) + address RNG
 
- 
+ 0x686bfab6dcc3da1e3ec39d0353319c4a6277c726
 
- *Gas Used By Txn: 889266*
+ *Gas Used By Txn: 1075167*
 
 * FixMarketPlace.sol (FixMarketPlace) + address wallet
 
@@ -20,24 +20,24 @@
 
 * DragonETH.sol (DragonETH)
 
- 
+ 0xbe9eaa87ce66061de642f0270845596385177dd5
 
- *Gas Used By Txn: 4687314*
+ *Gas Used By Txn: 4816445*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
- 
+ 0x5d314091ef4bc62bc9f03ad32e07ccfb0cc981f7
 
- *Gas Used By Txn: 1262787*
+ *Gas Used By Txn: 1259092*
 
 
 * wallet
  
- 0x638a05783dB75e08095A45362E3f207601277dAe
+ 0xDe089D1801e6Ed1d75076950c4717445d02aE984
 
 * DragonStats.sol (DragonStats)
  
- 
+ 0xe38154ea3a7eaf4bd7a9f019f7237c0970dd3aef
 
  *Gas Used By Txn: 1361774*
 
@@ -62,7 +62,7 @@
 
 * Necropolis.sol (Necropolis)
 
-
+0xc1807abba73def2576908fe33d1903e7b5a77b36
 
 2 *Gas Used By Txn: 867597*
 
@@ -93,8 +93,8 @@
 
 *MVP*
 
-1. RNG			*func*	addAddressToWhitelist(address GenRNG)
-2. GenRNG		*func*	addAddressToWhitelist(address DragonETH)
+1. RNG			*func*	adminAddRole(address GenRGN,string "GenRNG" )
+2. GenRNG		*func*	adminAddRole(address DragonETH,string "MainContract" )
 3. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
 4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
 5. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")

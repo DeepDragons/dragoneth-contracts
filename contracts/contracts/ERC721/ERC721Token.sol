@@ -61,7 +61,7 @@ contract ERC721Token is ERC721, ERC721BasicToken {
   * @dev Throws if the token ID does not exist. May return an empty string.
   * @param _tokenId uint256 ID of the token to query
   */
-   bytes32 constant firstPartURI = "https://www.dragoneth.com/image/";
+   bytes constant firstPartURI = "https://www.dragonseth.com/image/";
     
     function tokenURI(uint256  _tokenId) external view returns (string) {
         require(exists(_tokenId));
