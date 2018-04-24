@@ -11,7 +11,7 @@ contract MultiWallet is ReentrancyGuard {
     address wallet5_8  = 0xeC9FefdD828C28b4D1559548E5df6a460d83dB29; // disigner1 8 Masha
     address wallet6_2  = 0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78; // disgner2 2 Eugen
     address wallet7_8  = 0x638a05783dB75e08095A45362E3f207601277dAe; // 5 ads
-    address wallet8_10 = 0xfc4b10427678C60c3D1B0b80625657c95a29fFEe; //13 prodaction Igor
+    address wallet8_10 = 0xfc4b10427678C60c3D1B0b80625657c95a29fFEe; // 13 prodaction Igor
 
 
     function() public payable { }
