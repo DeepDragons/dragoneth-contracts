@@ -18,11 +18,11 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     uint256 public minSellTime = 13; //~2 min
     uint256 public maxSellTime = 259200; //~30 days??????
     uint256 public ownersPercent = 50; // eq 5%
-    mapping(uint256 => address) dragonsOwner;
+    mapping(uint256 => address) public dragonsOwner;
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsEndBlock;
     uint256[] public dragonsList; 
-    mapping(uint256 => uint256) dragonsListIndex;
+    mapping(uint256 => uint256) public dragonsListIndex;
     //mapping (address => uint256[]) private ownedTokens;
 
     function FixMarketPlace(address _wallet) public {
