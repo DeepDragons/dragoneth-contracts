@@ -2,6 +2,7 @@ pragma solidity ^0.4.21;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
+import "./security/ReentrancyGuard.sol";
 
 contract DragonETH {
 function transferFrom(address _from, address _to, uint256 _tokenId) public;
@@ -9,7 +10,7 @@ function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
   
 }
 
-contract FixMarketPlace is Pausable {
+contract FixMarketPlace is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     DragonETH public mainContract;
     address wallet;
@@ -59,7 +60,7 @@ contract FixMarketPlace is Pausable {
             _delItem(_dragonID);
     }
 
-    function buyDragon(uint256 _dragonID) external payable whenNotPaused {
+    function buyDragon(uint256 _dragonID) external payable nonReentrant whenNotPaused {
         require(block.number <= dragonsEndBlock[_dragonID]);
         uint256 _dragonCommisions = dragonPrices[_dragonID].mul(ownersPercent).div(1000);
         require(msg.value >= dragonPrices[_dragonID].add(_dragonCommisions));
