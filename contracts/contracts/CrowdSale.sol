@@ -5,12 +5,12 @@ import "./math/SafeMath.sol";
 import "./security/ReentrancyGuard.sol";
 import "./ERC721/AddressUtils.sol";
 
-contract DragonETH {
+contract DragonsETH {
 
 function createDragon(address _to, uint256 _timeToBorn, uint256 _parentOne, uint256 _parentTwo, uint256 _gen1, uint240 _gen2) external;
 
 }
-contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
+contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     using AddressUtils for address;
     address private wallet;
@@ -44,9 +44,9 @@ contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
         for(uint256 i = 1; i <= count_to_buy; i += 1) {
             if (block.number < timeToFirstBorn) {
                 // TODO add safe transfer
-                DragonETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
+                DragonsETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
             } else {
-                DragonETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
+                DragonsETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
             }
             soldDragons++;
             crowdSaleDragonPrice = crowdSaleDragonPrice + priceChanger;

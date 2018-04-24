@@ -1,8 +1,8 @@
 pragma solidity ^0.4.23;
 
-import "./DragonFightGC.sol";
+import "./DragonsFightGC.sol";
 
-contract DragonsFightPlace is DragonFightGC {
+contract DragonsFightPlace is DragonsFightGC {
     
     uint256 public totalDragonsToFight;
     uint256 public priceToFight = 0.001 ether; // price for test
@@ -28,10 +28,10 @@ contract DragonsFightPlace is DragonFightGC {
         totalDragonsToFight--;
     }
     function _setFightResult(uint256 _dragonWin, uint256 _dragonLose) private {
-        dragonStatsContract.incFightWin(_dragonWin);
-        dragonStatsContract.incFightLose(_dragonLose);
-        dragonStatsContract.setLastAction(_dragonWin, _dragonLose, 13);
-        dragonStatsContract.setLastAction(_dragonLose, _dragonWin, 14);
+        dragonsStatsContract.incFightWin(_dragonWin);
+        dragonsStatsContract.incFightLose(_dragonLose);
+        dragonsStatsContract.setLastAction(_dragonWin, _dragonLose, 13);
+        dragonsStatsContract.setLastAction(_dragonLose, _dragonWin, 14);
             
     }
     
@@ -79,7 +79,7 @@ contract DragonsFightPlace is DragonFightGC {
             msg.sender.transfer(valueToReturn);
         }
 
-        if (dragonFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
+        if (dragonsFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
             
             mutagenContract.mint(msg.sender,mutagenToWin);
             mutagenContract.mint(dragonsOwner[_thisDragonID],mutagenToLose);

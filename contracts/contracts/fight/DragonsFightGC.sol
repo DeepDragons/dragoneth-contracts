@@ -3,7 +3,7 @@ pragma solidity ^0.4.23;
 import "../security/Pausable.sol";
 //import "./math/SafeMath.sol";
 
-contract DragonETH {
+contract DragonsETH {
     
     function ownerOf(uint256 _tokenId) public view returns (address);
     function checkDragonStatus(uint256 _dragonID, uint8 _stage) public view;
@@ -13,11 +13,11 @@ contract DragonETH {
     
 }
 
-contract DragonFight {
+contract DragonsFight {
     function getWinner(uint256 _dragonOneID, uint256 _dragonTwoID) external returns (uint256 _winerID);
 }
 
-contract DragonStats {
+contract DragonsStats {
     function incFightWin(uint256 _dragonID) external;
     function incFightLose(uint256 _dragonID) external;
     function incFightToDeathWin(uint256 _dragonID) external;
@@ -28,12 +28,12 @@ contract Mutagen {
     function mint(address _to, uint256 _amount)  public returns (bool);
 }
 
-contract DragonFightGC is Pausable {
+contract DragonsFightGC is Pausable {
 //    using SafeMath for uint256;
     Mutagen public mutagenContract;
-    DragonETH public mainContract;
-    DragonFight public dragonFightContract;
-    DragonStats public dragonStatsContract;
+    DragonsETH public mainContract;
+    DragonsFight public dragonsFightContract;
+    DragonsStats public dragonsStatsContract;
     address wallet;
     uint256 public minFightWaitBloc = 80; // ~20 min
     uint256 public maxFightWaitBloc = 172800; // ~30 days??????
@@ -47,13 +47,13 @@ contract DragonFightGC is Pausable {
         mutagenContract = Mutagen(_newAddress);
     }
     function changeAddressMainContract(address _newAddress) external onlyAdmin {
-        mainContract = DragonETH(_newAddress);
+        mainContract = DragonsETH(_newAddress);
     }
     function changeAddressFightContract(address _newAddress) external onlyAdmin {
-        dragonFightContract = DragonFight(_newAddress);
+        dragonsFightContract = DragonsFight(_newAddress);
     }
     function changeAddressStatsContract(address _newAddress) external onlyAdmin {
-        dragonStatsContract = DragonStats(_newAddress);
+        dragonsStatsContract = DragonsStats(_newAddress);
     }
     function changeWallet(address _wallet) external onlyAdmin {
         wallet = _wallet;

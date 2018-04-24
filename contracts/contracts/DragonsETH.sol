@@ -1,12 +1,12 @@
 pragma solidity ^0.4.23;
 
 import "./ERC721/ERC721Token.sol";
-import "./DragonETH_GC.sol";
+import "./DragonsETH_GC.sol";
 import "./security/ReentrancyGuard.sol";
 
 // FOR TEST remove in war deploy
-// contract DragonETH is ERC721Token("DragonsETH.com game", "DragonsETH"), DragonETH_GC, ReentrancyGuard {
-contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, ReentrancyGuard {
+// contract DragonsETH is ERC721Token("DragonsETH.com game", "DragonsETH"), DragonsETH_GC, ReentrancyGuard {
+contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, ReentrancyGuard {
     uint256 public totalDragons;
     uint256 public liveDragons;
     struct Dragon {
@@ -20,7 +20,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
     mapping(uint256 => string) public dragonName;
     
    
-    constructor(address _wallet, address _necropolisContract, address _dragonStatsContract) public {
+    constructor(address _wallet, address _necropolisContract, address _dragonsStatsContract) public {
         
         _mint(msg.sender, 0);
         Dragon memory _dragon = Dragon({
@@ -31,7 +31,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
             nextBlock2Action: UINT256_MAX
         });
         dragons.push(_dragon);
-        dragonStatsContract = DragonStats(_dragonStatsContract);
+        dragonsStatsContract = DragonsStats(_dragonsStatsContract);
         necropolisContract = Necropolis(_necropolisContract);
         wallet = _wallet;
     }
@@ -107,11 +107,11 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         });
         dragons.push(_dragon);
         if (_parentOne !=0) {
-            dragonStatsContract.setParents(totalDragons,_parentOne,_parentTwo);
-            dragonStatsContract.incChildren(_parentOne);
-            dragonStatsContract.incChildren(_parentTwo);
+            dragonsStatsContract.setParents(totalDragons,_parentOne,_parentTwo);
+            dragonsStatsContract.incChildren(_parentOne);
+            dragonsStatsContract.incChildren(_parentTwo);
         }
-        dragonStatsContract.setBirthBlock(totalDragons);
+        dragonsStatsContract.setBirthBlock(totalDragons);
     }
     function changeDragonGen(uint256 _dragonID, uint256 _gen, uint8 _which) external onlyRole("ChangeContract") {
         if (_which == 0) {
@@ -128,7 +128,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
     function matureDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
         require(stageThirdBegin);
         checkDragonStatus(_dragonID, 2);
-        require(dragonStatsContract.getDragonFight(_dragonID) >= 100);
+        require(dragonsStatsContract.getDragonFight(_dragonID) >= 100);
         dragons[_dragonID].stage = 3;
         
     }
@@ -144,7 +144,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         dragons[_dragonID].nextBlock2Action = UINT256_MAX;
         necropolisContract.addDragon(ownerOf(_dragonID), _dragonID, 1);
         transferFrom(msg.sender, necropolisContract, _dragonID);
-        dragonStatsContract.setDeathBlock(_dragonID);
+        dragonsStatsContract.setDeathBlock(_dragonID);
         liveDragons--;
     }
     function killDragonDeathContract(address _lastOwner, uint256 _dragonID, uint256 _deathReason) external onlyOwnerOf(_dragonID) onlyRole("DeathContract") {
@@ -154,7 +154,7 @@ contract DragonETH is ERC721Token("Test game", "Test"), DragonETH_GC, Reentrancy
         dragons[_dragonID].nextBlock2Action = UINT256_MAX;
         necropolisContract.addDragon(_lastOwner, _dragonID, _deathReason);
         transferFrom(msg.sender, necropolisContract, _dragonID);
-        dragonStatsContract.setDeathBlock(_dragonID);
+        dragonsStatsContract.setDeathBlock(_dragonID);
         liveDragons--;
         
     }
