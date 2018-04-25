@@ -2,13 +2,13 @@
 
 * RNG.sol (RNG)
 
- 
+0xfa7ab11d6adb67c602d03cb180a4f4a3c98f1a41
 
  *Gas Used By Txn: 907918*
 
 * GenRNG.sol (GenRNG) + address RNG
 
- 
+0xd2a88c34855450d73b1c13667d0b11d289848489 
 
  *Gas Used By Txn: 1075167*
 
@@ -20,13 +20,13 @@
 
 * DragonETH.sol (DragonETH)
 
+0x573b84ebc275d5a3976d663f509b4d0a80d9ffbf
 
-
- *Gas Used By Txn: 4816445*
+ *Gas Used By Txn: 5236615*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-
+0xaa31890265ba43ac65babf34adfb358efcc504a6
 
  *Gas Used By Txn: 1259092*
 
@@ -37,7 +37,7 @@
 
 * DragonStats.sol (DragonStats)
  
-
+0xf275c0751a1738c1a7e2050cf1bc3c113e186719
 
  *Gas Used By Txn: 1361774*
 
@@ -62,7 +62,7 @@
 
 * Necropolis.sol (Necropolis)
 
-
+0x9104e19f97bbb0bcaab74145e3e1b922324fcc9e
 
 2 *Gas Used By Txn: 867597*
 
