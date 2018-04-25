@@ -42,8 +42,9 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         if (dragons[_dragonID].stage >= 2) {
             checkDragonStatus(_dragonID, 2);
         }
-        if (fmpContractAddress.add2MarketPlace(ownerOf(_dragonID), _dragonID, _dragonPrice, _endBlockNumber)) {
-        transferFrom(ownerOf(_dragonID), fmpContractAddress, _dragonID);
+        address dragonOwner = ownerOf(_dragonID);
+        if (fmpContractAddress.add2MarketPlace(dragonOwner, _dragonID, _dragonPrice, _endBlockNumber)) {
+        transferFrom(dragonOwner, fmpContractAddress, _dragonID);
         }
     }
 
@@ -52,8 +53,9 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         if (dragons[_dragonID].stage >= 2) {
             checkDragonStatus(_dragonID, 2);
         }
-        if (auctionContract.add2Auction(ownerOf(_dragonID), _dragonID, _startPrice, _step, _endPrice, _endBlockNumber)) {
-        transferFrom(ownerOf(_dragonID), auctionContract, _dragonID);
+        address dragonOwner = ownerOf(_dragonID);
+        if (auctionContract.add2Auction(dragonOwner, _dragonID, _startPrice, _step, _endPrice, _endBlockNumber)) {
+        transferFrom(dragonOwner, auctionContract, _dragonID);
         }
     }
     
@@ -64,8 +66,9 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
             wallet.transfer(priceRandomFight2Death);
             if (msg.value - priceRandomFight2Death > 0) msg.sender.transfer(msg.value - priceRandomFight2Death);
         }
-        transferFrom(ownerOf(_dragonID),randomFight2DeathContract, _dragonID);
-        randomFight2DeathContract.addRandomFight2Death(ownerOf(_dragonID), _dragonID);
+        address dragonOwner = ownerOf(_dragonID);
+        transferFrom(dragonOwner, randomFight2DeathContract, _dragonID);
+        randomFight2DeathContract.addRandomFight2Death(dragonOwner, _dragonID);
     }
     
     function addSelctFight2Death(uint256 _yourDragonID, uint256 _oppDragonID, uint256 _endBlockNumber) external payable nonReentrant canTransfer(_yourDragonID)   {
@@ -75,15 +78,17 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
             address(selectFight2DeathContract).transfer(priceSelectFight2Death);
             if (msg.value - priceSelectFight2Death > 0) msg.sender.transfer(msg.value - priceSelectFight2Death);
         }
-        transferFrom(ownerOf(_yourDragonID),selectFight2DeathContract, _yourDragonID);
-        selectFight2DeathContract.addSelctFight2Death(ownerOf(_yourDragonID), _yourDragonID, _oppDragonID, _endBlockNumber, priceSelectFight2Death);
+        address dragonOwner = ownerOf(_yourDragonID);
+        transferFrom(dragonOwner, selectFight2DeathContract, _yourDragonID);
+        selectFight2DeathContract.addSelctFight2Death(dragonOwner, _yourDragonID, _oppDragonID, _endBlockNumber, priceSelectFight2Death);
         
     }
     
     function mutagen2Face(uint256 _dragonID, uint256 _mutagenCount) external canTransfer(_dragonID)   {
         checkDragonStatus(_dragonID, 2);
-        transferFrom(ownerOf(_dragonID),mutagen2FaceContract, _dragonID);
-        mutagen2FaceContract.addDragon(ownerOf(_dragonID), _dragonID, _mutagenCount);
+        address dragonOwner = ownerOf(_dragonID);
+        transferFrom(dragonOwner, mutagen2FaceContract, _dragonID);
+        mutagen2FaceContract.addDragon(dragonOwner, _dragonID, _mutagenCount);
     }
     
     
