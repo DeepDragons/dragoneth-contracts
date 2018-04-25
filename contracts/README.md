@@ -14,19 +14,19 @@
 
 * FixMarketPlace.sol (FixMarketPlace) + address wallet
 
- 
+0xec7cfdd2004f206b73d435b67aa0daa71fc0e62e
 
  *Gas Used By Txn: 1218021*
 
 * DragonETH.sol (DragonETH)
 
-0x573b84ebc275d5a3976d663f509b4d0a80d9ffbf
+0x9d60d187f1b2e77348eb4e0848b33b191500bc3b
 
  *Gas Used By Txn: 5236615*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0xaa31890265ba43ac65babf34adfb358efcc504a6
+0x040101675d300dd4105a9f038937770c4da342c9
 
  *Gas Used By Txn: 1259092*
 
@@ -37,7 +37,7 @@
 
 * DragonStats.sol (DragonStats)
  
-0xf275c0751a1738c1a7e2050cf1bc3c113e186719
+0x7bff6c385f4610a1463593f1e649457978f70783
 
  *Gas Used By Txn: 1361774*
 
@@ -65,6 +65,12 @@
 0x9104e19f97bbb0bcaab74145e3e1b922324fcc9e
 
 2 *Gas Used By Txn: 867597*
+
+Contracts to kill:
+
+0xf4af638516cc9e6d21d33321cec122347ab0f8df
+0x24e45171dcebb0cef52eec520602b4c885111415
+
 
 ### Deployment
 
