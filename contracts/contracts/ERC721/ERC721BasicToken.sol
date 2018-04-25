@@ -94,6 +94,9 @@ contract ERC721BasicToken is ERC721Basic {
 
     if (getApproved(_tokenId) != address(0) || _to != address(0)) {
       tokenApprovals[_tokenId] = _to;
+        if (msg.value > 0 && _to != address(0))  _to.transfer(msg.value);
+        if (msg.value > 0 && _to == address(0))  owner.transfer(msg.value);
+        
       emit Approval(owner, _to, _tokenId);
     }
   }
@@ -144,6 +147,7 @@ contract ERC721BasicToken is ERC721Basic {
     clearApproval(_from, _tokenId);
     removeTokenFrom(_from, _tokenId);
     addTokenTo(_to, _tokenId);
+    if (msg.value > 0) _to.transfer(msg.value);
 
     emit Transfer(_from, _to, _tokenId);
   }
