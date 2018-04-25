@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
 import "./ERC721Basic.sol";
 import "./ERC721Receiver.sol";
@@ -87,13 +87,16 @@ contract ERC721BasicToken is ERC721Basic {
   * @param _to address to be approved for the given token ID
   * @param _tokenId uint256 ID of the token to be approved
   */
-  function approve(address _to, uint256 _tokenId) public {
+  function approve(address _to, uint256 _tokenId) public payable{
     address owner = ownerOf(_tokenId);
     require(_to != owner);
     require(msg.sender == owner || isApprovedForAll(owner, msg.sender));
 
     if (getApproved(_tokenId) != address(0) || _to != address(0)) {
       tokenApprovals[_tokenId] = _to;
+        if (msg.value > 0 && _to != address(0))  _to.transfer(msg.value);
+        if (msg.value > 0 && _to == address(0))  owner.transfer(msg.value);
+        
       emit Approval(owner, _to, _tokenId);
     }
   }
@@ -137,13 +140,14 @@ contract ERC721BasicToken is ERC721Basic {
   * @param _to address to receive the ownership of the given token ID
   * @param _tokenId uint256 ID of the token to be transferred
   */
-  function transferFrom(address _from, address _to, uint256 _tokenId) public canTransfer(_tokenId) {
+  function transferFrom(address _from, address _to, uint256 _tokenId) public payable canTransfer(_tokenId) {
     require(_from != address(0));
     require(_to != address(0));
 
     clearApproval(_from, _tokenId);
     removeTokenFrom(_from, _tokenId);
     addTokenTo(_to, _tokenId);
+    if (msg.value > 0) _to.transfer(msg.value);
 
     emit Transfer(_from, _to, _tokenId);
   }
@@ -165,6 +169,7 @@ contract ERC721BasicToken is ERC721Basic {
     uint256 _tokenId
   )
     public
+    payable
     canTransfer(_tokenId)
   {
     safeTransferFrom(_from, _to, _tokenId, "");
@@ -189,6 +194,7 @@ contract ERC721BasicToken is ERC721Basic {
     bytes _data
   )
     public
+    payable
     canTransfer(_tokenId)
   {
     transferFrom(_from, _to, _tokenId);
@@ -202,7 +208,7 @@ contract ERC721BasicToken is ERC721Basic {
    * @return bool whether the msg.sender is approved for the given token ID,
    *  is an operator of the owner, or is the owner of the token
    */
-  function isApprovedOrOwner(address _spender, uint256 _tokenId) internal view returns (bool) {
+  function isApprovedOrOwner(address _spender, uint256 _tokenId) public view returns (bool) {
     address owner = ownerOf(_tokenId);
     return _spender == owner || getApproved(_tokenId) == _spender || isApprovedForAll(owner, _spender);
   }

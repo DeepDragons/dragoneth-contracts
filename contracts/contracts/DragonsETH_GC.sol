@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./security/rbac/RBACWithAdmin.sol";
 
@@ -25,7 +25,7 @@ contract Mutagen2Face {
 contract SuperContract {
     function checkDragon(uint256 _dragonID) external returns (bool);
 }
-contract DragonStats {
+contract DragonsStats {
     function setParents(uint256 _dragonID, uint256 _parentOne, uint256 _parentTwo) external;
     function setBirthBlock(uint256 _dragonID) external;
     function incChildren(uint256 _dragonID) external;
@@ -36,10 +36,10 @@ contract Necropolis {
      function addDragon(address _lastDragonOwner, uint256 _dragonID, uint256 _deathReason) external;
 }
 
-contract DragonETH_GC is RBACWithAdmin {
+contract DragonsETH_GC is RBACWithAdmin {
     GenRNG public genRNGContractAddress;
     FixMarketPlace public fmpContractAddress;
-    DragonStats public dragonStatsContract;
+    DragonsStats public dragonsStatsContract;
     Necropolis public necropolisContract;
     Auction public auctionContract;
     SuperContract public superContract;
@@ -64,8 +64,8 @@ contract DragonETH_GC is RBACWithAdmin {
     function changeFMPcontractAddress(address _fmpContractAddress) external onlyAdmin {
         fmpContractAddress = FixMarketPlace(_fmpContractAddress);
     }
-    function changeDragonStatsContract(address _dragonStatsContract) external onlyAdmin {
-        dragonStatsContract = DragonStats(_dragonStatsContract);
+    function changeDragonsStatsContract(address _dragonsStatsContract) external onlyAdmin {
+        dragonsStatsContract = DragonsStats(_dragonsStatsContract);
     }
     function changeAuctionContract(address _auctionContract) external onlyAdmin {
         auctionContract = Auction(_auctionContract);

@@ -1,10 +1,10 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
 import "./security/ReentrancyGuard.sol";
 
-contract DragonETH {
+contract DragonsETH {
 function transferFrom(address _from, address _to, uint256 _tokenId) public;
 function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
   
@@ -12,7 +12,7 @@ function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
 
 contract FixMarketPlace is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
-    DragonETH public mainContract;
+    DragonsETH public mainContract;
     address wallet;
     uint256 public totalDragonsToSale;
     uint256 public minSellTime = 13; //~2 min
@@ -25,7 +25,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     mapping(uint256 => uint256) public dragonsListIndex;
     //mapping (address => uint256[]) private ownedTokens;
 
-    function FixMarketPlace(address _wallet) public {
+    constructor(address _wallet) public {
         wallet = _wallet;
     }
 
@@ -114,7 +114,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     }
    
     function changeAddressMainContract(address _newAddress) external onlyAdmin {
-        mainContract = DragonETH(_newAddress);
+        mainContract = DragonsETH(_newAddress);
     }
     
     function changeWallet(address _wallet) external onlyAdmin {
