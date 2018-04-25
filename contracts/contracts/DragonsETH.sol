@@ -31,6 +31,7 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
             nextBlock2Action: UINT256_MAX
         });
         dragons.push(_dragon);
+        transferFrom(msg.sender, _necropolisContract, 0);
         dragonsStatsContract = DragonsStats(_dragonsStatsContract);
         necropolisContract = Necropolis(_necropolisContract);
         wallet = _wallet;
