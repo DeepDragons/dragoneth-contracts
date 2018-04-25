@@ -115,6 +115,7 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         dragonsStatsContract.setBirthBlock(totalDragons);
     }
     function changeDragonGen(uint256 _dragonID, uint256 _gen, uint8 _which) external onlyRole("ChangeContract") {
+        require(dragons[_dragonID].stage >= 2); // dragon not dead and not egg
         if (_which == 0) {
             dragons[_dragonID].gen1 = _gen;
         } else {
