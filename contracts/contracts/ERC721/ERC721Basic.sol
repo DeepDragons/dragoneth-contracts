@@ -14,19 +14,19 @@ contract ERC721Basic {
   function ownerOf(uint256 _tokenId) public view returns (address _owner);
   function exists(uint256 _tokenId) public view returns (bool _exists);
 
-  function approve(address _to, uint256 _tokenId) public;
+  function approve(address _to, uint256 _tokenId) public payable;
   function getApproved(uint256 _tokenId) public view returns (address _operator);
 
   function setApprovalForAll(address _operator, bool _approved) public;
   function isApprovedForAll(address _owner, address _operator) public view returns (bool);
 
-  function transferFrom(address _from, address _to, uint256 _tokenId) public;
-  function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
+  function transferFrom(address _from, address _to, uint256 _tokenId) public payable;
+  function safeTransferFrom(address _from, address _to, uint256 _tokenId) public payable;
   function safeTransferFrom(
     address _from,
     address _to,
     uint256 _tokenId,
     bytes _data
   )
-    public;
+    public payable;
 }
