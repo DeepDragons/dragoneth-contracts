@@ -38,8 +38,7 @@ contract DragonsFightPlace is DragonsFightGC {
     function addToFightPlace(uint256 _dragonID, uint256 _endBlockNumber) external payable whenNotPaused {
         require(_endBlockNumber  > minFightWaitBloc);
         require(_endBlockNumber < maxFightWaitBloc); //??????
-        address dragonOwner = mainContract.ownerOf(_dragonID);
-        require(dragonOwner == msg.sender);
+        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID));
         require(msg.value >= priceToAdd);
         mainContract.checkDragonStatus(_dragonID, 2);
         uint256 valueToReturn = msg.value - priceToAdd;
@@ -50,7 +49,7 @@ contract DragonsFightPlace is DragonsFightGC {
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
         }
-        dragonsOwner[_dragonID] = dragonOwner;
+        dragonsOwner[_dragonID] = mainContract.ownerOf(_dragonID);
         dragonsEndBlock[_dragonID] = block.number + _endBlockNumber;
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);

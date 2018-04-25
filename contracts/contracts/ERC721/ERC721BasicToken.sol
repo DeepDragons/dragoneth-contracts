@@ -208,7 +208,7 @@ contract ERC721BasicToken is ERC721Basic {
    * @return bool whether the msg.sender is approved for the given token ID,
    *  is an operator of the owner, or is the owner of the token
    */
-  function isApprovedOrOwner(address _spender, uint256 _tokenId) internal view returns (bool) {
+  function isApprovedOrOwner(address _spender, uint256 _tokenId) public view returns (bool) {
     address owner = ownerOf(_tokenId);
     return _spender == owner || getApproved(_tokenId) == _spender || isApprovedForAll(owner, _spender);
   }
