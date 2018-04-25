@@ -185,9 +185,11 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         checkDragonStatus(_dragonID, 2);
         if (bytes(dragonName[_dragonID]).length == 0) {
             dragonName[_dragonID] = _newName;
+            if (msg.value > 0) msg.sender.transfer(msg.value);
         } else {
             if (priceChangeName == 0) {
                  dragonName[_dragonID] = _newName;
+                 if (msg.value > 0) msg.sender.transfer(msg.value);
             } else {
                 require(msg.value >= priceChangeName);
                 wallet.transfer(priceChangeName);
