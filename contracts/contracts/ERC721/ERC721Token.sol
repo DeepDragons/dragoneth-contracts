@@ -213,5 +213,14 @@ contract ERC721Token is ERC721, ERC721BasicToken {
     allTokensIndex[_tokenId] = 0;
     allTokensIndex[lastToken] = tokenIndex;
   }
+       /**
+  * @dev Gets the list of tokens owned by a given address
+  * @param _owner address to query the tokens of
+  * @return uint256[] representing the list of tokens owned by the passed address
+  */
+  function tokensOf(address _owner) external view returns (uint256[]) {
+    return ownedTokens[_owner];
+  }
+
 
 }
