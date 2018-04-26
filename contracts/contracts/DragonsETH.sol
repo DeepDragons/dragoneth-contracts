@@ -11,8 +11,8 @@ contract DragonsETH is ERC721Token("DragonsETH.com Dragon", "DragonsETH"), Drago
     uint256 public liveDragons;
     struct Dragon {
         uint256 gen1;
-        uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
-        uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ...
+        uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon ... 
+        uint8 currentAction; // 0 - free, 1 - fight place, 2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ... 0xFF - Necropolis
         uint240 gen2;
         uint256 nextBlock2Action;
     }
@@ -99,7 +99,6 @@ contract DragonsETH is ERC721Token("DragonsETH.com Dragon", "DragonsETH"), Drago
     function createDragon(address _to, uint256 _timeToBorn, uint256 _parentOne, uint256 _parentTwo, uint256 _gen1, uint240 _gen2) external onlyRole("CreateContract") {
         totalDragons++;
         liveDragons++;
-        // TODO add chek to safeTransfer
         _mint(_to, totalDragons);
         uint256[2] memory twoGen;
         if (_parentOne == 0 && _parentTwo == 0 && _gen1 == 0 && _gen2 == 0) {
