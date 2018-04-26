@@ -6,12 +6,12 @@ import "../security/ReentrancyGuard.sol";
 contract MultiWallet is ReentrancyGuard {
     address wallet1_18 = 0x98F04b28946C73D049c04A63Ac1F3352689F23bf; // Renat
     address wallet2_18 = 0x36d9399A33C4851526D541E0e4B577E5dAdc6be0; // Igor
-    address wallet3_18 = 0x5eeE623EDC4FF9a72a85F5F40417E6AA8dEbC03d; // Alexander
-    address wallet4_18 = 0xF66C90b5879405E6FD0b27F0077B13100c5b69c1;
-    address wallet5_8  = 0xeC9FefdD828C28b4D1559548E5df6a460d83dB29; // disigner1 8 Masha
-    address wallet6_2  = 0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78; // disgner2 2 Eugen
-    address wallet7_8  = 0x638a05783dB75e08095A45362E3f207601277dAe; // 5 ads
-    address wallet8_10 = 0xfc4b10427678C60c3D1B0b80625657c95a29fFEe; // 13 prodaction Igor
+    address wallet3_18 = 0x971bCD2823ab07b39eA765Bd5863A4e63e0c7205; // Alexander
+    address wallet4_18 = 0x181d493A0499E81726FB7dfFa698d2923e780669; // Ivan
+    address wallet5_8  = 0x27DC375Ce528832B0b1955A288c411CaE4Ac7c12; // disigner1 8 Masha tmp Igor
+    address wallet6_2  = 0xbF588e41A13314b84C22b3e2215f56DefE09C638; // disgner2 2 Evgeniy tmp Alexander
+    address wallet7_8  = 0xff996042e1f9e11c9658e5bedce2363f853490f1; //  ads Ivan
+    address wallet8_10 = 0xff996042e1f9e11c9658e5bedce2363f853490f1; //  prodaction Ivan
 
 
     function() public payable { }
