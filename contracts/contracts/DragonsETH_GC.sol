@@ -54,8 +54,8 @@ contract DragonsETH_GC is RBACWithAdmin {
     uint256 constant UINT256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
     uint256 public secondsInBlock = 15;
     uint256 public priceDecraseTime2Action = 0.000005 ether; //  1 block
-    uint256 public priceRandomFight2Death = 0.2 ether;
-    uint256 public priceSelectFight2Death = 0.3 ether;
+    uint256 public priceRandomFight2Death = 0.02 ether;
+    uint256 public priceSelectFight2Death = 0.03 ether;
     uint256 public priceChangeName = 0.01 ether;
 
     function changeGenRNGcontractAddress(address _genRNGContractAddress) external onlyAdmin {
