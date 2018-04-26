@@ -44,19 +44,19 @@
 
 * Mutagen.sol (Mutagen)
 
- 
+0xd08ada3da9280d7bf1079e7c90a733eaf619f991 
 
  *Gas Used By Txn: 1257640*
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
- 
+0xfbfa61e5d9eb2623f3a544d2733fb1c818d3db56
 
  *Gas Used By Txn: 1636625*
 
 * DragonsFight.sol (DragonsFight)
 
- 
+0x58886abc2f5214ee140b1a92605b198152432993
  
  *Gas Used By Txn: 609959*
 
@@ -68,7 +68,7 @@
 
 Contracts to kill:
 
-
+0x58886abc2f5214ee140b1a92605b198152432993
 
 
 
