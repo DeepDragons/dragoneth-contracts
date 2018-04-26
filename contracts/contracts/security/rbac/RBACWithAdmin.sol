@@ -1,10 +1,5 @@
 pragma solidity ^0.4.23;
 
-// , DESTROYER, DESTROYER, DESTROYER
-import "../../SelfDestruct.sol";
-// , DESTROYER, DESTROYER, DESTROYER
-
-
 
 import "./RBAC.sol";
 
@@ -15,7 +10,7 @@ import "./RBAC.sol";
  * @dev It's recommended that you define constants in the contract,
  * @dev like ROLE_ADMIN below, to avoid typos.
  */
-contract RBACWithAdmin is RBAC, DESTROYER {
+contract RBACWithAdmin is RBAC {
   /**
    * A constant role name for indicating admins.
    */
