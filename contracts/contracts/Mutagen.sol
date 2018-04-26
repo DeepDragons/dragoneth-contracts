@@ -4,7 +4,7 @@ import "./ERC20/MintableToken.sol";
 import "./ERC20/BurnableToken.sol";
 
 contract Mutagen is MintableToken, BurnableToken {
-//    string public constant name = "DragonsETH Mutagen";
+//    string public constant name = "DragonsETH.com Mutagen";
 //    string public constant symbol = "Mutagen";
     uint8  public constant decimals = 0;
     // TODO del on war deploy
