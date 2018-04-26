@@ -65,6 +65,8 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
             require(msg.value >= priceRandomFight2Death);
             wallet.transfer(priceRandomFight2Death);
             if (msg.value - priceRandomFight2Death > 0) msg.sender.transfer(msg.value - priceRandomFight2Death);
+        } else {
+            if (msg.value > 0) msg.sender.transfer(msg.value);
         }
         address dragonOwner = ownerOf(_dragonID);
         transferFrom(dragonOwner, randomFight2DeathContract, _dragonID);
@@ -77,6 +79,8 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
             require(msg.value >= priceSelectFight2Death);
             address(selectFight2DeathContract).transfer(priceSelectFight2Death);
             if (msg.value - priceSelectFight2Death > 0) msg.sender.transfer(msg.value - priceSelectFight2Death);
+        } else {
+            if (msg.value > 0) msg.sender.transfer(msg.value);
         }
         address dragonOwner = ownerOf(_yourDragonID);
         transferFrom(dragonOwner, selectFight2DeathContract, _yourDragonID);
