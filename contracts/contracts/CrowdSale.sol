@@ -24,7 +24,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     constructor(address _wallet, address _mainContract) public {
         wallet = _wallet;
         mainContract = _mainContract;
-        timeToFirstBorn = block.number + 80640; // ~14 days 
+        timeToFirstBorn = block.number + 120960; // ~21 days 
     }
 
 
@@ -43,7 +43,6 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         wallet.transfer(msg.value - return_value);
         for(uint256 i = 1; i <= count_to_buy; i += 1) {
             if (block.number < timeToFirstBorn) {
-                // TODO add safe transfer
                 DragonsETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
             } else {
                 DragonsETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
