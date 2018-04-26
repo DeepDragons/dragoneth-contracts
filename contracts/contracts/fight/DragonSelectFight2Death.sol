@@ -5,7 +5,7 @@ import "./DragonsFightGC.sol";
 contract DragonSelectFight2Death is DragonsFightGC {
     
     uint256 public totalDragonsToFight;
-    uint256 public priceToFight = 0.001 ether; // price for test
+    uint256 public priceToFight = 0 ether; // price for test
     uint256 public priceToAdd = 0;  // price for test
     mapping(uint256 => address) dragonsOwner;
     mapping(uint256 => uint256) public dragonsEndBlock;
