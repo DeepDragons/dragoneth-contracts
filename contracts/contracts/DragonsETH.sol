@@ -4,9 +4,9 @@ import "./ERC721/ERC721Token.sol";
 import "./DragonsETH_GC.sol";
 import "./security/ReentrancyGuard.sol";
 
-// FOR TEST remove in war deploy
-// contract DragonsETH is ERC721Token("DragonsETH.com game", "DragonsETH"), DragonsETH_GC, ReentrancyGuard {
-contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, ReentrancyGuard {
+
+contract DragonsETH is ERC721Token("DragonsETH.com Dragon", "DragonsETH"), DragonsETH_GC, ReentrancyGuard {
+
     uint256 public totalDragons;
     uint256 public liveDragons;
     struct Dragon {
