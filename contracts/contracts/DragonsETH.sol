@@ -219,20 +219,6 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
     
     
     
-    function getDragonGens(uint256 _dragonID) external view returns(bytes32 _res1, bytes32 _res2, uint256 _nextBlock2Action ) {
-
-// TODO test it!!!!!!
-
-        uint256 tmp;
-        tmp = dragons[_dragonID].stage;
-        tmp = tmp << 8;
-        tmp = tmp + dragons[_dragonID].currentAction;
-        tmp = tmp << 240;
-        tmp = tmp + uint256(dragons[_dragonID].gen2);
-    
-        _res1 = bytes32(dragons[_dragonID].gen1);
-        _res2 = bytes32(tmp);
-        _nextBlock2Action = dragons[_dragonID].nextBlock2Action;
-    }
+ 
     
 }
