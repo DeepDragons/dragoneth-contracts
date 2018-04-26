@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
 import "./ERC721Basic.sol";
 
@@ -21,7 +21,7 @@ contract ERC721Enumerable is ERC721Basic {
 contract ERC721Metadata is ERC721Basic {
   function name() public view returns (string _name);
   function symbol() public view returns (string _symbol);
-  function tokenURI(uint256 _tokenId) public view returns (string);
+  function tokenURI(uint256 _tokenId) external view returns (string);
 }
 
 

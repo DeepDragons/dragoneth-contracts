@@ -1,36 +1,34 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
+import "./security/ReentrancyGuard.sol";
 
-contract DragonETH {
+contract DragonsETH {
 function transferFrom(address _from, address _to, uint256 _tokenId) public;
 function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
   
 }
 
-contract FixMarketPlace is Pausable {
+contract FixMarketPlace is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
-    DragonETH public mainContract;
+    DragonsETH public mainContract;
     address wallet;
     uint256 public totalDragonsToSale;
     uint256 public minSellTime = 13; //~2 min
     uint256 public maxSellTime = 259200; //~30 days??????
     uint256 public ownersPercent = 50; // eq 5%
-    mapping(uint256 => address) dragonsOwner;
+    mapping(uint256 => address) public dragonsOwner;
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsEndBlock;
     uint256[] public dragonsList; 
-    mapping(uint256 => uint256) dragonsListIndex;
+    mapping(uint256 => uint256) public dragonsListIndex;
     //mapping (address => uint256[]) private ownedTokens;
 
-    function FixMarketPlace(address _wallet) public {
+    constructor(address _wallet) public {
         wallet = _wallet;
     }
 
-    function changeAddressMainContract(address _newAddress) external onlyOwner {
-        mainContract = DragonETH(_newAddress);
-    }
     function _delItem(uint256 _dragonID) private {
         delete(dragonsOwner[_dragonID]);
         delete(dragonPrices[_dragonID]);
@@ -42,7 +40,7 @@ contract FixMarketPlace is Pausable {
         delete(dragonsListIndex[_dragonID]);
         totalDragonsToSale--;
     }
-    function addToFixMarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool sucsses) {
+    function add2MarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool) {
         require(msg.sender == address(mainContract));
         require(_endBlockNumber  > minSellTime);
         require(_endBlockNumber < maxSellTime ); //??????
@@ -62,7 +60,7 @@ contract FixMarketPlace is Pausable {
             _delItem(_dragonID);
     }
 
-    function buyDragon(uint256 _dragonID) external payable whenNotPaused {
+    function buyDragon(uint256 _dragonID) external payable nonReentrant whenNotPaused {
         require(block.number <= dragonsEndBlock[_dragonID]);
         uint256 _dragonCommisions = dragonPrices[_dragonID].mul(ownersPercent).div(1000);
         require(msg.value >= dragonPrices[_dragonID].add(_dragonCommisions));
@@ -115,24 +113,27 @@ contract FixMarketPlace is Pausable {
         }
     }
    
+    function changeAddressMainContract(address _newAddress) external onlyAdmin {
+        mainContract = DragonsETH(_newAddress);
+    }
     
-    function changeWallet(address _wallet) external onlyOwner {
+    function changeWallet(address _wallet) external onlyAdmin {
         wallet = _wallet;
     }
 
-    function changeMinSellTime(uint256 _minSellTime) external onlyOwner {
+    function changeMinSellTime(uint256 _minSellTime) external onlyAdmin {
         minSellTime = _minSellTime;
     }
 
-    function changeMaxSellTime(uint256 _maxSellTime) external onlyOwner {
+    function changeMaxSellTime(uint256 _maxSellTime) external onlyAdmin {
         maxSellTime = _maxSellTime;
     }
 
-    function changeOwnersPercent(uint256 _ownersPercent) external onlyOwner {
+    function changeOwnersPercent(uint256 _ownersPercent) external onlyAdmin {
         ownersPercent = _ownersPercent;
     }
 
-    function withdrawAllEther() external onlyOwner {
+    function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
     }

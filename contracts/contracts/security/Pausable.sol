@@ -1,14 +1,14 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
 
-import "./Ownable.sol";
+import "./rbac/RBACWithAdmin.sol";
 
 
 /**
  * @title Pausable
  * @dev Base contract which allows children to implement an emergency stop mechanism.
  */
-contract Pausable is Ownable {
+contract Pausable is RBACWithAdmin {
   event Pause();
   event Unpause();
 
@@ -34,7 +34,7 @@ contract Pausable is Ownable {
   /**
    * @dev called by the owner to pause, triggers stopped state
    */
-  function pause() onlyOwner whenNotPaused public {
+  function pause() onlyPauseAdmin whenNotPaused public {
     paused = true;
     emit Pause();
   }
@@ -42,7 +42,7 @@ contract Pausable is Ownable {
   /**
    * @dev called by the owner to unpause, returns to normal state
    */
-  function unpause() onlyOwner whenPaused public {
+  function unpause() onlyPauseAdmin whenPaused public {
     paused = false;
     emit Unpause();
   }

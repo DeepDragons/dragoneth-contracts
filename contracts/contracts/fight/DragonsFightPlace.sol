@@ -1,11 +1,11 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
-import "./DragonFightGC.sol";
+import "./DragonsFightGC.sol";
 
-contract DragonsFightPlace is DragonFightGC {
+contract DragonsFightPlace is DragonsFightGC {
     
     uint256 public totalDragonsToFight;
-    uint256 public priceToFight = 0.01 ether; // price for test
+    uint256 public priceToFight = 0.001 ether; // price for test
     uint256 public priceToAdd = 0;  // price for test
     mapping(uint256 => address) dragonsOwner;
     mapping(uint256 => uint256) public dragonsEndBlock;
@@ -13,7 +13,7 @@ contract DragonsFightPlace is DragonFightGC {
     mapping(uint256 => uint256) dragonsListIndex;
 
 
-    function DragonsFightPlace(address _wallet) public {
+    constructor(address _wallet) public {
         wallet = _wallet;
     }
 
@@ -28,19 +28,19 @@ contract DragonsFightPlace is DragonFightGC {
         totalDragonsToFight--;
     }
     function _setFightResult(uint256 _dragonWin, uint256 _dragonLose) private {
-        dragonStatsContract.incFightWin(_dragonWin);
-        dragonStatsContract.incFightLose(_dragonLose);
-        dragonStatsContract.setLastAction(_dragonWin, _dragonLose, 13);
-        dragonStatsContract.setLastAction(_dragonLose, _dragonWin, 14);
+        dragonsStatsContract.incFightWin(_dragonWin);
+        dragonsStatsContract.incFightLose(_dragonLose);
+        dragonsStatsContract.setLastAction(_dragonWin, _dragonLose, 13);
+        dragonsStatsContract.setLastAction(_dragonLose, _dragonWin, 14);
             
     }
     
     function addToFightPlace(uint256 _dragonID, uint256 _endBlockNumber) external payable whenNotPaused {
         require(_endBlockNumber  > minFightWaitBloc);
         require(_endBlockNumber < maxFightWaitBloc); //??????
-        address dragonOwner = mainContract.ownerOf(_dragonID);
-        require(dragonOwner == msg.sender);
+        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID));
         require(msg.value >= priceToAdd);
+        mainContract.checkDragonStatus(_dragonID, 2);
         uint256 valueToReturn = msg.value - priceToAdd;
         if (priceToFight != 0) {
         wallet.transfer(priceToAdd);
@@ -49,17 +49,18 @@ contract DragonsFightPlace is DragonFightGC {
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
         }
-        dragonsOwner[_dragonID] = dragonOwner;
+        dragonsOwner[_dragonID] = mainContract.ownerOf(_dragonID);
         dragonsEndBlock[_dragonID] = block.number + _endBlockNumber;
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
         totalDragonsToFight++;
-        // TODO add dragon blocking
+        mainContract.setCurrentAction(_dragonID, 1);
+        
     }
     
     function delFromFightPlace(uint256 _dragonID) external {
         require(msg.sender == dragonsOwner[_dragonID] || dragonsEndBlock[_dragonID] < block.number);
-         // TODO add dragon unblocking   
+         mainContract.setCurrentAction(_dragonID, 0);
         _delItem(_dragonID);
     }
 
@@ -67,7 +68,7 @@ contract DragonsFightPlace is DragonFightGC {
         require(block.number <= dragonsEndBlock[_thisDragonID]);
         require(msg.value >= priceToFight);
         require(mainContract.ownerOf(_yourDragonID) == msg.sender);
-        
+        mainContract.checkDragonStatus(_yourDragonID, 2);
         uint256 valueToReturn = msg.value - priceToFight;
         if (priceToFight != 0) {
         wallet.transfer(priceToFight);
@@ -77,7 +78,7 @@ contract DragonsFightPlace is DragonFightGC {
             msg.sender.transfer(valueToReturn);
         }
 
-        if (dragonFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
+        if (dragonsFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
             
             mutagenContract.mint(msg.sender,mutagenToWin);
             mutagenContract.mint(dragonsOwner[_thisDragonID],mutagenToLose);
@@ -89,9 +90,11 @@ contract DragonsFightPlace is DragonFightGC {
             mutagenContract.mint(msg.sender,mutagenToLose);
             _setFightResult(_thisDragonID, _yourDragonID);
         }
-        // TODO add dragon unblocking
+        mainContract.setCurrentAction(_yourDragonID, 0);
+        mainContract.setCurrentAction(_thisDragonID, 0);
         // TODO add rest time
-        
+        mainContract.setTime2Rest(_yourDragonID, addTime2Rest);
+        mainContract.setTime2Rest(_thisDragonID, addTime2Rest);
         _delItem(_thisDragonID);        
     }
     function getAllDragonsFight() external view returns(uint256[]) {
@@ -126,7 +129,7 @@ contract DragonsFightPlace is DragonFightGC {
         for(_dragonIndex=_start; _dragonIndex < _start + _count && _dragonIndex < dragonsList.length; _dragonIndex++) {
             uint256 _dragonID = dragonsList[_dragonIndex];
             if (dragonsEndBlock[_dragonID] < block.number) {
-                // TODO add dragon unblocking
+                mainContract.setCurrentAction(_dragonID, 0);
                 _delItem(_dragonID);
                 _deleted++;
             }
@@ -136,14 +139,11 @@ contract DragonsFightPlace is DragonFightGC {
     
 
 
-    function changePrices(uint256 _priceToFight,uint256 _priceToAdd) external onlyOwner {
+    function changePrices(uint256 _priceToFight,uint256 _priceToAdd) external onlyAdmin {
         priceToFight = _priceToFight;
         priceToAdd = _priceToAdd;
     }
 
-    function withdrawAllEther() external onlyOwner {
-        require(wallet != 0);
-        wallet.transfer(address(this).balance);
-    }
+   
 }
 

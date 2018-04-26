@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
 // , DESTROYER, DESTROYER, DESTROYER
 import "../../SelfDestruct.sol";
@@ -20,6 +20,7 @@ contract RBACWithAdmin is RBAC, DESTROYER {
    * A constant role name for indicating admins.
    */
   string public constant ROLE_ADMIN = "admin";
+  string public constant ROLE_PAUSE_ADMIN = "pauseAdmin";
 
   /**
    * @dev modifier to scope access to admins
@@ -30,14 +31,19 @@ contract RBACWithAdmin is RBAC, DESTROYER {
     checkRole(msg.sender, ROLE_ADMIN);
     _;
   }
-
+  modifier onlyPauseAdmin()
+  {
+    checkRole(msg.sender, ROLE_PAUSE_ADMIN);
+    _;
+  }
   /**
    * @dev constructor. Sets msg.sender as admin by default
    */
-  function RBACWithAdmin()
+  constructor()
     public
   {
     addRole(msg.sender, ROLE_ADMIN);
+    addRole(msg.sender, ROLE_PAUSE_ADMIN);
   }
 
   /**
