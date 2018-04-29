@@ -14,7 +14,7 @@
 
 * FixMarketPlace.sol (FixMarketPlace) + address wallet
 
-
+0x80d95fd025da6e779ea797ed6524806d459f69df
 
  *Gas Used By Txn: 1218021*
 
