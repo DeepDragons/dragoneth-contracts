@@ -34,6 +34,8 @@
 
 0x81f62207eB1E4274feA855943e260091306bE457
 
+Gas Used By Txn: 863736
+Actual Tx Cost/Fee: 0.00182248296 Ether ($1.43)
 
 ### Deployment
 
