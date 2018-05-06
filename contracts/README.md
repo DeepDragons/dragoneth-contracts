@@ -1,41 +1,33 @@
-### Contract address in Main Net
+### Contract address in Kovan
 
 * RNG.sol (RNG)
 
-0x91a56d01A4BC1f07ec731f86408b1114A1540e9C
-
+0x155282b55c6f69bb91868e328b4afd84ef18c6d8
 
 * GenRNG.sol (GenRNG) + address RNG
 
- 
-
-0xAB939a472D42d79d9b16c2dCa53b67D7c7a2598A
-
-
+0xbf30b49108ba56f5d7b8d8b6ef2fa5b938caa70b
 
 * DragonETH.sol (DragonETH)
 
-0x21c4a603cd7fcc16b2ff1f5f30e5b839b9222108
+0xbf8f045fe9b9d8423cc79523ddf0861511a0d872
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0xeBabE9C9AD63851d56F7030C08D3D021c4436dd5
+0xb06d47f603289fcbc3e3d9904f83eadd8c8380d7
 
-* wallet
+* wallet Igor
  
-0xC8157b670C89F4efdC9B6F00a208036BA1CF8Dee
+0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
 
 * DragonStats.sol (DragonStats)
  
-0xd40447f919dF3708568078eE7d92C041067cc8a1
-
+0x96b4eada34f7a4560e345eb156a9a20e097790ad
 
 * Necropolis.sol (Necropolis)
 
-0x81f62207eB1E4274feA855943e260091306bE457
+0xe1c5ad92760133a4788c344edae84ed0a7036db0
 
-Gas Used By Txn: 863736
-Actual Tx Cost/Fee: 0.00182248296 Ether ($1.43)
 
 ### Deployment
 
