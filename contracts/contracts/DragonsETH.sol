@@ -169,7 +169,7 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
     function matureDragon(uint256 _dragonID) external canTransfer(_dragonID) {
         require(stageThirdBegin);
         checkDragonStatus(_dragonID, 2);
-        require(dragonsStatsContract.getDragonFight(_dragonID) >= 100);
+        require(dragonsStatsContract.getDragonFight(_dragonID) >= needFightToAdult);
         dragons[_dragonID].stage = 3;
         
     }

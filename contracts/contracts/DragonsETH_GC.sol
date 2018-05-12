@@ -91,7 +91,8 @@ contract DragonsETH_GC is RBACWithAdmin {
     uint256 public priceRandomFight2Death = 0.02 ether;
     uint256 public priceSelectFight2Death = 0.03 ether;
     uint256 public priceChangeName = 0.01 ether;
-
+    uint256 public needFightToAdult = 100;
+    
     function changeGenRNGcontractAddress(address _genRNGContractAddress) external onlyAdmin {
         genRNGContractAddress = GenRNG(_genRNGContractAddress);
     }
@@ -146,6 +147,9 @@ contract DragonsETH_GC is RBACWithAdmin {
 
     function changeSecondsInBlock(uint256 _secondsInBlock) external onlyAdmin {
         secondsInBlock = _secondsInBlock;
+    }
+    function changeNeedFightToAdult(uint256 _needFightToAdult) external onlyAdmin {
+        needFightToAdult = _needFightToAdult;
     }
 
     function changeAdultDragonStage(uint8 _adultDragonStage) external onlyAdmin {
