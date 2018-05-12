@@ -12,10 +12,12 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
     struct Dragon {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon ... 
-        uint8 currentAction; // 0 - free, 1 - fight place, 2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ... 0xFF - Necropolis
+        uint8 currentAction;
+        // 0 - free, 1 - fight place, 2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ... 0xFF - Necropolis
         uint240 gen2;
         uint256 nextBlock2Action;
     }
+
     Dragon[] public dragons;
     mapping(uint256 => string) public dragonName;
     
@@ -44,18 +46,27 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         }
         address dragonOwner = ownerOf(_dragonID);
         if (fmpContractAddress.add2MarketPlace(dragonOwner, _dragonID, _dragonPrice, _endBlockNumber)) {
-        transferFrom(dragonOwner, fmpContractAddress, _dragonID);
+            transferFrom(dragonOwner, fmpContractAddress, _dragonID);
         }
     }
 
-    function add2Auction(uint256 _dragonID,  uint256 _startPrice, uint256 _step, uint256 _endPrice, uint256 _endBlockNumber) external canTransfer(_dragonID)  {
+    function add2Auction(
+        uint256 _dragonID, 
+        uint256 _startPrice, 
+        uint256 _step, 
+        uint256 _endPrice, 
+        uint256 _endBlockNumber
+    ) 
+        external 
+        canTransfer(_dragonID) 
+    {
         require(dragons[_dragonID].stage != 0); // dragon not dead
         if (dragons[_dragonID].stage >= 2) {
             checkDragonStatus(_dragonID, 2);
         }
         address dragonOwner = ownerOf(_dragonID);
         if (auctionContract.add2Auction(dragonOwner, _dragonID, _startPrice, _step, _endPrice, _endBlockNumber)) {
-        transferFrom(dragonOwner, auctionContract, _dragonID);
+            transferFrom(dragonOwner, auctionContract, _dragonID);
         }
     }
     
@@ -64,23 +75,31 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         if (priceRandomFight2Death > 0) {
             require(msg.value >= priceRandomFight2Death);
             wallet.transfer(priceRandomFight2Death);
-            if (msg.value - priceRandomFight2Death > 0) msg.sender.transfer(msg.value - priceRandomFight2Death);
+            if (msg.value - priceRandomFight2Death > 0) 
+                msg.sender.transfer(msg.value - priceRandomFight2Death);
         } else {
-            if (msg.value > 0) msg.sender.transfer(msg.value);
+            if (msg.value > 0) 
+                msg.sender.transfer(msg.value);
         }
         address dragonOwner = ownerOf(_dragonID);
         transferFrom(dragonOwner, randomFight2DeathContract, _dragonID);
         randomFight2DeathContract.addRandomFight2Death(dragonOwner, _dragonID);
     }
     
-    function addSelctFight2Death(uint256 _yourDragonID, uint256 _oppDragonID, uint256 _endBlockNumber) external payable nonReentrant canTransfer(_yourDragonID)   {
+    function addSelctFight2Death(uint256 _yourDragonID, uint256 _oppDragonID, uint256 _endBlockNumber) 
+        external 
+        payable 
+        nonReentrant 
+        canTransfer(_yourDragonID) 
+    {
         checkDragonStatus(_yourDragonID, adultDragonStage);
         if (priceSelectFight2Death > 0) {
             require(msg.value >= priceSelectFight2Death);
             address(selectFight2DeathContract).transfer(priceSelectFight2Death);
             if (msg.value - priceSelectFight2Death > 0) msg.sender.transfer(msg.value - priceSelectFight2Death);
         } else {
-            if (msg.value > 0) msg.sender.transfer(msg.value);
+            if (msg.value > 0) 
+                msg.sender.transfer(msg.value);
         }
         address dragonOwner = ownerOf(_yourDragonID);
         transferFrom(dragonOwner, selectFight2DeathContract, _yourDragonID);
@@ -94,9 +113,18 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         transferFrom(dragonOwner, mutagen2FaceContract, _dragonID);
         mutagen2FaceContract.addDragon(dragonOwner, _dragonID, _mutagenCount);
     }
-    
-    
-    function createDragon(address _to, uint256 _timeToBorn, uint256 _parentOne, uint256 _parentTwo, uint256 _gen1, uint240 _gen2) external onlyRole("CreateContract") {
+
+    function createDragon(
+        address _to, 
+        uint256 _timeToBorn, 
+        uint256 _parentOne, 
+        uint256 _parentTwo, 
+        uint256 _gen1, 
+        uint240 _gen2
+    ) 
+        external 
+        onlyRole("CreateContract") 
+    {
         totalDragons++;
         liveDragons++;
         _mint(_to, totalDragons);
@@ -115,13 +143,14 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
             nextBlock2Action: _timeToBorn 
         });
         dragons.push(_dragon);
-        if (_parentOne !=0) {
+        if (_parentOne != 0) {
             dragonsStatsContract.setParents(totalDragons,_parentOne,_parentTwo);
             dragonsStatsContract.incChildren(_parentOne);
             dragonsStatsContract.incChildren(_parentTwo);
         }
         dragonsStatsContract.setBirthBlock(totalDragons);
     }
+    
     function changeDragonGen(uint256 _dragonID, uint256 _gen, uint8 _which) external onlyRole("ChangeContract") {
         require(dragons[_dragonID].stage >= 2); // dragon not dead and not egg
         if (_which == 0) {
@@ -130,11 +159,13 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
             dragons[_dragonID].gen2 = uint240(_gen);
         }
     }
+    
     function birthDragon(uint256 _dragonID) external canTransfer(_dragonID) {
         require(dragons[_dragonID].stage != 0); // dragon not dead
         require(dragons[_dragonID].nextBlock2Action <= block.number);
         dragons[_dragonID].stage = 2;
     }
+    
     function matureDragon(uint256 _dragonID) external canTransfer(_dragonID) {
         require(stageThirdBegin);
         checkDragonStatus(_dragonID, 2);
@@ -142,11 +173,13 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         dragons[_dragonID].stage = 3;
         
     }
+    
     function superDragon(uint256 _dragonID) external canTransfer(_dragonID) {
         checkDragonStatus(_dragonID, 3);
         require(superContract.checkDragon(_dragonID));
         dragons[_dragonID].stage = 4;
     }
+    
     function killDragon(uint256 _dragonID) external onlyOwnerOf(_dragonID) {
         checkDragonStatus(_dragonID, 2);
         dragons[_dragonID].stage = 0;
@@ -157,7 +190,12 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         dragonsStatsContract.setDeathBlock(_dragonID);
         liveDragons--;
     }
-    function killDragonDeathContract(address _lastOwner, uint256 _dragonID, uint256 _deathReason) external canTransfer(_dragonID) onlyRole("DeathContract") {
+    
+    function killDragonDeathContract(address _lastOwner, uint256 _dragonID, uint256 _deathReason) 
+        external 
+        canTransfer(_dragonID) 
+        onlyRole("DeathContract") 
+    {
         checkDragonStatus(_dragonID, 2);
         dragons[_dragonID].stage = 0;
         dragons[_dragonID].currentAction = 0xFF;
@@ -168,6 +206,7 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         liveDragons--;
         
     }
+    
     function decraseTimeToAction(uint256 _dragonID) external payable nonReentrant canTransfer(_dragonID) {
         require(dragons[_dragonID].stage != 0); // dragon not dead
         require(msg.value >= priceDecraseTime2Action);
@@ -182,7 +221,7 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
                 dragons[_dragonID].nextBlock2Action = 0;
             } else {
                 wallet.transfer(msg.value);
-                dragons[_dragonID].nextBlock2Action =  dragons[_dragonID].nextBlock2Action - msg.value / priceDecraseTime2Action - 1;
+                dragons[_dragonID].nextBlock2Action = dragons[_dragonID].nextBlock2Action - msg.value / priceDecraseTime2Action - 1;
             }
             
             
@@ -190,19 +229,23 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
         }
         
     }
+    
     function addDragonName(uint256 _dragonID,string _newName) external payable nonReentrant canTransfer(_dragonID) {
         checkDragonStatus(_dragonID, 2);
         if (bytes(dragonName[_dragonID]).length == 0) {
             dragonName[_dragonID] = _newName;
-            if (msg.value > 0) msg.sender.transfer(msg.value);
+            if (msg.value > 0) 
+                msg.sender.transfer(msg.value);
         } else {
             if (priceChangeName == 0) {
-                 dragonName[_dragonID] = _newName;
-                 if (msg.value > 0) msg.sender.transfer(msg.value);
+                dragonName[_dragonID] = _newName;
+                if (msg.value > 0) 
+                    msg.sender.transfer(msg.value);
             } else {
                 require(msg.value >= priceChangeName);
                 wallet.transfer(priceChangeName);
-                if (msg.value - priceChangeName > 0) msg.sender.transfer(msg.value - priceChangeName);
+                if (msg.value - priceChangeName > 0) 
+                    msg.sender.transfer(msg.value - priceChangeName);
                 dragonName[_dragonID] = _newName;
             }
         }
@@ -210,12 +253,18 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
     
     function checkDragonStatus(uint256 _dragonID, uint8 _stage) public view {
         require(dragons[_dragonID].stage != 0); // dragon not dead
-         // dragon not in action and not in rest  and not egg
-        require(dragons[_dragonID].nextBlock2Action <= block.number && dragons[_dragonID].currentAction == 0 && dragons[_dragonID].stage >=_stage);
+        // dragon not in action and not in rest  and not egg
+        require(
+            dragons[_dragonID].nextBlock2Action <= block.number && 
+            dragons[_dragonID].currentAction == 0 && 
+            dragons[_dragonID].stage >= _stage
+        );
     }
+    
     function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external onlyRole("ActionContract") {
         dragons[_dragonID].currentAction = _currentAction;
     }
+    
     function setTime2Rest(uint256 _dragonID, uint256 _addNextBlock2Action) external onlyRole("ActionContract") {
         dragons[_dragonID].nextBlock2Action = block.number + _addNextBlock2Action;
     }
