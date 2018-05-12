@@ -20,12 +20,12 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
   function getNewGens(address _from, uint256 _dragonID) external onlyRole("MainContract") returns (uint256[2] resultGen) {
    bytes32 random_number;
    random_number = RNG(addressRNG).get32b(_from, _dragonID);
-   //00 rezerved(for color) 00h - 00h
+//00 rezerved(for color) 00h - 00h
 //01 detailColorSchemaGen = 00h - 63h (99d)
     resultGen[0] = resultGen[0] + uint8(random_number[1]) % 100;
     resultGen[0] = resultGen[0] << 8;
 //02*detailAuraGen = 00h - 05h
-    resultGen[0] = resultGen[0] + uint8(random_number[2]) % 5;
+    resultGen[0] = resultGen[0] + uint8(random_number[2]) % 4;
     resultGen[0] = resultGen[0] << 8;
 //03 detailAuraColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[3]) % 5;
@@ -69,10 +69,10 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //16 *detailHornsGen = 00h - 07h
     resultGen[0] = resultGen[0] + uint8(random_number[16]) % 8;
     resultGen[0] = resultGen[0] << 8;
-//17 --detailHornsColorGen = 00h - 04h
+//17 *detailHornsColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[17]) % 5;
     resultGen[0] = resultGen[0] << 8;
-//18 *detailHeadGen = 00h - 04h
+//18 +detailHeadGen = 00h - 05h
     resultGen[0] = resultGen[0] + uint8(random_number[18]) % 6;
     resultGen[0] = resultGen[0] << 8;
 //19 reserved
@@ -90,7 +90,7 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //23 detailClawsColor2Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[23]) % 5;
     resultGen[0] = resultGen[0] << 8;
-//24 ?detailEyesGen = 00h - 04h
+//24 +detailEyesGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[24]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //25 detailEyesColor1Gen = 00h - 04h
