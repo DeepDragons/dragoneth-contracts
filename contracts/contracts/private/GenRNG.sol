@@ -19,13 +19,24 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //onlyWhitelisted
   function getNewGens(address _from, uint256 _dragonID) external onlyRole("MainContract") returns (uint256[2] resultGen) {
    bytes32 random_number;
+   uint8 tmpGen;
    random_number = RNG(addressRNG).get32b(_from, _dragonID);
 //00 rezerved(for color) 00h - 00h
 //01 detailColorSchemaGen = 00h - 63h (99d)
-    resultGen[0] = resultGen[0] + uint8(random_number[1]) % 100;
+    resultGen[0] += uint8(random_number[1]) % 100;
     resultGen[0] = resultGen[0] << 8;
 //02*detailAuraGen = 00h - 05h
-    resultGen[0] = resultGen[0] + uint8(random_number[2]) % 4;
+    tmpGen = uint8(random_number[2]);
+    if (tmpGen >= 229) 
+        if (tmpGen < 244) 
+            resultGen[0] += 1;
+        else if (tmpGen < 252)
+            resultGen[0] += 2;
+            else if (tmpGen < 254)
+                resultGen[0] += 3;
+                else
+                    resultGen[0] += 4;
+
     resultGen[0] = resultGen[0] << 8;
 //03 detailAuraColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[3]) % 5;
@@ -61,7 +72,16 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[13]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //14 *detailScalesGen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[14]) % 5;
+    tmpGen = uint8(random_number[14]);
+    if (tmpGen >= 102) // 255 * 0.4 ~ 102
+        if (tmpGen < 194) 
+            resultGen[0] += 1;
+        else if (tmpGen < 240)
+            resultGen[0] += 2;
+            else if (tmpGen < 247)
+                resultGen[0] += 3;
+                else
+                    resultGen[0] += 4;
     resultGen[0] = resultGen[0] << 8;
 //15 detailScalesColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[15]) % 5;
