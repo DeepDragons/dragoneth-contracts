@@ -22,6 +22,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     using AddressUtils for address;
     address private wallet;
     address public mainContract;
+    address public mainReferer;
     uint256 public crowdSaleDragonPrice = 0.01 ether;
     uint256 public soldDragons;
     uint256 public priceChanger = 0.00005 ether;
@@ -49,7 +50,26 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         return_value = msg.value - count_to_buy * crowdSaleDragonPrice;
         if (return_value > 0) 
             msg.sender.transfer(return_value);
-        wallet.transfer(msg.value - return_value);
+            
+        uint256 mainValue = msg.value - return_value;
+        
+        if(msg.data.length == 20) {
+            address referer = bytesToAddress(bytes(msg.data));
+            require(referer != msg.sender);
+            if (referer == address(0))
+                wallet.transfer(mainValue);
+            else {
+                if (referer == mainReferer) {
+                    referer.transfer(mainValue/2);
+                    wallet.transfer(mainValue - mainValue/2);
+                } else {
+                    referer.transfer(mainValue*3/10);
+                    wallet.transfer(mainValue - mainValue*3/10);
+                }
+            }
+        } else 
+            wallet.transfer(mainValue);
+
         for(uint256 i = 1; i <= count_to_buy; i += 1) {
             if (block.number < timeToFirstBorn) {
                 DragonsETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
@@ -74,6 +94,10 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         wallet = _wallet;
     }
     
+    function changeMainReferer(address _mainReferer) external onlyAdmin {
+        mainReferer = _mainReferer;
+    }
+    
     function setTimeToBorn(uint256 _timeToBorn, uint256 _timeToFirstBorn) external onlyAdmin {
         timeToBorn = _timeToBorn;
         timeToFirstBorn = _timeToFirstBorn;
@@ -83,5 +107,15 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     function withdrawAllEther() external onlyAdmin {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
+    }
+    
+    function bytesToAddress(bytes source) internal pure returns(address) {
+        uint result;
+        uint mul = 1;
+        for(uint i = 20; i > 0; i--) {
+            result += uint8(source[i-1])*mul;
+            mul = mul*256;
+        }
+        return address(result);
     }
 }
