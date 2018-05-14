@@ -6,10 +6,17 @@ import "./security/ReentrancyGuard.sol";
 import "./ERC721/AddressUtils.sol";
 
 contract DragonsETH {
-
-function createDragon(address _to, uint256 _timeToBorn, uint256 _parentOne, uint256 _parentTwo, uint256 _gen1, uint240 _gen2) external;
-
+    function createDragon(
+        address _to, 
+        uint256 _timeToBorn, 
+        uint256 _parentOne, 
+        uint256 _parentTwo, 
+        uint256 _gen1, 
+        uint240 _gen2
+    ) 
+        external;
 }
+
 contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     using AddressUtils for address;
@@ -24,26 +31,27 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     constructor(address _wallet, address _mainContract) public {
         wallet = _wallet;
         mainContract = _mainContract;
-        timeToFirstBorn = block.number + 80640; // ~14 days 
+        timeToFirstBorn = block.number + 120960; // ~21 days 
     }
 
 
     function() external payable whenNotPaused nonReentrant {
-       require(soldDragons <= 100000);
-       require(msg.value >= crowdSaleDragonPrice);
-       require(!msg.sender.isContract());
+        require(soldDragons <= 100000);
+        require(msg.value >= crowdSaleDragonPrice);
+        require(!msg.sender.isContract());
         uint256 count_to_buy;
         uint256 return_value;
   
         count_to_buy = msg.value.div(crowdSaleDragonPrice);
-        if (count_to_buy > 10) count_to_buy = 10;
+        if (count_to_buy > 10) 
+            count_to_buy = 10;
         // operation safety check with functions div() and require() above
         return_value = msg.value - count_to_buy * crowdSaleDragonPrice;
-        if (return_value > 0) msg.sender.transfer(return_value);
+        if (return_value > 0) 
+            msg.sender.transfer(return_value);
         wallet.transfer(msg.value - return_value);
         for(uint256 i = 1; i <= count_to_buy; i += 1) {
             if (block.number < timeToFirstBorn) {
-                // TODO add safe transfer
                 DragonsETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
             } else {
                 DragonsETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
@@ -55,11 +63,11 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     }
 
     function changePrice(uint256 _price) external onlyAdmin {
-       crowdSaleDragonPrice = _price;
+        crowdSaleDragonPrice = _price;
     }
 
     function setPriceChanger(uint256 _priceChanger) external onlyAdmin {
-       priceChanger = _priceChanger;
+        priceChanger = _priceChanger;
     }
 
     function changeWallet(address _wallet) external onlyAdmin {
