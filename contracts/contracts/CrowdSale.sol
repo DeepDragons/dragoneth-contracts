@@ -53,7 +53,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
             
         uint256 mainValue = msg.value - return_value;
         
-        if(msg.data.length == 20) {
+        if (msg.data.length == 20) {
             address referer = bytesToAddress(bytes(msg.data));
             require(referer != msg.sender);
             if (referer == address(0))
