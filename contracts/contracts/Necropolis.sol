@@ -1,5 +1,5 @@
 pragma solidity ^0.4.23;
-
+//pragma experimental ABIEncoderV2;
 
 import "./security/rbac/RBACWithAdmin.sol";
 
@@ -43,4 +43,8 @@ contract Necropolis is RBACWithAdmin {
     function deadDragons() external view returns (uint256){
         return dragons.length - 1;
     }
+ /*   function getAllDeadDragons() external view returns(Dragon[]) {
+        return dragons;
+    } 
+*/    
 }
