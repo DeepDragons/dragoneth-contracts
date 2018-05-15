@@ -1,12 +1,12 @@
 pragma solidity ^0.4.23;
 
+
 import "./ERC721/ERC721Token.sol";
 import "./DragonsETH_GC.sol";
 import "./security/ReentrancyGuard.sol";
 
-// on mine net
-// contract DragonsETH is ERC721Token("DragonsETH.com Dragon", "DragonsETH"), DragonsETH_GC, ReentrancyGuard {
-contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, ReentrancyGuard {
+
+contract DragonsETH is ERC721Token("DragonsETH.com Dragon", "DragonsETH"), DragonsETH_GC, ReentrancyGuard {
     uint256 public totalDragons;
     uint256 public liveDragons;
     struct Dragon {
@@ -223,9 +223,6 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
                 wallet.transfer(msg.value);
                 dragons[_dragonID].nextBlock2Action = dragons[_dragonID].nextBlock2Action - msg.value / priceDecraseTime2Action - 1;
             }
-            
-            
-            
         }
         
     }
@@ -268,9 +265,4 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
     function setTime2Rest(uint256 _dragonID, uint256 _addNextBlock2Action) external onlyRole("ActionContract") {
         dragons[_dragonID].nextBlock2Action = block.number + _addNextBlock2Action;
     }
-    
-    
-    
- 
-    
 }
