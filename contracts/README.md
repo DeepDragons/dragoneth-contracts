@@ -14,11 +14,15 @@
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0xb06d47f603289fcbc3e3d9904f83eadd8c8380d7
+0x8b07e8f6ed417ca822de86c11f8582bbf3c529a4
 
 * wallet Igor
  
 0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
+
+* main Referer Igor
+ 
+0xeC9FefdD828C28b4D1559548E5df6a460d83dB29
 
 * DragonStats.sol (DragonStats)
  
@@ -61,7 +65,7 @@
 3. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
 4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
 5. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
-+6. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract")
+6. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract")
 
 *Other*
 
