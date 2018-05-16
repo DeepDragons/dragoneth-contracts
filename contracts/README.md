@@ -16,6 +16,10 @@
 
 0x45b8f7f23ea28ad66c1b20778e5b9b7dc6839b4b
 
+* cheep version CrowdSale.sol
+
+0x8b07e8f6ed417ca822de86c11f8582bbf3c529a4
+
 * wallet Igor
  
 0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
