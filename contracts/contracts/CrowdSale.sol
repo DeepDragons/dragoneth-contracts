@@ -108,14 +108,11 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         require(wallet != 0);
         wallet.transfer(address(this).balance);
     }
-    
-    function bytesToAddress(bytes source) internal pure returns(address) {
-        uint result;
-        uint mul = 1;
-        for(uint i = 20; i > 0; i--) {
-            result += uint8(source[i-1])*mul;
-            mul = mul*256;
+   
+    function bytesToAddress(bytes _bytesData) internal pure returns(address _addressReferer) {
+        assembly {
+            _addressReferer := mload(add(_bytesData,0x14))
         }
-        return address(result);
+        return _addressReferer;
     }
 }
