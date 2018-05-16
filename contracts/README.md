@@ -10,11 +10,19 @@
 
 * DragonETH.sol (DragonETH)
 
-0xbf8f045fe9b9d8423cc79523ddf0861511a0d872
+0x02b3b847e40136b2391289843614c9e43fa3c12a
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0x8b07e8f6ed417ca822de86c11f8582bbf3c529a4
+0xe0d9cce402f8fb20d1da17f57f7901e37e5ab847
+
+* DragonStats.sol (DragonStats)
+ 
+0x594ecbf4f1717884898eddee6409604a69833f40
+
+* Necropolis.sol (Necropolis)
+
+0x08772d8aff380c23a1d7b454a2a48c08bcc6be91
 
 * wallet Igor
  
@@ -24,13 +32,7 @@
  
 0xeC9FefdD828C28b4D1559548E5df6a460d83dB29
 
-* DragonStats.sol (DragonStats)
- 
-0x96b4eada34f7a4560e345eb156a9a20e097790ad
 
-* Necropolis.sol (Necropolis)
-
-0xe1c5ad92760133a4788c344edae84ed0a7036db0
 
 
 ### Deployment
