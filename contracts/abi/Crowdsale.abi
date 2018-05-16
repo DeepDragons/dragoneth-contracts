@@ -57,6 +57,20 @@
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "mainReferer",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "priceChanger",
 		"outputs": [
 			{
@@ -145,6 +159,15 @@
 	{
 		"constant": false,
 		"inputs": [],
+		"name": "destroy",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
 		"name": "pause",
 		"outputs": [],
 		"payable": false,
@@ -164,6 +187,20 @@
 			}
 		],
 		"name": "adminRemoveRole",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_mainReferer",
+				"type": "address"
+			}
+		],
+		"name": "changeMainReferer",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
