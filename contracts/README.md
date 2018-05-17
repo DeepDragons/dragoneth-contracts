@@ -100,4 +100,5 @@
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
 
 
-
+Our Kovan node 165.227.238.66
+geth attach http://165.227.238.66:8545
