@@ -7,11 +7,7 @@
 
 * GenRNG.sol (GenRNG) + address RNG
 
- 
-
 0xAB939a472D42d79d9b16c2dCa53b67D7c7a2598A
-
-
 
 * DragonETH.sol (DragonETH)
 
