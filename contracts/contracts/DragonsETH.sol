@@ -268,9 +268,4 @@ contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, Reentran
     function setTime2Rest(uint256 _dragonID, uint256 _addNextBlock2Action) external onlyRole("ActionContract") {
         dragons[_dragonID].nextBlock2Action = block.number + _addNextBlock2Action;
     }
-    
-    
-    
- 
-    
 }

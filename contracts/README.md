@@ -2,36 +2,73 @@
 
 * RNG.sol (RNG)
 
-0x155282b55c6f69bb91868e328b4afd84ef18c6d8
+0xfa7ab11d6adb67c602d03cb180a4f4a3c98f1a41
+
+ *Gas Used By Txn: 907918*
 
 * GenRNG.sol (GenRNG) + address RNG
 
-0xbf30b49108ba56f5d7b8d8b6ef2fa5b938caa70b
+0xd2a88c34855450d73b1c13667d0b11d289848489 
+
+ *Gas Used By Txn: 1075167*
+
+* FixMarketPlace.sol (FixMarketPlace) + address wallet
+
+0x80d95fd025da6e779ea797ed6524806d459f69df
+
+ *Gas Used By Txn: 1218021*
 
 * DragonETH.sol (DragonETH)
 
-0x02b3b847e40136b2391289843614c9e43fa3c12a
+0x99c4d4764a36407da659f686d49cb278477fe4ea
+
+ *Gas Used By Txn: 5236615*
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0xe0d9cce402f8fb20d1da17f57f7901e37e5ab847
+0x35c2b82146ece67e4526f35862abe8ef81244556
+
+ *Gas Used By Txn: 1259092*
+
+
+* wallet
+ 
+0xDe089D1801e6Ed1d75076950c4717445d02aE984
 
 * DragonStats.sol (DragonStats)
  
-0x594ecbf4f1717884898eddee6409604a69833f40
+0x31ba781647bdabb0a2dcdae03ea95089352eb690
+
+ *Gas Used By Txn: 1361774*
+
+
+* Mutagen.sol (Mutagen)
+
+0xd08ada3da9280d7bf1079e7c90a733eaf619f991 
+
+ *Gas Used By Txn: 1257640*
+
+* DragonsFightPlace.sol (DragonsFightPlace)
+
+0xfbfa61e5d9eb2623f3a544d2733fb1c818d3db56
+
+ *Gas Used By Txn: 1636625*
+
+* DragonsFight.sol (DragonsFight)
+
+0x58886abc2f5214ee140b1a92605b198152432993
+ 
+ *Gas Used By Txn: 609959*
 
 * Necropolis.sol (Necropolis)
 
-0x08772d8aff380c23a1d7b454a2a48c08bcc6be91
+0xd457c1424061130d53ed947245da0b6223a0152c
 
-* wallet Igor
- 
-0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
+2 *Gas Used By Txn: 867597*
 
-* main Referer Igor
- 
-0xeC9FefdD828C28b4D1559548E5df6a460d83dB29
+Contracts to kill:
 
+0x58886abc2f5214ee140b1a92605b198152432993
 
 
 
@@ -100,6 +137,5 @@
 ### How to use remix with local files
 
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
-
 
 
