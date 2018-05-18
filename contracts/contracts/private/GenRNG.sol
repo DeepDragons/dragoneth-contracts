@@ -60,7 +60,16 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[9]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //10 +detailBodyGen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[10]) % 5;
+    //resultGen[0] = resultGen[0] + uint8(random_number[10]) % 5;
+    tmpGen = uint8(random_number[10]);
+    if (tmpGen > 153)
+        if (tmpGen < 230) 
+            resultGen[0] += 1;
+        else if (tmpGen < 243)
+            resultGen[0] += 2;
+            else
+                resultGen[0] += 3;
+                
     resultGen[0] = resultGen[0] << 8;
 //11 detailBodyColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[11]) % 5;
