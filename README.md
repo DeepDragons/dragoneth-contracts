@@ -27,7 +27,7 @@
 | Paws	|	1	|		|		|
 
 - //00 rezerved(for color) 00h - 00h
-- //01 detailColorSchemaGen = 00h - 63h (99d)
+- //01 detailColorSchemaGen = 00h - FFh (99d)
 - //02 *detailAuraGen = 00h - 04h
 - //03 detailAuraColorGen = 00h - 04h
 - //04 *detailWingsGen = 00h - 05h
