@@ -51,8 +51,8 @@
 - //22 reserved
 - //23 detailClawsColorGen = 00h - 04h
 - //24 +detailEyesGen = 00h - 04h
-- //25 detailEyesColor1Gen = 00h - 04h
-- //26 detailEyesColor2Gen = 00h - 04h
+- //25 detailEyesColorGen = 00h - 04h
+- //26 rezerved 00h - 00h
 - //27 rezerved 00h - 00h
 - //28 rezerved 00h - 00h
 - //29 rezerved 00h - 00h
