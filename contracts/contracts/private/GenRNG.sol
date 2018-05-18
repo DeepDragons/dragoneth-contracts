@@ -42,7 +42,19 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[3]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //04 *detailWingsGen = 00h - 05h
-    resultGen[0] = resultGen[0] + uint8(random_number[4]) % 6;
+    tmpGen = uint8(random_number[4]);
+    if (tmpGen >= 178) 
+        if (tmpGen < 224) 
+            resultGen[0] += 1;
+        else if (tmpGen < 235)
+            resultGen[0] += 2;
+            else if (tmpGen < 247)
+                resultGen[0] += 3;
+                else if (tmpGen < 251)
+                    resultGen[0] += 4;
+                    else 
+                        resultGen[0] += 5;
+    
     resultGen[0] = resultGen[0] << 16;
 //05 reserved
 //    resultGen[0] = resultGen[0] + uint8(random_number[5]) % 5;
