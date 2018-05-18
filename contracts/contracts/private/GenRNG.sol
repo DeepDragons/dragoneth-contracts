@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 import "../security/rbac/RBACWithAdmin.sol";
 
@@ -22,8 +22,8 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
    uint8 tmpGen;
    random_number = RNG(addressRNG).get32b(_from, _dragonID);
 //00 rezerved(for color) 00h - 00h
-//01 detailColorSchemaGen = 00h - 63h (99d)
-    resultGen[0] += uint8(random_number[1]) % 100;
+//01 detailColorSchemaGen = 00h - ffh
+    resultGen[0] += uint8(random_number[1]);
     resultGen[0] = resultGen[0] << 8;
 //02*detailAuraGen = 00h - 05h
     tmpGen = uint8(random_number[2]);
@@ -43,10 +43,10 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] << 8;
 //04 *detailWingsGen = 00h - 05h
     resultGen[0] = resultGen[0] + uint8(random_number[4]) % 6;
-    resultGen[0] = resultGen[0] << 8;
+    resultGen[0] = resultGen[0] << 16;
 //05 reserved
 //    resultGen[0] = resultGen[0] + uint8(random_number[5]) % 5;
-    resultGen[0] = resultGen[0] << 8;
+//    resultGen[0] = resultGen[0] << 8;
 //06 detailWingsColor2Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[6]) % 5;
     resultGen[0] = resultGen[0] << 8;
@@ -101,13 +101,13 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //20 mutagenImutable 00h-FFh
     resultGen[0] = resultGen[0] + uint8(random_number[20]);
     resultGen[0] = resultGen[0] << 8;
-//21 *detailClawsGen = 00h - 04h
+//21 +detailPawsGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[21]) % 5;
-    resultGen[0] = resultGen[0] << 8;
+    resultGen[0] = resultGen[0] << 16;
 //22 reserved
 //    resultGen[0] = resultGen[0] + uint8(random_number[22]) % 5;
-    resultGen[0] = resultGen[0] << 8;
-//23 detailClawsColor2Gen = 00h - 04h
+//    resultGen[0] = resultGen[0] << 8;
+//23 detailClawsColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[23]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //24 +detailEyesGen = 00h - 04h
@@ -115,10 +115,10 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] << 8;
 //25 detailEyesColor1Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[25]) % 5;
-    resultGen[0] = resultGen[0] << 8;
+    resultGen[0] = resultGen[0] << 16;
 //26 detailEyesColor2Gen = 00h - 04h
     //resultGen[0] = resultGen[0] + uint8(random_number[26]) % 5;
-    resultGen[0] = resultGen[0] << 8;
+//    resultGen[0] = resultGen[0] << 8;
 //27 *detailSpikesGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[27]) % 5;
     resultGen[0] = resultGen[0] << 8;
@@ -127,12 +127,12 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] << 8;
 //29 detailSpikesColor2Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[29]) % 5;
-    resultGen[0] = resultGen[0] << 8;
+    resultGen[0] = resultGen[0] << 16;
 //30 rezerved 00h - 00h
 //31 rezerved 00h - 00h
 
 
-    resultGen[0] = resultGen[0] << 8;
+//    resultGen[0] = resultGen[0] << 8;
     resultGen[1] = uint256(RNG(addressRNG).get32b(_from, _dragonID));
   }
 }
