@@ -4,34 +4,30 @@
 
 0x91a56d01A4BC1f07ec731f86408b1114A1540e9C
 
-
 * GenRNG.sol (GenRNG) + address RNG
 
 0xAB939a472D42d79d9b16c2dCa53b67D7c7a2598A
 
 * DragonETH.sol (DragonETH)
 
-0x21c4a603cd7fcc16b2ff1f5f30e5b839b9222108
+0x34887B4E8Fe85B20ae9012d071412afe702C9409
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0xeBabE9C9AD63851d56F7030C08D3D021c4436dd5
+
+
+* DragonStats.sol (DragonStats)
+
+0x3c29EF59BebE160BBc59c02130B8f637fa11a978
+
+* Necropolis.sol (Necropolis)
+
+0x3cD20D014384C16537a9AC945d7c39e470183E79
 
 * wallet
  
 0xC8157b670C89F4efdC9B6F00a208036BA1CF8Dee
 
-* DragonStats.sol (DragonStats)
- 
-0xd40447f919dF3708568078eE7d92C041067cc8a1
-
-
-* Necropolis.sol (Necropolis)
-
-0x81f62207eB1E4274feA855943e260091306bE457
-
-Gas Used By Txn: 863736
-Actual Tx Cost/Fee: 0.00182248296 Ether ($1.43)
 
 ### Deployment
 
@@ -65,7 +61,7 @@ Actual Tx Cost/Fee: 0.00182248296 Ether ($1.43)
 3. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
 4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
 5. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
-+6. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract")
+6. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract")
 
 *Other*
 
@@ -85,7 +81,7 @@ Actual Tx Cost/Fee: 0.00182248296 Ether ($1.43)
 
 ### Testing settings
 
-1. GenRNG		*func*	Whitelist(address DragonETH) == True
+1. GenRNG		*func*	hasRole(address DragonETH,string "MainContract" ) == True
 2. DragonETH		*func*	genRNGContractAddress == address GenRNG
 3. DragonETH		*func*	dragonStatsContractAddress == address DragonStats
 4. DragonETH		*func*	hasRole(address CrowdSaleDragonETH,string "CreateContract" ) == True
@@ -99,5 +95,15 @@ Actual Tx Cost/Fee: 0.00182248296 Ether ($1.43)
 
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
 
+OKO ethereum node http://81.171.12.251:8545
 
+Old contract first deploy:
+
+* DragonETH.sol (DragonETH) 0x21c4a603cd7fcc16b2ff1f5f30e5b839b9222108
+
+* CrowdSale.sol (CrowdSaleDragonETH) 0xeBabE9C9AD63851d56F7030C08D3D021c4436dd5
+
+* DragonStats.sol (DragonStats) 0xd40447f919dF3708568078eE7d92C041067cc8a1
+
+* Necropolis.sol (Necropolis) 0x81f62207eB1E4274feA855943e260091306bE457
 
