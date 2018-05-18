@@ -100,10 +100,10 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] << 8;
 //20 mutagenImutable 00h-FFh
     resultGen[0] = resultGen[0] + uint8(random_number[20]);
-    resultGen[0] = resultGen[0] << 16;
+    resultGen[0] = resultGen[0] << 24;
 //21 +detailPawsGen = 00h
 //    resultGen[0] = resultGen[0] + uint8(random_number[21]) % 5;
-//    resultGen[0] = resultGen[0] << 16;
+//    resultGen[0] = resultGen[0] << 8;
 //22 reserved
 //    resultGen[0] = resultGen[0] + uint8(random_number[22]) % 5;
 //    resultGen[0] = resultGen[0] << 8;
