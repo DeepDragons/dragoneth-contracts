@@ -102,7 +102,16 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[17]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //18 +detailHeadGen = 00h - 05h
-    resultGen[0] = resultGen[0] + uint8(random_number[18]) % 6;
+    tmpGen = uint8(random_number[18]);
+    if (tmpGen >= 153) 
+        if (tmpGen < 192) 
+            resultGen[0] += 1;
+        else if (tmpGen < 230)
+            resultGen[0] += 2;
+            else if (tmpGen < 243)
+                resultGen[0] += 3;
+                else
+                    resultGen[0] += 4;
     resultGen[0] = resultGen[0] << 8;
 //19 reserved
 //    resultGen[0] = resultGen[0] + uint8(random_number[19]) % 5;
@@ -120,7 +129,16 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[23]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //24 +detailEyesGen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[24]) % 5;
+    tmpGen = uint8(random_number[24]);
+    if (tmpGen >= 153) 
+        if (tmpGen < 192) 
+            resultGen[0] += 1;
+        else if (tmpGen < 230)
+            resultGen[0] += 2;
+            else if (tmpGen < 243)
+                resultGen[0] += 3;
+                else
+                    resultGen[0] += 4;
     resultGen[0] = resultGen[0] << 8;
 //25 detailEyesColor1Gen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[25]) % 5;
