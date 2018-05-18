@@ -21,13 +21,13 @@
 | Spots	|	1,2	| 3,4,5 |	6,7,8,9
 | Tails	|	1,2	|	3,4	|	5,6,7
 | Wings	|	1	|	2,3	|	4,5
-| Bodies|	1	|	2	|	3,4
-| Eyes	|	1	|	2,3	|	4,5
-| Heads	|	1	|	2,3	|	4,5
-| Paws	|	1	|		|		|
+| Bodies|	0	|	1	|	2,3
+| Eyes	|	0	|	1,2	|	3,4
+| Heads	|	0	|	1,2	|	3,4
+| Paws	|	0	|		|		|
 
 - //00 rezerved(for color) 00h - 00h
-- //01 detailColorSchemaGen = 00h - 63h (99d)
+- //01 detailColorSchemaGen = 00h - FFh (99d)
 - //02 *detailAuraGen = 00h - 04h
 - //03 detailAuraColorGen = 00h - 04h
 - //04 *detailWingsGen = 00h - 05h
@@ -51,11 +51,13 @@
 - //22 reserved
 - //23 detailClawsColorGen = 00h - 04h
 - //24 +detailEyesGen = 00h - 04h
-- //25 detailEyesColor1Gen = 00h - 04h
-- //26 detailEyesColor2Gen = 00h - 04h
+- //25 detailEyesColorGen = 00h - 04h
+- //26 rezerved 00h - 00h
 - //27 rezerved 00h - 00h
 - //28 rezerved 00h - 00h
 - //29 rezerved 00h - 00h
 - //30 rezerved 00h - 00h
 - //31 rezerved 00h - 00h
+- * 00h нет элемента на картинке
+- + 00h есть элемент на картинке
 
