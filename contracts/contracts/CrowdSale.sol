@@ -44,8 +44,8 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         uint256 return_value;
   
         count_to_buy = msg.value.div(crowdSaleDragonPrice);
-        if (count_to_buy > 10) 
-            count_to_buy = 10;
+        if (count_to_buy > 15) 
+            count_to_buy = 15;
         // operation safety check with functions div() and require() above
         return_value = msg.value - count_to_buy * crowdSaleDragonPrice;
         if (return_value > 0) 
@@ -81,6 +81,22 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         }
         
     }
+
+// onlyRole("BonusAgent")
+    function sendBonusEgg(address _to, uint256 _count) external onlyRole("BonusAgent") {
+        for(uint256 i = 1; i <= _count; i += 1) {
+            if (block.number < timeToFirstBorn) {
+                DragonsETH(mainContract).createDragon(_to, timeToFirstBorn, 0, 0, 0, 0);
+            } else {
+                DragonsETH(mainContract).createDragon(_to, block.number + timeToBorn, 0, 0, 0, 0);
+            }
+            soldDragons++;
+            crowdSaleDragonPrice = crowdSaleDragonPrice + priceChanger;
+        }
+        
+    }
+
+
 
     function changePrice(uint256 _price) external onlyAdmin {
         crowdSaleDragonPrice = _price;
