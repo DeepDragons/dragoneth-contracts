@@ -238,6 +238,24 @@
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_count",
+				"type": "uint256"
+			}
+		],
+		"name": "sendBonusEgg",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "_price",
 				"type": "uint256"
 			}
