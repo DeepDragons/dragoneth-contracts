@@ -6,23 +6,23 @@
 
 * GenRNG.sol (GenRNG) + address RNG
 
-0xbf30b49108ba56f5d7b8d8b6ef2fa5b938caa70b
+0x7a30fd28715b6892d3beb455f359d329218fb828
 
 * DragonETH.sol (DragonETH)
 
-0x02b3b847e40136b2391289843614c9e43fa3c12a
+0x7b411d2a493f88c3a69d28e0debbca98c3263322
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0xe0d9cce402f8fb20d1da17f57f7901e37e5ab847
+0xdf34840617e1786023b030318fc63ad7a640cbea
 
 * DragonStats.sol (DragonStats)
  
-0x594ecbf4f1717884898eddee6409604a69833f40
+0x41aafe04651f5d8b67b4b4e28c2e29a8ff1495f2
 
 * Necropolis.sol (Necropolis)
 
-0x08772d8aff380c23a1d7b454a2a48c08bcc6be91
+0x926f3a5a2ec22cb981ed1b56b4cacf4850fc6ebc
 
 * wallet Igor
  
@@ -66,6 +66,8 @@
 4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
 5. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
 6. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract")
+7. add main referer
+8. set time to burn = 1
 
 *Other*
 
