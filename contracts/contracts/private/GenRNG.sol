@@ -69,7 +69,16 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //    resultGen[0] = resultGen[0] + uint8(random_number[8]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //09 detailTailColor2Gen = 00h - 04h
-    resultGen[0] = resultGen[0] + uint8(random_number[9]) % 5;
+    //resultGen[0] = resultGen[0] + uint8(random_number[9]) % 5;
+    tmpGen = uint8(random_number[9]);
+    if (tmpGen >= 102) 
+        if (tmpGen < 194) 
+            resultGen[0] += 1 + tmpGen % 2;
+        else if (tmpGen < 240)
+            resultGen[0] += 3 + tmpGen % 2;
+            else 
+                resultGen[0] += 5 + tmpGen % 3;
+
     resultGen[0] = resultGen[0] << 8;
 //10 +detailBodyGen = 00h - 04h
     //resultGen[0] = resultGen[0] + uint8(random_number[10]) % 5;
@@ -108,7 +117,15 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[15]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //16 *detailHornsGen = 00h - 07h
-    resultGen[0] = resultGen[0] + uint8(random_number[16]) % 8;
+    tmpGen = uint8(random_number[16]);
+    if (tmpGen >= 179) 
+        if (tmpGen < 225) 
+            resultGen[0] += 1 + tmpGen % 2;
+        else if (tmpGen < 248)
+            resultGen[0] += 3 + tmpGen % 2;
+            else 
+                resultGen[0] += 5 + tmpGen % 3;
+
     resultGen[0] = resultGen[0] << 8;
 //17 detailHornsColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[17]) % 5;
