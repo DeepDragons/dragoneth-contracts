@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
@@ -83,7 +83,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     }
 
 // onlyRole("BonusAgent")
-    function sendBonusEgg(address _to, uint256 _count) external onlyRole("BonusAgent") {
+    function sendBonusEgg(address _to, uint256 _count) external {
         for(uint256 i = 1; i <= _count; i += 1) {
             if (block.number < timeToFirstBorn) {
                 DragonsETH(mainContract).createDragon(_to, timeToFirstBorn, 0, 0, 0, 0);
