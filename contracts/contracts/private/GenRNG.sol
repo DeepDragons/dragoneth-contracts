@@ -63,14 +63,8 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[6]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //07 *detailTailGen = 00h - 07h
-    resultGen[0] = resultGen[0] + uint8(random_number[7]) % 8;
-    resultGen[0] = resultGen[0] << 8;
-//08 reserved
-//    resultGen[0] = resultGen[0] + uint8(random_number[8]) % 5;
-    resultGen[0] = resultGen[0] << 8;
-//09 detailTailColor2Gen = 00h - 04h
-    //resultGen[0] = resultGen[0] + uint8(random_number[9]) % 5;
-    tmpGen = uint8(random_number[9]);
+    //resultGen[0] = resultGen[0] + uint8(random_number[7]) % 8;
+    tmpGen = uint8(random_number[7]);
     if (tmpGen >= 102) 
         if (tmpGen < 194) 
             resultGen[0] += 1 + tmpGen % 2;
@@ -79,6 +73,12 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
             else 
                 resultGen[0] += 5 + tmpGen % 3;
 
+    resultGen[0] = resultGen[0] << 16;
+//08 reserved
+//    resultGen[0] = resultGen[0] + uint8(random_number[8]) % 5;
+    //resultGen[0] = resultGen[0] << 8;
+//09 detailTailColor2Gen = 00h - 04h
+    resultGen[0] = resultGen[0] + uint8(random_number[9]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //10 +detailBodyGen = 00h - 04h
     //resultGen[0] = resultGen[0] + uint8(random_number[10]) % 5;
@@ -96,7 +96,16 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] + uint8(random_number[11]) % 5;
     resultGen[0] = resultGen[0] << 8;
 //12 *detailSpotsGen = 00h - 09h
-    resultGen[0] = resultGen[0] + uint8(random_number[12]) % 10;
+    //resultGen[0] = resultGen[0] + uint8(random_number[12]) % 10;
+    tmpGen = uint8(random_number[12]);
+    if (tmpGen >= 102) 
+        if (tmpGen < 194) 
+            resultGen[0] += 1 + tmpGen % 2;
+        else if (tmpGen < 240)
+            resultGen[0] += 3 + tmpGen % 3;
+            else 
+                resultGen[0] += 6 + tmpGen % 4;
+
     resultGen[0] = resultGen[0] << 8;
 //13 detailSpotsColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[13]) % 5;
@@ -141,10 +150,10 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
                 resultGen[0] += 3;
                 else
                     resultGen[0] += 4;
-    resultGen[0] = resultGen[0] << 8;
+    resultGen[0] = resultGen[0] << 16;
 //19 reserved
 //    resultGen[0] = resultGen[0] + uint8(random_number[19]) % 5;
-    resultGen[0] = resultGen[0] << 8;
+//    resultGen[0] = resultGen[0] << 8;
 //20 mutagenImutable 00h-FFh
     resultGen[0] = resultGen[0] + uint8(random_number[20]);
     resultGen[0] = resultGen[0] << 24;
