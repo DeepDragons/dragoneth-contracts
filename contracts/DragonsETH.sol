@@ -1046,7 +1046,8 @@ contract ReentrancyGuard {
 }
 
 
-contract DragonsETH is ERC721Token("DragonsETH.com Dragon", "DragonsETH"), DragonsETH_GC, ReentrancyGuard, DESTROYER {
+//contract DragonsETH is ERC721Token("DragonsETH.com Dragon", "DragonsETH"), DragonsETH_GC, ReentrancyGuard, DESTROYER {
+contract DragonsETH is ERC721Token("Test game", "Test"), DragonsETH_GC, ReentrancyGuard, DESTROYER {
     uint256 public totalDragons;
     uint256 public liveDragons;
     struct Dragon {
