@@ -28,14 +28,10 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //02*detailAuraGen = 00h - 05h
     tmpGen = uint8(random_number[2]);
     if (tmpGen >= 229) 
-        if (tmpGen < 244) 
-            resultGen[0] += 1;
-        else if (tmpGen < 252)
-            resultGen[0] += 2;
-            else if (tmpGen < 254)
-                resultGen[0] += 3;
-                else
-                    resultGen[0] += 4;
+        if (tmpGen <= 252) 
+            resultGen[0] = resultGen[0] + 1 + tmpGen % 3;
+        else 
+            resultGen[0] += 4;
 
     resultGen[0] = resultGen[0] << 8;
 //03 detailAuraColorGen = 00h - 04h
