@@ -29,7 +29,7 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     tmpGen = uint8(random_number[2]);
     if (tmpGen >= 229) 
         if (tmpGen <= 252) 
-            resultGen[0] = resultGen[0] + 1 + tmpGen % 3;
+            resultGen[0] += 1 + tmpGen % 3;
         else 
             resultGen[0] += 4;
 
@@ -39,12 +39,18 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] << 8;
 //04 *detailWingsGen = 00h - 05h
     tmpGen = uint8(random_number[4]);
-    if (tmpGen < 10) 
-        resultGen[0] += tmpGen % 2;
-    else if (tmpGen < 184)
-            resultGen[0] += 2 + tmpGen % 2;
-        else 
-            resultGen[0] += 4 + tmpGen % 4;
+     if (tmpGen >= 5) 
+        if (tmpGen < 41) 
+            resultGen[0] += 1;
+        else if (tmpGen < 128)
+            resultGen[0] += 2;
+            else if (tmpGen < 214)
+                resultGen[0] += 3;
+                else if (tmpGen < 250)
+                    resultGen[0] += 4;
+                    else 
+                        resultGen[0] += 5;
+    
 
     resultGen[0] = resultGen[0] << 16;
 //05 reserved
@@ -56,13 +62,14 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //07 *detailTailGen = 00h - 07h
     //resultGen[0] = resultGen[0] + uint8(random_number[7]) % 8;
     tmpGen = uint8(random_number[7]);
-    if (tmpGen >= 102) 
-        if (tmpGen < 194) 
-            resultGen[0] += 1 + tmpGen % 2;
-        else if (tmpGen < 240)
-                resultGen[0] += 3 + tmpGen % 2;
-            else 
-                resultGen[0] += 5 + tmpGen % 3;
+    if (tmpGen < 10) 
+        resultGen[0] += tmpGen % 2;
+    else if (tmpGen < 184)
+            resultGen[0] += 2 + tmpGen % 2;
+        else 
+            resultGen[0] += 4 + tmpGen % 4;
+
+    resultGen[0] = resultGen[0] << 16;
 
     resultGen[0] = resultGen[0] << 16;
 //08 reserved
@@ -157,22 +164,23 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
     resultGen[0] = resultGen[0] << 8;
 //24 +detailEyesGen = 00h - 04h
     tmpGen = uint8(random_number[24]);
-    if (tmpGen >= 153) 
-        if (tmpGen < 192) 
-            resultGen[0] += 1;
-        else if (tmpGen < 230)
-            resultGen[0] += 2;
-            else if (tmpGen < 243)
-                resultGen[0] += 3;
+     if (tmpGen < 10) 
+        resultGen[0] += tmpGen % 2;
+    else if (tmpGen < 163)
+            resultGen[0] += 2 + tmpGen % 2;
+        else if (tmpGen < 204)
+                resultGen[0] += 4 + tmpGen % 2;
+            else if (tmpGen < 235)
+                resultGen[0] += 6 + tmpGen % 2;
                 else
-                    resultGen[0] += 4;
+                    resultGen[0] += 8 + tmpGen % 2;
     resultGen[0] = resultGen[0] << 8;
 //25 detailEyesColorGen = 00h - 04h
     resultGen[0] = resultGen[0] + uint8(random_number[25]) % 5;
     resultGen[0] = resultGen[0] << 8; 
 //26 *detailSpinsGen = 00h - 04h
     tmpGen = uint8(random_number[26]);
-    if (tmpGen >= 140) // 255 * 0.4 ~ 102
+    if (tmpGen >= 140) 
         if (tmpGen < 209) 
             resultGen[0] += 1;
         else if (tmpGen < 243)
