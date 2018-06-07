@@ -82,7 +82,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         
     }
 
-// onlyRole("BonusAgent")
+// onlyRole("BountyAgent")
     function sendBonusEgg(address _to, uint256 _count) external onlyRole("BonusAgent") {
         for(uint256 i = 1; i <= _count; i += 1) {
             if (block.number < timeToFirstBorn) {
