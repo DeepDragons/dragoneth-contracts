@@ -25,7 +25,7 @@ function changeAddressRNG(address _addressRNG) external onlyAdmin {
 //01 detailColorSchemaGen = 00h - ffh
     resultGen[0] += uint8(random_number[1]);
     resultGen[0] = resultGen[0] << 8;
-//02*detailAuraGen = 00h - 05h
+//02*detailAuraGen = 00h - 04h
     tmpGen = uint8(random_number[2]);
     if (tmpGen >= 229) 
         if (tmpGen <= 252) 
