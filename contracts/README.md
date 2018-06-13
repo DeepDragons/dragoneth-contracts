@@ -6,23 +6,23 @@
 
 * GenRNG.sol (GenRNG) + address RNG
 
-0x2e85c4898938738b54ffcc2d9ceb0f9d35278e94
+0x34eb22a2cbd77773ec77688fd05f9422dca5d968
 
 * DragonETH.sol (DragonETH)
 
-0x4b33fd0ea52f3a1799362f594e43487544de1550
+0xf4ef2d6cb587ced2b910704492d76e2d63629570
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0x5e7c22719d35426cf07679feed0f307547e2cc1f
+0x299f27f810890b67b80d3d144cf008d0b12590f9
 
 * DragonStats.sol (DragonStats)
  
-0xfce2bf6491fdac55b06791279d07f5f8bd42ab7f
+0x25c9a5decd750f1c66f791ad1db6b037390333ea
 
 * Necropolis.sol (Necropolis)
 
-0xf110986c721655cc4edec7682365d1f747b0b7d3
+0x45b119733f51511f3cd40c72df8f3e0861e851d1
 
 * wallet Igor
  
@@ -104,25 +104,4 @@ Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
 
 Our Kovan node 165.227.238.66
 geth attach http://165.227.238.66:8545
-
-### Old contracts:
-* GenRNG.sol (GenRNG) + address RNG
-
-0x7a30fd28715b6892d3beb455f359d329218fb828
-
-* DragonETH.sol (DragonETH)
-
-0x7b411d2a493f88c3a69d28e0debbca98c3263322
-
-* CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
-
-0xdf34840617e1786023b030318fc63ad7a640cbea
-
-* DragonStats.sol (DragonStats)
- 
-0x41aafe04651f5d8b67b4b4e28c2e29a8ff1495f2
-
-* Necropolis.sol (Necropolis)
-
-0x926f3a5a2ec22cb981ed1b56b4cacf4850fc6ebc
 
