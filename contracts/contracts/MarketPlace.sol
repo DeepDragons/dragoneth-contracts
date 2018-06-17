@@ -42,8 +42,8 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     }
     function add2MarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool) {
         require(msg.sender == address(mainContract));
-        require(_endBlockNumber  > minSellTime);
-        require(_endBlockNumber < maxSellTime ); //??????
+        require(_endBlockNumber  >= minSellTime);
+        require(_endBlockNumber <= maxSellTime ); //??????
         require(_dragonPrice > 0);
         dragonsOwner[_dragonID] = _dragonOwner;
         dragonPrices[_dragonID] = _dragonPrice;
