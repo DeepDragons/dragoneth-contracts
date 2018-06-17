@@ -24,6 +24,10 @@
 
 0x45b119733f51511f3cd40c72df8f3e0861e851d1
 
+* MarketPlace.sol (FixMarketPlace)
+
+0xf1433fdffbd2c1474e7f0b39147a989fec252d54
+
 * wallet Igor
  
 0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
