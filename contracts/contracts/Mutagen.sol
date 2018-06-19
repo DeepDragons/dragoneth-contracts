@@ -8,7 +8,7 @@ contract Mutagen is MintableToken, BurnableToken {
 //    string public constant symbol = "Mutagen";
     uint8  public constant decimals = 0;
     // TODO del on war deploy
-    string public constant name = "Test game test";
-    string public constant symbol = "Test";
+    string public constant name = "Mutagen game test";
+    string public constant symbol = "Mutagen";
     
 }
