@@ -28,6 +28,11 @@
 
 0xf1433fdffbd2c1474e7f0b39147a989fec252d54
 
+* DragonsFightPlace.sol (DragonsFightPlace)
+
+0xc87f8b76af5d908898e4291c5d2a838a3d22eb1f
+
+
 * wallet Igor
  
 0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
@@ -35,6 +40,16 @@
 * main Referer Igor
  
 0xeC9FefdD828C28b4D1559548E5df6a460d83dB29
+
+# Other
+
+* DragonsFight.sol (DragonsFight)
+
+0xb738c8f2382fd00cd9fd358764bf74a38e595260
+
+* Mutagen.sol (Mutagen)
+
+0xf02fd49f71429e52f76b1bc6907670bd1fd78bcd
 
 
 ### Deployment
