@@ -95,11 +95,13 @@
 
 8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract")
 9. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
-10. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
-11. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
-12. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
-13. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
-14. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
+10. DragonETH		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
+11. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
+12. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
+13. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
+14. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
+15. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
+
 добавить в основной контракт роль "ActionContract" для всех котрактов действия которые имеют право дергть сответсвующую функцию
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
 добавить в контракт статистики роль "DeathContract" Для DragonETH и остальных смертельных контрактов
