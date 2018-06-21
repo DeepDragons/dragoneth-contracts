@@ -95,7 +95,13 @@
 
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
 
-OKO ethereum node http://81.171.12.251:8545
+Our MainNet node rpc http://178.62.250.108:8545
+
+web socket 178.62.250.108:8546
+
+geth attach http://178.62.250.108:8545
+
+old OKO ethereum node http://81.171.12.251:8545
 
 Old contract first deploy:
 
