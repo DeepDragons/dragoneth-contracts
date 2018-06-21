@@ -123,6 +123,9 @@
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
 
 
-Our Kovan node 165.227.238.66
-geth attach http://165.227.238.66:8545
+Our Kovan node rpc http://178.128.194.136:8545
+
+web socket 178.128.194.136:8546
+
+geth attach http://178.128.194.136:8545
 
