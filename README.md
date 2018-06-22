@@ -34,7 +34,7 @@
 - //05 detailWingsColor1Gen = 00h - 04h
 - //06 detailWingsColor2Gen = 00h - 04h
 - //07 *detailTailGen = 00h - 07h
-- //08 reserved
+- //08 detailTailColor1Gen = 00h - 04h
 - //09 detailTailColor2Gen = 00h - 04h
 - //10 +detailBodyGen = 00h - 03h
 - //11 detailBodyColorGen = 00h - 04h
