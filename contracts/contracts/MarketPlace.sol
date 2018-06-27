@@ -17,7 +17,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     uint256 public totalDragonsToSale;
     uint256 public minSellTime = 13; //~2 min
     uint256 public maxSellTime = 259200; //~30 days??????
-    uint256 public ownersPercent = 50; // eq 5%
+    uint256 public ownersPercent = 75; // eq 7,5%
     mapping(uint256 => address) public dragonsOwner;
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsEndBlock;
