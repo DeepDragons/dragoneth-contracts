@@ -22,17 +22,16 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     using AddressUtils for address;
     address private wallet;
     address public mainContract;
-    address public mainReferer;
     uint256 public crowdSaleDragonPrice = 0.01 ether;
     uint256 public soldDragons;
     uint256 public priceChanger = 0.00005 ether;
-    uint256 public timeToBorn = 5760; // ~ 24h 
-    uint256 public timeToFirstBorn;
+    uint256 public timeToBorn = 5760; // ~ 24h
+    uint256 public contRefer50x50;
+    mapping(address => bool) public refer50x50;
     
     constructor(address _wallet, address _mainContract) public {
         wallet = _wallet;
         mainContract = _mainContract;
-        timeToFirstBorn = block.number + 120960; // ~21 days 
     }
 
 
@@ -59,7 +58,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
             if (referer == address(0))
                 wallet.transfer(mainValue);
             else {
-                if (referer == mainReferer) {
+                if (refer50x50[referer]) {
                     referer.transfer(mainValue/2);
                     wallet.transfer(mainValue - mainValue/2);
                 } else {
@@ -71,11 +70,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
             wallet.transfer(mainValue);
 
         for(uint256 i = 1; i <= count_to_buy; i += 1) {
-            if (block.number < timeToFirstBorn) {
-                DragonsETH(mainContract).createDragon(msg.sender, timeToFirstBorn, 0, 0, 0, 0);
-            } else {
-                DragonsETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
-            }
+            DragonsETH(mainContract).createDragon(msg.sender, block.number + timeToBorn, 0, 0, 0, 0);
             soldDragons++;
             crowdSaleDragonPrice = crowdSaleDragonPrice + priceChanger;
         }
@@ -85,11 +80,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
 // onlyRole("BountyAgent")
     function sendBonusEgg(address _to, uint256 _count) external {
         for(uint256 i = 1; i <= _count; i += 1) {
-            if (block.number < timeToFirstBorn) {
-                DragonsETH(mainContract).createDragon(_to, timeToFirstBorn, 0, 0, 0, 0);
-            } else {
-                DragonsETH(mainContract).createDragon(_to, block.number + timeToBorn, 0, 0, 0, 0);
-            }
+            DragonsETH(mainContract).createDragon(_to, block.number + timeToBorn, 0, 0, 0, 0);
             soldDragons++;
             crowdSaleDragonPrice = crowdSaleDragonPrice + priceChanger;
         }
@@ -110,13 +101,16 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         wallet = _wallet;
     }
     
-    function changeMainReferer(address _mainReferer) external onlyAdmin {
-        mainReferer = _mainReferer;
+
+    function setRefer50x50(address _refer) external onlyAdmin {
+        require(contRefer50x50 < 50);
+        require(refer50x50[_refer] == false);
+        refer50x50[_refer] = true;
+        contRefer50x50 +=1;
     }
-    
-    function setTimeToBorn(uint256 _timeToBorn, uint256 _timeToFirstBorn) external onlyAdmin {
+
+    function setTimeToBorn(uint256 _timeToBorn) external onlyAdmin {
         timeToBorn = _timeToBorn;
-        timeToFirstBorn = _timeToFirstBorn;
         
     }
 
