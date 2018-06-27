@@ -10,36 +10,27 @@
 
 * DragonETH.sol (DragonETH)
 
-0xf4ef2d6cb587ced2b910704492d76e2d63629570
+0x2050a13468359b78441f3dc3e0035e389ba4b08b
 
 * CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
 
-0x299f27f810890b67b80d3d144cf008d0b12590f9
+0x45e73ad30e0662c7262f913dc5715d03872c3292
 
 * DragonStats.sol (DragonStats)
  
-0x25c9a5decd750f1c66f791ad1db6b037390333ea
+0x33db6b612c427a13b767273f5138222eca247c7e
 
 * Necropolis.sol (Necropolis)
 
-0x45b119733f51511f3cd40c72df8f3e0861e851d1
+0xec53b186e3a04547260e7e4acfa53e4d65671fb3
 
 * MarketPlace.sol (FixMarketPlace)
 
-0xf1433fdffbd2c1474e7f0b39147a989fec252d54
+0x65d1d5cd20e38f1dc4c4fe05273c9ed0d51ad316
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
-0xc87f8b76af5d908898e4291c5d2a838a3d22eb1f
-
-
-* wallet Igor
- 
-0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
-
-* main Referer Igor
- 
-0xeC9FefdD828C28b4D1559548E5df6a460d83dB29
+0x0439a3ffd3f0a29d96935f159d85b0a84c69f8a0
 
 # Other
 
@@ -51,6 +42,31 @@
 
 0xf02fd49f71429e52f76b1bc6907670bd1fd78bcd
 
+# Wallets
+
+* wallet Igor
+ 
+0x1DbEd156A8423abe1aCE32abeBD972f29CceCd78
+
+* main Referer Igor
+ 
+0xeC9FefdD828C28b4D1559548E5df6a460d83dB29
+
+* Igor for larg ETH
+
+0x638a05783dB75e08095A45362E3f207601277dAe
+
+* wallet Alexandr
+
+0x907aA122D7EE585E1dD7D50F8892d27633e04082
+
+* wallet Ekaterina
+
+0xF6E3eCB1a0F06a816B0a260c7f60AbFAE6e3f97a
+
+* wallet Rinat?
+
+0xA98060409a31FdF92754ADD44645d273578185C7
 
 ### Deployment
 
@@ -80,23 +96,25 @@
 *MVP*
 
 1. RNG			*func*	adminAddRole(address GenRGN,string "GenRNG" )
-2. GenRNG		*func*	adminAddRole(address DragonETH,string "MainContract" )
-3. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
-4. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
-5. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract")
-6. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract")
+2. DragonETH		*func*	changeGenRNGcontractAddress(address GenRNG)
+3. DragonETH		*func*	adminAddRole(address CrowdSaleDragonETH,string "CreateContract" )
+4. GenRNG		*func*	adminAddRole(address DragonETH, string "MainContract" )
+5. DragonStat		*func*	adminAddRole(address DragonETH, string "MainContract" )
+6. Necropolis		*func*	adminAddRole(address DragonETH, string "MainContract" )
 7. add main referer
-8. set time to burn = 1
+8. set time to burn = 2
+9. set time to rest = 2
+10. set second in bloc = 5
 
 *Other*
 
 7. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
 8. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
 
-8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract")
-9. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
-10. DragonETH		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract")
-11. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent")
+8. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "FightContract" )
+9. DragonStat		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract" )
+10. DragonETH		*func*	adminAddRole(address DragonsFightPlace, string "ActionContract" )
+11. Mutagen		*func*	adminAddRole(address DragonsFightPlace, string "MintAgent" )
 12. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
 13. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
 14. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
@@ -128,4 +146,31 @@ Our Kovan node rpc http://178.128.194.136:8545
 web socket 178.128.194.136:8546
 
 geth attach http://178.128.194.136:8545
+
+# Old contract:
+
+* DragonETH.sol (DragonETH)
+
+0xf4ef2d6cb587ced2b910704492d76e2d63629570
+
+* CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
+
+0x299f27f810890b67b80d3d144cf008d0b12590f9
+
+* DragonStats.sol (DragonStats)
+ 
+0x25c9a5decd750f1c66f791ad1db6b037390333ea
+
+* Necropolis.sol (Necropolis)
+
+0x45b119733f51511f3cd40c72df8f3e0861e851d1
+
+* MarketPlace.sol (FixMarketPlace)
+
+0xf1433fdffbd2c1474e7f0b39147a989fec252d54
+
+* DragonsFightPlace.sol (DragonsFightPlace)
+
+0xc87f8b76af5d908898e4291c5d2a838a3d22eb1f
+
 
