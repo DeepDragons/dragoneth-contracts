@@ -136,6 +136,16 @@
 
 7. DragonETH		*func*	FMPcontractAddress == address FixMarketPlace
 8. FixMarketPlace	*func*	MainContract == address DragonETH
+
+1. DragonStat		*func*	hasRole(address DragonsFightPlace, string "FightContract" ) == True
+1. DragonStat		*func*	hasRole(address DragonsFightPlace, string "ActionContract" ) == True
+1. DragonETH		*func*	hasRole(address DragonsFightPlace, string "ActionContract" ) == True
+11. Mutagen		*func*	hasRole(address DragonsFightPlace, string "MintAgent" ) == True
+12. DragonsFightPlace	*func*	dragonsFightContract == address DragonsFight
+13. DragonsFightPlace	*func*	dragonsStatsContract == address DragonStats
+14. DragonsFightPlace	*func*	mainContract == address DragonETH
+15. DragonsFightPlace	*func*	mutagenContract == address Mutagen
+
 ### How to use remix with local files
 
 Hint: https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html
