@@ -32,6 +32,7 @@
 
 0x0439a3ffd3f0a29d96935f159d85b0a84c69f8a0
 
+
 # Other
 
 * DragonsFight.sol (DragonsFight)
@@ -43,6 +44,10 @@
 0xf02fd49f71429e52f76b1bc6907670bd1fd78bcd
 
 # Wallets
+
+* ProxyWallet
+
+0x4fde93f4b6d3d5d39026cf49323d51c01b30ecb0
 
 * wallet Igor
  
@@ -74,20 +79,21 @@
 
 *MVP*
 0. MultiWallet.sol (MultiWallet)
+0. ProxyWallet.sol (ProxyWallet) + address wallet
 1. DragonStats.sol (DragonStats)
 2. Necropolis.sol (Necropolis)
 3. RNG.sol (RNG)
 4. GenRNG.sol (GenRNG) + address RNG
-5. DragonETH.sol (DragonETH) + address wallet + address Necropolis + address DragonStats
-6. CrowdSale.sol (CrowdSaleDragonETH) + address wallet + address DragonETH
+5. DragonETH.sol (DragonETH) + address ProxyWallet + address Necropolis + address DragonStats
+6. CrowdSale.sol (CrowdSaleDragonETH) + address ProxyWallet + address DragonETH
 
 
 
 *Other*
 
-7. FixMarketPlace.sol (FixMarketPlace) + address wallet
+7. FixMarketPlace.sol (FixMarketPlace) + address ProxyWallet
 8. Mutagen.sol
-9. DragonsFightPlace.sol (DragonsFightPlace) + address wallet
+9. DragonsFightPlace.sol (DragonsFightPlace) + address ProxyWallet
 10. DragonsFight.sol (DragonsFight)
 
 
