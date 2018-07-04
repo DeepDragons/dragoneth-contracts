@@ -6,7 +6,7 @@
 
 * GenRNG.sol (GenRNG) + address RNG
 
-0xAB939a472D42d79d9b16c2dCa53b67D7c7a2598A
+
 
 * DragonETH.sol (DragonETH)
 
@@ -26,7 +26,7 @@
 
 * wallet
  
-0xC8157b670C89F4efdC9B6F00a208036BA1CF8Dee
+
 
 
 ### Deployment
@@ -102,6 +102,12 @@ web socket 178.62.250.108:8546
 geth attach http://178.62.250.108:8545
 
 old OKO ethereum node http://81.171.12.251:8545
+
+Old contract redeploy 04/06/2018:
+
+* GenRNG.sol (GenRNG) 0xAB939a472D42d79d9b16c2dCa53b67D7c7a2598A
+
+* wallet 0xC8157b670C89F4efdC9B6F00a208036BA1CF8Dee
 
 Old contract first deploy:
 
