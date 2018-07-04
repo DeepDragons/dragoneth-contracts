@@ -24,7 +24,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
     address public mainContract;
     uint256 public crowdSaleDragonPrice = 0.01 ether;
     uint256 public soldDragons;
-    uint256 public priceChanger = 0.00005 ether;
+    uint256 public priceChanger = 0.00002 ether;
     uint256 public timeToBorn = 5760; // ~ 24h
     uint256 public contRefer50x50;
     mapping(address => bool) public refer50x50;
