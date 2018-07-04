@@ -16,9 +16,9 @@
 
 0xBf662FB1C4Ab0657bDA2Fbfec620F3a2E0589AbF
 
-* DragonStats.sol (DragonStats)
+* DragonStats.sol (DragonStats) real!!! withot source code on etherscan
 
-0x3c29EF59BebE160BBc59c02130B8f637fa11a978
+0x81f62207eB1E4274feA855943e260091306bE457
 
 * Necropolis.sol (Necropolis)
 
@@ -108,6 +108,13 @@ Old contract redeploy 04/06/2018:
 * GenRNG.sol (GenRNG) 0xAB939a472D42d79d9b16c2dCa53b67D7c7a2598A
 
 * wallet 0xC8157b670C89F4efdC9B6F00a208036BA1CF8Dee
+
+Bug deploy
+
+* Necropolis.sol (Necropolis) with source code
+
+0x3cD20D014384C16537a9AC945d7c39e470183E79
+
 
 Old contract first deploy:
 
