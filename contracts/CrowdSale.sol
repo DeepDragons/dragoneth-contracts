@@ -343,7 +343,7 @@ contract ReentrancyGuard {
 
 }
 
-contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
+contract CrowdSaleDragonETH is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     using AddressUtils for address;
     address private wallet;
