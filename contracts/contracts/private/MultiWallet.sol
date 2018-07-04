@@ -10,7 +10,7 @@ contract MultiWallet is ReentrancyGuard {
     address wallet4_7 = 0x181d493A0499E81726FB7dfFa698d2923e780669; // Ivan
     address wallet5_2 = 0x27DC375Ce528832B0b1955A288c411CaE4Ac7c12; // Kate tmp Igor
     address wallet6_10 = 0xfa01d5584B39A46f384168e32A86Ae2d48F7D1Aa; // disgner department 10% tmp Alexander
-    address wallet7_8  = 0x888430ed4d28603286d59eDD12B3C1afCCe35657; //  NN change wallet
+    address wallet7_8  = 0x888430ed4d28603286d59eDD12B3C1afCCe35657; //  NN
     address wallet8_309 = 0xFF996042E1f9e11c9658e5bEdce2363F853490F1; //  prodaction work Ivan
     address wallet9_005 = 0x246C5881E3F109B2aF170F5C773EF969d3da581B; // Rinat
     address wallet10_206 = 0xb2406fe92dA73f6ed175862007b5cb7d781d881D; //  prodaction invester return tmp Igor
