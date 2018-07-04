@@ -106,7 +106,7 @@ contract CrowdSaleDragonsETH is Pausable, ReentrancyGuard {
         require(contRefer50x50 < 50);
         require(refer50x50[_refer] == false);
         refer50x50[_refer] = true;
-        contRefer50x50 +=1;
+        contRefer50x50 += 1;
     }
 
     function setTimeToBorn(uint256 _timeToBorn) external onlyAdmin {
