@@ -26,7 +26,7 @@
 
 * wallet
  
-
+0x787afd5a10fa6b212c1161461bca9ddc52788aee
 
 
 ### Deployment
