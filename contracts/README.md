@@ -6,7 +6,7 @@
 
 * GenRNG.sol (GenRNG) + address RNG
 
-
+0x995a600ebf8c49387f5adb6674e41d0432f74d91
 
 * DragonETH.sol (DragonETH)
 
