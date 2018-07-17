@@ -26,7 +26,7 @@
 
 * MarketPlace.sol (FixMarketPlace)
 
-0x65d1d5cd20e38f1dc4c4fe05273c9ed0d51ad316
+see master branch
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
