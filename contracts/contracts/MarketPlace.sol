@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
@@ -98,6 +98,26 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
             }
 
             return result;
+        }
+    }
+    function getFewDragons(uint256[] _dragonIDs) external view returns(uint256[]) {
+        uint256 dragonCount = _dragonIDs.length;
+        if (dragonCount == 0) {
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](dragonCount * 3);
+            uint256 resultIndex = 0;
+
+            for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
+                uint256 dragonID = _dragonIDs[dragonIndex];
+// chech to existance
+                result[resultIndex++] = dragonID;
+                result[resultIndex++] = dragonPrices[dragonID];
+                result[resultIndex++] = dragonsEndBlock[dragonID];
+                
+            }
+
+            return result; 
         }
     }
     function clearStuxDragon(uint256 _start, uint256 _count) external whenNotPaused returns (uint256 _deleted) {
