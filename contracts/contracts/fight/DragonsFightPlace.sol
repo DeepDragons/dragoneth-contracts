@@ -137,7 +137,7 @@ contract DragonsFightPlace is DragonsFightGC {
         if (dragonCount == 0) {
             return new uint256[](0);
         } else {
-            uint256[] memory result = new uint256[](dragonCount * 5);
+            uint256[] memory result = new uint256[](dragonCount * 3);
             uint256 resultIndex = 0;
 
             for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
@@ -161,7 +161,7 @@ contract DragonsFightPlace is DragonsFightGC {
         if (dragonCount == 0) {
             return new uint256[](0);
         } else {
-            uint256[] memory result = new uint256[](dragonCount * 3);
+            uint256[] memory result = new uint256[](dragonCount * 2);
             uint256 resultIndex = 0;
 
             for (uint256 dragonIndex = 0; dragonIndex < totalDragonsToFight; dragonIndex++) {
@@ -171,7 +171,7 @@ contract DragonsFightPlace is DragonsFightGC {
                     continue;
                 result[resultIndex++] = dragonID;
                 uint8 tmp;
-                (,tmp,,,)= mainContract.dragons(dragonID);
+                (,tmp,,,)= mainContract.dragons(dragonID); // dragon stage
                 result[resultIndex++] = uint256(tmp);
 //                result[resultIndex++] = uint256(dragonsOwner[dragonID]);
 //                result[resultIndex++] = dragonPrices[dragonID];
