@@ -30,7 +30,7 @@
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
-
+0x175d18de9021fe270bed7a5c99091910c3ce121a
 
 
 # Other
