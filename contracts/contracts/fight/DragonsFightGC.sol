@@ -4,6 +4,15 @@ import "../security/Pausable.sol";
 //import "./math/SafeMath.sol";
 
 contract DragonsETH {
+            struct Dragon {
+        uint256 gen1;
+        uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
+        uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ...
+        uint240 gen2;
+        uint256 nextBlock2Action;
+    }
+//mybe function????
+    Dragon[] public dragons;
     
     function ownerOf(uint256 _tokenId) public view returns (address);
     function checkDragonStatus(uint256 _dragonID, uint8 _stage) public view;
@@ -45,7 +54,8 @@ contract DragonsFightGC is Pausable {
     uint256 public mutagenToDeathWin = 100;
     uint256 public addTime2Rest = 240; // ~ 60 min
     
-    
+    event Fight(uint256 _winnerId, uint256 _loseerId);
+  
     function changeAddressMutagenContract(address _newAddress) external onlyAdmin {
         mutagenContract = Mutagen(_newAddress);
     }
