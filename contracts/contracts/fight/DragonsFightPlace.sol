@@ -24,6 +24,7 @@ contract DragonsFightPlace is DragonsFightGC {
         ownerDragonsCount[dragonOwners[_dragonID]] -= 1;
         delete(dragonOwners[_dragonID]);
 //        delete(dragonsEndBlock[_dragonID]);
+//TODO check it to end of array, and 1 element array
         if (totalDragonsToFight > 1) {
             uint256 tmpDragonID;
             tmpDragonID = dragonsList[dragonsList.length - 1];
@@ -42,7 +43,10 @@ contract DragonsFightPlace is DragonsFightGC {
         emit Fight(_dragonWin, _dragonLose);
             
     }
-    
+    function _closeFight(uint256 _dragonWin, uint256 _dragonLose) private {
+        mainContract.setTime2Rest(_dragonWin, addTime2Rest);
+        mainContract.setTime2Rest(_dragonLose, addTime2Rest);
+    }
     function addToFightPlace(uint256 _dragonID) external payable whenNotPaused {
 //        require(_endBlockNumber  > minFightWaitBloc);
 //        require(_endBlockNumber < maxFightWaitBloc); //??????
@@ -68,13 +72,14 @@ contract DragonsFightPlace is DragonsFightGC {
     }
     
     function delFromFightPlace(uint256 _dragonID) external {
-        require(msg.sender == dragonOwners[_dragonID]);
+        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID));
         _delItem(_dragonID);
     }
 
     function fightWithDragon(uint256 _yourDragonID,uint256 _thisDragonID) external payable whenNotPaused {
 //        require(block.number <= dragonsEndBlock[_thisDragonID]);
         require(msg.value >= priceToFight);
+        
         require(mainContract.ownerOf(_yourDragonID) == msg.sender);
         mainContract.checkDragonStatus(_yourDragonID, 2);
         uint256 valueToReturn = msg.value - priceToFight;
@@ -91,16 +96,15 @@ contract DragonsFightPlace is DragonsFightGC {
             mutagenContract.mint(msg.sender,mutagenToWin);
             mutagenContract.mint(dragonOwners[_thisDragonID],mutagenToLose);
             _setFightResult(_yourDragonID, _thisDragonID);
+            _closeFight(_yourDragonID, _thisDragonID);
             
         } else {
             
             mutagenContract.mint(dragonOwners[_thisDragonID],mutagenToWin);
             mutagenContract.mint(msg.sender,mutagenToLose);
             _setFightResult(_thisDragonID, _yourDragonID);
+            _closeFight(_thisDragonID, _yourDragonID);
         }
-        // TODO add rest time
-        mainContract.setTime2Rest(_yourDragonID, addTime2Rest);
-        mainContract.setTime2Rest(_thisDragonID, addTime2Rest);
         _delItem(_thisDragonID);        
     }
     function getAllDragonsFight() external view returns(uint256[]) {
