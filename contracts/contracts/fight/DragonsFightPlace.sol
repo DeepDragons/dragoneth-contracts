@@ -88,6 +88,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
         }
+        // TODO check for gas usage
         if (dragonsFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
             _setFightResult(_yourDragonID, _thisDragonID);
             _closeFight(_yourDragonID, _thisDragonID);
