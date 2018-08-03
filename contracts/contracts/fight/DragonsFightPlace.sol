@@ -53,7 +53,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         mainContract.checkDragonStatus(_dragonID, 2);
         uint256 valueToReturn = msg.value - priceToAdd;
         if (priceToAdd != 0) {
-        wallet.transfer(priceToAdd);
+            wallet.transfer(priceToAdd);
         }
         
         if (valueToReturn != 0) {
@@ -79,7 +79,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         mainContract.checkDragonStatus(_yourDragonID, 2);
         uint256 valueToReturn = msg.value - priceToFight;
         if (priceToFight != 0) {
-        wallet.transfer(priceToFight);
+            wallet.transfer(priceToFight);
         }
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
@@ -111,7 +111,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
                     continue;
                 result[resultIndex++] = dragonID;
                 uint8 dragonStage;
-                (,dragonStage,,,)= mainContract.dragons(dragonID);
+                (,dragonStage,,,) = mainContract.dragons(dragonID);
                 result[resultIndex++] = uint256(dragonStage);
                 result[resultIndex++] = uint256(dragonOwners[dragonID]);
             }
@@ -132,7 +132,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
                     continue;
                 result[resultIndex++] = dragonID;
                 uint8 dragonStage;
-                (,dragonStage,,,)= mainContract.dragons(dragonID);
+                (,dragonStage,,,) = mainContract.dragons(dragonID);
                 result[resultIndex++] = uint256(dragonStage);
             }
             return result; 
