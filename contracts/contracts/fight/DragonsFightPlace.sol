@@ -19,14 +19,16 @@ contract DragonsFightPlace is DragonsFightGC {
     }
 
     function _delItem(uint256 _dragonID) private {
+        require(dragonsOwner[_dragonID] != address(0));
+        mainContract.setCurrentAction(_dragonID, 0);
         ownerDragonsCount[dragonsOwner[_dragonID]] -= 1;
         delete(dragonsOwner[_dragonID]);
 //        delete(dragonsEndBlock[_dragonID]);
         if (totalDragonsToFight > 1) {
-            uint256 tmp;
-            tmp = dragonsList[dragonsList.length - 1];
-            dragonsList[dragonsListIndex[_dragonID]] = tmp;
-            dragonsListIndex[tmp] = dragonsListIndex[_dragonID];
+            uint256 tmpDragonID;
+            tmpDragonID = dragonsList[dragonsList.length - 1];
+            dragonsList[dragonsListIndex[_dragonID]] = tmpDragonID;
+            dragonsListIndex[tmpDragonID] = dragonsListIndex[_dragonID];
         }
         dragonsList.length--;
         delete(dragonsListIndex[_dragonID]);
@@ -67,7 +69,6 @@ contract DragonsFightPlace is DragonsFightGC {
     
     function delFromFightPlace(uint256 _dragonID) external {
         require(msg.sender == dragonsOwner[_dragonID]);
-         mainContract.setCurrentAction(_dragonID, 0);
         _delItem(_dragonID);
     }
 
@@ -97,8 +98,6 @@ contract DragonsFightPlace is DragonsFightGC {
             mutagenContract.mint(msg.sender,mutagenToLose);
             _setFightResult(_thisDragonID, _yourDragonID);
         }
-        mainContract.setCurrentAction(_yourDragonID, 0);
-        mainContract.setCurrentAction(_thisDragonID, 0);
         // TODO add rest time
         mainContract.setTime2Rest(_yourDragonID, addTime2Rest);
         mainContract.setTime2Rest(_thisDragonID, addTime2Rest);
