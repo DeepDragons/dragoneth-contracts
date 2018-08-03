@@ -11,7 +11,7 @@ contract DragonsFightPlace is DragonsFightGC {
     mapping(address => uint256) public ownerDragonsCount;
 //    mapping(uint256 => uint256) public dragonsEndBlock;
     uint256[] public dragonsList; 
-    mapping(uint256 => uint256) dragonsListIndex;
+    mapping(uint256 => uint256) public dragonsListIndex;
 
 
     constructor(address _wallet) public {
