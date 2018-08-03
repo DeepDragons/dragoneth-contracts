@@ -1,80 +1,167 @@
 [
 	{
-		"constant": true,
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
 				"name": "addr",
 				"type": "address"
 			},
 			{
+				"indexed": false,
 				"name": "roleName",
 				"type": "string"
 			}
 		],
-		"name": "checkRole",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+		"name": "RoleRemoved",
+		"type": "event"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"name": "addr",
-				"type": "address"
-			},
-			{
-				"name": "roleName",
-				"type": "string"
-			}
-		],
-		"name": "hasRole",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "minFightWaitBloc",
-		"outputs": [
-			{
-				"name": "",
+				"name": "_dragonID",
 				"type": "uint256"
 			}
 		],
-		"payable": false,
-		"stateMutability": "view",
+		"name": "addToFightPlace",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
 		"constant": false,
-		"inputs": [],
-		"name": "withdrawAllEther",
+		"inputs": [
+			{
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"name": "roleName",
+				"type": "string"
+			}
+		],
+		"name": "adminAddRole",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "addTime2Rest",
-		"outputs": [
+		"constant": false,
+		"inputs": [
 			{
-				"name": "",
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"name": "roleName",
+				"type": "string"
+			}
+		],
+		"name": "adminRemoveRole",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_newAddress",
+				"type": "address"
+			}
+		],
+		"name": "changeAddressFightContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_newAddress",
+				"type": "address"
+			}
+		],
+		"name": "changeAddressMainContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_newAddress",
+				"type": "address"
+			}
+		],
+		"name": "changeAddressMutagenContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_newAddress",
+				"type": "address"
+			}
+		],
+		"name": "changeAddressStatsContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_addTime2Rest",
 				"type": "uint256"
 			}
 		],
+		"name": "changeAddTime2Rest",
+		"outputs": [],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_maxFightWaitBloc",
+				"type": "uint256"
+			}
+		],
+		"name": "changeMaxFightWaitBloc",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_minFightWaitBloc",
+				"type": "uint256"
+			}
+		],
+		"name": "changeMinFightWaitBloc",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -93,69 +180,13 @@
 	},
 	{
 		"constant": false,
-		"inputs": [],
-		"name": "unpause",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "maxFightWaitBloc",
-		"outputs": [
+		"inputs": [
 			{
-				"name": "",
+				"name": "_mutagenToLose",
 				"type": "uint256"
 			}
 		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "getAddressDragons",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "ROLE_PAUSE_ADMIN",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_newAddress",
-				"type": "address"
-			}
-		],
-		"name": "changeAddressMainContract",
+		"name": "changeMutagenToLose",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -197,6 +228,34 @@
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_wallet",
+				"type": "address"
+			}
+		],
+		"name": "changeWallet",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_dragonIDs",
+				"type": "uint256[]"
+			}
+		],
+		"name": "clearFightPlace",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "_dragonID",
 				"type": "uint256"
 			}
@@ -208,158 +267,9 @@
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "paused",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_dragonID",
-				"type": "uint256"
-			}
-		],
-		"name": "addToFightPlace",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_addTime2Rest",
-				"type": "uint256"
-			}
-		],
-		"name": "changeAddTime2Rest",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "dragonsStatsContract",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "totalDragonsToFight",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "mutagenToDeathWin",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getAllDragonsFight",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_mutagenToLose",
-				"type": "uint256"
-			}
-		],
-		"name": "changeMutagenToLose",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_maxFightWaitBloc",
-				"type": "uint256"
-			}
-		],
-		"name": "changeMaxFightWaitBloc",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_minFightWaitBloc",
-				"type": "uint256"
-			}
-		],
-		"name": "changeMinFightWaitBloc",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [],
 		"name": "destroy",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "pause",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -385,6 +295,104 @@
 	},
 	{
 		"constant": false,
+		"inputs": [],
+		"name": "pause",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_winnerId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "_loseerId",
+				"type": "uint256"
+			}
+		],
+		"name": "Fight",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "roleName",
+				"type": "string"
+			}
+		],
+		"name": "RoleAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [],
+		"name": "Unpause",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [],
+		"name": "Pause",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_wallet",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "unpause",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "withdrawAllEther",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "addTime2Rest",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
 				"name": "addr",
@@ -395,36 +403,8 @@
 				"type": "string"
 			}
 		],
-		"name": "adminRemoveRole",
+		"name": "checkRole",
 		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_newAddress",
-				"type": "address"
-			}
-		],
-		"name": "changeAddressStatsContract",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "mutagenToWin",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
@@ -441,52 +421,6 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_wallet",
-				"type": "address"
-			}
-		],
-		"name": "changeWallet",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "priceToFight",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "addr",
-				"type": "address"
-			},
-			{
-				"name": "roleName",
-				"type": "string"
-			}
-		],
-		"name": "adminAddRole",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -509,41 +443,32 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
+		"inputs": [],
+		"name": "dragonsStatsContract",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
-				"name": "_newAddress",
+				"name": "_owner",
 				"type": "address"
 			}
 		],
-		"name": "changeAddressFightContract",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_newAddress",
-				"type": "address"
-			}
-		],
-		"name": "changeAddressMutagenContract",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "priceToAdd",
+		"name": "getAddressDragons",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
+				"type": "uint256[]"
 			}
 		],
 		"payable": false,
@@ -553,39 +478,11 @@
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "mainContract",
+		"name": "getAllDragonsFight",
 		"outputs": [
 			{
 				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "ROLE_ADMIN",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "mutagenContract",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
+				"type": "uint256[]"
 			}
 		],
 		"payable": false,
@@ -613,6 +510,99 @@
 	},
 	{
 		"constant": true,
+		"inputs": [
+			{
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"name": "roleName",
+				"type": "string"
+			}
+		],
+		"name": "hasRole",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "mainContract",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "maxFightWaitBloc",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "minFightWaitBloc",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "mutagenContract",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "mutagenToDeathWin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [],
 		"name": "mutagenToLose",
 		"outputs": [
@@ -626,77 +616,120 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "mutagenToWin",
+		"outputs": [
 			{
-				"name": "_wallet",
-				"type": "address"
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
+		"constant": true,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "_winnerId",
-				"type": "uint256"
-			},
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "ownerDragonsCount",
+		"outputs": [
 			{
-				"indexed": false,
-				"name": "_loseerId",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "Fight",
-		"type": "event"
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
+		"constant": true,
 		"inputs": [],
-		"name": "Pause",
-		"type": "event"
+		"name": "paused",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
+		"constant": true,
 		"inputs": [],
-		"name": "Unpause",
-		"type": "event"
+		"name": "priceToAdd",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "priceToFight",
+		"outputs": [
 			{
-				"indexed": false,
-				"name": "addr",
-				"type": "address"
-			},
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "ROLE_ADMIN",
+		"outputs": [
 			{
-				"indexed": false,
-				"name": "roleName",
+				"name": "",
 				"type": "string"
 			}
 		],
-		"name": "RoleAdded",
-		"type": "event"
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "ROLE_PAUSE_ADMIN",
+		"outputs": [
 			{
-				"indexed": false,
-				"name": "addr",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "roleName",
+				"name": "",
 				"type": "string"
 			}
 		],
-		"name": "RoleRemoved",
-		"type": "event"
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalDragonsToFight",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]
