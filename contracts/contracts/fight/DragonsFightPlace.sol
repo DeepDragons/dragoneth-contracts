@@ -7,7 +7,7 @@ contract DragonsFightPlace is DragonsFightGC {
     uint256 public totalDragonsToFight;
     uint256 public priceToFight = 0.001 ether; // price for test
     uint256 public priceToAdd = 0;  // price for test
-    mapping(uint256 => address) dragonsOwner;
+    mapping(uint256 => address) dragonOwners;
     mapping(address => uint256) public ownerDragonsCount;
 //    mapping(uint256 => uint256) public dragonsEndBlock;
     uint256[] public dragonsList; 
@@ -19,10 +19,10 @@ contract DragonsFightPlace is DragonsFightGC {
     }
 
     function _delItem(uint256 _dragonID) private {
-        require(dragonsOwner[_dragonID] != address(0));
+        require(dragonOwners[_dragonID] != address(0));
         mainContract.setCurrentAction(_dragonID, 0);
-        ownerDragonsCount[dragonsOwner[_dragonID]] -= 1;
-        delete(dragonsOwner[_dragonID]);
+        ownerDragonsCount[dragonOwners[_dragonID]] -= 1;
+        delete(dragonOwners[_dragonID]);
 //        delete(dragonsEndBlock[_dragonID]);
         if (totalDragonsToFight > 1) {
             uint256 tmpDragonID;
@@ -57,9 +57,9 @@ contract DragonsFightPlace is DragonsFightGC {
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
         }
-        dragonsOwner[_dragonID] = mainContract.ownerOf(_dragonID);
+        dragonOwners[_dragonID] = mainContract.ownerOf(_dragonID);
 //        dragonsEndBlock[_dragonID] = block.number + _endBlockNumber;
-        ownerDragonsCount[dragonsOwner[_dragonID]] += 1;
+        ownerDragonsCount[dragonOwners[_dragonID]] += 1;
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
         totalDragonsToFight++;
@@ -68,7 +68,7 @@ contract DragonsFightPlace is DragonsFightGC {
     }
     
     function delFromFightPlace(uint256 _dragonID) external {
-        require(msg.sender == dragonsOwner[_dragonID]);
+        require(msg.sender == dragonOwners[_dragonID]);
         _delItem(_dragonID);
     }
 
@@ -89,12 +89,12 @@ contract DragonsFightPlace is DragonsFightGC {
         if (dragonsFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
             
             mutagenContract.mint(msg.sender,mutagenToWin);
-            mutagenContract.mint(dragonsOwner[_thisDragonID],mutagenToLose);
+            mutagenContract.mint(dragonOwners[_thisDragonID],mutagenToLose);
             _setFightResult(_yourDragonID, _thisDragonID);
             
         } else {
             
-            mutagenContract.mint(dragonsOwner[_thisDragonID],mutagenToWin);
+            mutagenContract.mint(dragonOwners[_thisDragonID],mutagenToWin);
             mutagenContract.mint(msg.sender,mutagenToLose);
             _setFightResult(_thisDragonID, _yourDragonID);
         }
@@ -146,7 +146,7 @@ contract DragonsFightPlace is DragonsFightGC {
                 uint8 tmp;
                 (,tmp,,,)= mainContract.dragons(dragonID);
                 result[resultIndex++] = uint256(tmp);
-                result[resultIndex++] = uint256(dragonsOwner[dragonID]);
+                result[resultIndex++] = uint256(dragonOwners[dragonID]);
 //                result[resultIndex++] = dragonPrices[dragonID];
 //                result[resultIndex++] = dragonsEndBlock[dragonID];
                 
@@ -166,7 +166,7 @@ contract DragonsFightPlace is DragonsFightGC {
             for (uint256 dragonIndex = 0; dragonIndex < totalDragonsToFight; dragonIndex++) {
                 uint256 dragonID = dragonsList[dragonIndex];
 // chech to existance
-                if (_owner != dragonsOwner[dragonID])
+                if (_owner != dragonOwners[dragonID])
                     continue;
                 result[resultIndex++] = dragonID;
                 uint8 dragonStage;
@@ -188,7 +188,7 @@ contract DragonsFightPlace is DragonsFightGC {
         for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
             uint256 dragonID = _dragonIDs[dragonIndex];
 // chech to existance
-            if (dragonsOwner[dragonID] != address(0))
+            if (dragonOwners[dragonID] != address(0))
                 _delItem(dragonID);
                 
         }
