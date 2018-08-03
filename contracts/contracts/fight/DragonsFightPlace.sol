@@ -8,7 +8,7 @@ contract DragonsFightPlace is DragonsFightGC {
     uint256 public priceToFight = 0.001 ether; // price for test
     uint256 public priceToAdd = 0;  // price for test
     mapping(uint256 => address) dragonsOwner;
-    mapping(address => uint256) ownerDragonsCount;
+    mapping(address => uint256) public ownerDragonsCount;
 //    mapping(uint256 => uint256) public dragonsEndBlock;
     uint256[] public dragonsList; 
     mapping(uint256 => uint256) dragonsListIndex;
@@ -170,9 +170,9 @@ contract DragonsFightPlace is DragonsFightGC {
                 if (_owner != dragonsOwner[dragonID])
                     continue;
                 result[resultIndex++] = dragonID;
-                uint8 tmp;
-                (,tmp,,,)= mainContract.dragons(dragonID); // dragon stage
-                result[resultIndex++] = uint256(tmp);
+                uint8 dragonStage;
+                (,dragonStage,,,)= mainContract.dragons(dragonID); // dragon stage
+                result[resultIndex++] = uint256(dragonStage);
 //                result[resultIndex++] = uint256(dragonsOwner[dragonID]);
 //                result[resultIndex++] = dragonPrices[dragonID];
 //                result[resultIndex++] = dragonsEndBlock[dragonID];
@@ -181,6 +181,19 @@ contract DragonsFightPlace is DragonsFightGC {
 
             return result; 
         }
+    }
+    function clearFightPlace(uint256[] _dragonIDs) external onlyAdmin whenPaused {
+        uint256 dragonCount = _dragonIDs.length;
+        
+
+        for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
+            uint256 dragonID = _dragonIDs[dragonIndex];
+// chech to existance
+            if (dragonsOwner[dragonID] != address(0))
+                _delItem(dragonID);
+                
+        }
+ 
     }
 /*
     function clearStuxDragon(uint256 _start, uint256 _count) external whenNotPaused returns (uint256 _deleted) {
