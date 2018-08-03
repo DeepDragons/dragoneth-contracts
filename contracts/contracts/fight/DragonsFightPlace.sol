@@ -33,6 +33,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         delete(dragonsListIndex[_dragonID]);
         totalDragonsToFight--;
     }
+    
     function _setFightResult(uint256 _dragonWin, uint256 _dragonLose) private {
         dragonsStatsContract.incFightWin(_dragonWin);
         dragonsStatsContract.incFightLose(_dragonLose);
@@ -41,12 +42,14 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         emit Fight(_dragonWin, _dragonLose);
             
     }
+    
     function _closeFight(uint256 _dragonWin, uint256 _dragonLose) private {
         mainContract.setTime2Rest(_dragonWin, addTime2Rest);
         mainContract.setTime2Rest(_dragonLose, addTime2Rest);
         mutagenContract.mint(mainContract.ownerOf(_dragonWin), mutagenToWin);
         mutagenContract.mint(mainContract.ownerOf(_dragonLose), mutagenToLose);
     }
+    
     function addToFightPlace(uint256 _dragonID) external payable whenNotPaused nonReentrant {
         require(mainContract.isApprovedOrOwner(msg.sender, _dragonID));
         require(msg.value >= priceToAdd);
@@ -94,9 +97,11 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         }
         _delItem(_thisDragonID);        
     }
+    
     function getAllDragonsFight() external view returns(uint256[]) {
         return dragonsList;
     }
+    
     function getFewDragons(uint256[] _dragonIDs) external view returns(uint256[]) {
         uint256 dragonCount = _dragonIDs.length;
         if (dragonCount == 0) {
@@ -118,6 +123,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
             return result; 
         }
     }
+    
     function getAddressDragons(address _owner) external view returns(uint256[]) {
         uint256 dragonCount = ownerDragonsCount[_owner];
         if (dragonCount == 0) {
@@ -138,6 +144,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
             return result; 
         }
     }
+    
     function clearFightPlace(uint256[] _dragonIDs) external onlyAdmin whenPaused {
         uint256 dragonCount = _dragonIDs.length;
         for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
@@ -146,6 +153,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
                 _delItem(dragonID);
         }
     }
+    
     function changePrices(uint256 _priceToFight,uint256 _priceToAdd) external onlyAdmin {
         priceToFight = _priceToFight;
         priceToAdd = _priceToAdd;
