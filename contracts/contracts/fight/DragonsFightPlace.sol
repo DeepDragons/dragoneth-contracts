@@ -3,6 +3,7 @@ pragma solidity ^0.4.24;
 import "./DragonsFightGC.sol";
 import "../security/ReentrancyGuard.sol";
 
+//TODO check to safeMath, add money return, refactor GC contract
 contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
     
     uint256 public totalDragonsToFight;
