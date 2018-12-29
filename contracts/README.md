@@ -18,11 +18,14 @@
 
 * DragonStats.sol (DragonStats) real!!! withot source code on etherscan
 
-0x81f62207eB1E4274feA855943e260091306bE457
+
+0x3c29ef59bebe160bbc59c02130b8f637fa11a978
+
 
 * Necropolis.sol (Necropolis)
 
-0x3cD20D014384C16537a9AC945d7c39e470183E79
+0xC8157b670C89F4efdC9B6F00a208036BA1CF8Dee
+
 
 * wallet
  
@@ -122,7 +125,7 @@ Old contract first deploy:
 
 * CrowdSale.sol (CrowdSaleDragonETH) 0xeBabE9C9AD63851d56F7030C08D3D021c4436dd5
 
-* DragonStats.sol (DragonStats) 0xd40447f919dF3708568078eE7d92C041067cc8a1
+* DragonStats.sol (DragonStats) 0xd40447f919dF3708568078eE7d92C041067cc8a1 0x3c29ef59bebe160bbc59c02130b8f637fa11a978
 
-* Necropolis.sol (Necropolis) 0x81f62207eB1E4274feA855943e260091306bE457
+* Necropolis.sol (Necropolis) 0x81f62207eB1E4274feA855943e260091306bE457 0x3cD20D014384C16537a9AC945d7c39e470183E79
 
