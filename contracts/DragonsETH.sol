@@ -1,8 +1,11 @@
 pragma solidity ^0.4.23;
 
 
-import "./contracts/SelfDestruct.sol";
-
+contract DESTROYER {
+    function destroy() external {
+        selfdestruct(msg.sender);
+    }
+}
 
 contract Necropolis {
     function addDragon(address _lastDragonOwner, uint256 _dragonID, uint256 _deathReason) external;
