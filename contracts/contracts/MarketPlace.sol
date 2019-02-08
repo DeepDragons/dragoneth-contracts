@@ -32,6 +32,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsEndBlock;
     mapping(uint256 => uint256) public dragonsListIndex;
+    mapping(address => uint256) public countOwnerDragons;
     uint256[] public dragonsList; 
     
     //mapping (address => uint256[]) private ownedTokens;
@@ -41,6 +42,8 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     }
 
     function _delItem(uint256 _dragonID) private {
+        require(dragonsOwner[_dragonID] != address(0));
+        countOwnerDragons[dragonsOwner[_dragonID]].sub(1);
         delete(dragonsOwner[_dragonID]);
         delete(dragonPrices[_dragonID]);
         delete(dragonsEndBlock[_dragonID]);
@@ -58,6 +61,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         require(_endBlockNumber < maxSellTime ); //??????
         require(_dragonPrice > 0);
         dragonsOwner[_dragonID] = _dragonOwner;
+        countOwnerDragons[_dragonOwner]++;
         dragonPrices[_dragonID] = _dragonPrice;
         dragonsEndBlock[_dragonID] = block.number + _endBlockNumber;
         dragonsListIndex[_dragonID] = dragonsList.length;
@@ -104,6 +108,26 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
             for (_dragonIndex = 0; _dragonIndex < totalDragonsToSale; _dragonIndex++) {
                 uint256 _dragonID = dragonsList[_dragonIndex];
                 if (dragonsEndBlock[_dragonID] > block.number) {
+                    result[_resultIndex] = _dragonID;
+                    _resultIndex++;
+                }
+            }
+
+            return result;
+        }
+    }
+    function getOwnedDragonToSale(address _owner) external view returns(uint256[] memory) {
+         if (countOwnerDragons[_owner] == 0) {
+            // Return an empty array
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](countOwnerDragons[_owner]);
+            uint256 _dragonIndex;
+            uint256 _resultIndex = 0;
+
+            for (_dragonIndex = 0; _dragonIndex < totalDragonsToSale; _dragonIndex++) {
+                uint256 _dragonID = dragonsList[_dragonIndex];
+                if (dragonsOwner[_dragonID] == _owner) {
                     result[_resultIndex] = _dragonID;
                     _resultIndex++;
                 }
