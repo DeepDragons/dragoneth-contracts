@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.3;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
@@ -23,19 +23,20 @@ contract DragonsETH {
 contract FixMarketPlace is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     DragonsETH public mainContract;
-    address wallet;
+    address payable wallet;
     uint256 public totalDragonsToSale;
     uint256 public minSellTime = 13; //~2 min
     uint256 public maxSellTime = 259200; //~30 days??????
     uint256 public ownersPercent = 50; // eq 5%
-    mapping(uint256 => address) public dragonsOwner;
+    mapping(uint256 => address payable) public dragonsOwner;
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsEndBlock;
-    uint256[] public dragonsList; 
     mapping(uint256 => uint256) public dragonsListIndex;
+    uint256[] public dragonsList; 
+    
     //mapping (address => uint256[]) private ownedTokens;
 
-    constructor(address _wallet) public {
+    constructor(address payable _wallet) public {
         wallet = _wallet;
     }
 
@@ -51,7 +52,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         delete(dragonsListIndex[_dragonID]);
         totalDragonsToSale--;
     }
-    function add2MarketPlace(address _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool) {
+    function add2MarketPlace(address payable _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool) {
         require(msg.sender == address(mainContract));
         require(_endBlockNumber  > minSellTime);
         require(_endBlockNumber < maxSellTime ); //??????
@@ -85,10 +86,10 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         dragonsOwner[_dragonID].transfer(msg.value - valueToReturn - _dragonCommisions);
         _delItem(_dragonID);        
     }
-    function getAllDragonsSale() external view returns(uint256[]) {
+    function getAllDragonsSale() external view returns(uint256[] memory) {
         return dragonsList;
     }
-    function getDragonsToSale() external view returns(uint256[]) {
+    function getDragonsToSale() external view returns(uint256[] memory) {
         
 
         if (totalDragonsToSale == 0) {
@@ -111,7 +112,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
             return result;
         }
     }
-    function getFewDragons(uint256[] _dragonIDs) external view returns(uint256[]) {
+    function getFewDragons(uint256[] calldata _dragonIDs) external view returns(uint256[] memory) {
         uint256 dragonCount = _dragonIDs.length;
         if (dragonCount == 0) {
             return new uint256[](0);
@@ -152,7 +153,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         mainContract = DragonsETH(_newAddress);
     }
     
-    function changeWallet(address _wallet) external onlyAdmin {
+    function changeWallet(address payable _wallet) external onlyAdmin {
         wallet = _wallet;
     }
 
@@ -169,7 +170,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     }
 
     function withdrawAllEther() external onlyAdmin {
-        require(wallet != 0);
+        require(wallet != address(0));
         wallet.transfer(address(this).balance);
     }
 }
