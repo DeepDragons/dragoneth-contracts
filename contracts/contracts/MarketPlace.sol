@@ -5,17 +5,18 @@ import "./math/SafeMath.sol";
 import "./security/ReentrancyGuard.sol";
 
 contract DragonsETH {
-        struct Dragon {
+    struct Dragon {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
         uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ...
         uint240 gen2;
         uint256 nextBlock2Action;
     }
-//mybe function????
+
     Dragon[] public dragons;
-function transferFrom(address _from, address _to, uint256 _tokenId) public;
-function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
+    
+    function transferFrom(address _from, address _to, uint256 _tokenId) public;
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
   
 }
 
@@ -44,6 +45,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         delete(dragonsEndBlock[_dragonID]);
         if (totalDragonsToSale > 1) {
             dragonsList[dragonsListIndex[_dragonID]] = dragonsList[dragonsList.length - 1];
+            dragonsListIndex[dragonsList[dragonsList.length - 1]] = dragonsListIndex[_dragonID];
         }
         dragonsList.length--;
         delete(dragonsListIndex[_dragonID]);
