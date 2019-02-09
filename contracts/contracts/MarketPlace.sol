@@ -21,6 +21,9 @@ contract DragonsETH {
 }
 
 contract FixMarketPlace is Pausable, ReentrancyGuard {
+    event SoldOut(address indexed _from, address indexed _to, uint256 _tokenId, uint256 _price);
+    event ForSale(address indexed _from, uint256 _tokenId, uint256 _price);
+    event SaleCancel(address indexed _from, uint256 _tokenId, uint256 _price);
     using SafeMath for uint256;
     DragonsETH public mainContract;
     address payable wallet;
@@ -42,12 +45,12 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     }
 
     function _delItem(uint256 _dragonID) private {
-        require(dragonsOwner[_dragonID] != address(0));
+        require(dragonsOwner[_dragonID] != address(0), "An attempt to remove an unregistered dragon");
         countOwnerDragons[dragonsOwner[_dragonID]]--;
         delete(dragonsOwner[_dragonID]);
         delete(dragonPrices[_dragonID]);
         delete(dragonsEndBlock[_dragonID]);
-        if (dragonsList.length > 1) {
+        if (dragonsList.length - 1 != dragonsListIndex[_dragonID]) {
             dragonsList[dragonsListIndex[_dragonID]] = dragonsList[dragonsList.length - 1];
             dragonsListIndex[dragonsList[dragonsList.length - 1]] = dragonsListIndex[_dragonID];
         }
@@ -67,6 +70,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
         //totalDragonsToSale++;
+        emit ForSale(_dragonOwner, _dragonID, _dragonPrice);
         return true;
     }
     
@@ -74,6 +78,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
             require(msg.sender == dragonsOwner[_dragonID] || dragonsEndBlock[_dragonID] < block.number);
             mainContract.transferFrom(address(this), dragonsOwner[_dragonID], _dragonID);
             _delItem(_dragonID);
+            emit SaleCancel(dragonsOwner[_dragonID], _dragonID, dragonPrices[_dragonID]);
     }
 
     function buyDragon(uint256 _dragonID) external payable nonReentrant whenNotPaused {
@@ -88,9 +93,10 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         mainContract.safeTransferFrom(address(this), msg.sender, _dragonID);
         wallet.transfer(_dragonCommisions);
         dragonsOwner[_dragonID].transfer(msg.value - valueToReturn - _dragonCommisions);
-        _delItem(_dragonID);        
+        _delItem(_dragonID);
+        emit SoldOut(dragonsOwner[_dragonID], msg.sender, _dragonID, msg.value - valueToReturn - _dragonCommisions);
     }
-    function totalDragonsToSale1() public view returns(uint256) {
+    function totalDragonsToSale() public view returns(uint256) {
         return dragonsList.length;
     }
     function getAllDragonsSale() external view returns(uint256[] memory) {
