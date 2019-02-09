@@ -24,7 +24,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     DragonsETH public mainContract;
     address payable wallet;
-    uint256 public totalDragonsToSale;
+    //uint256 public totalDragonsToSale;
     uint256 public minSellTime = 13; //~2 min
     uint256 public maxSellTime = 259200; //~30 days??????
     uint256 public ownersPercent = 50; // eq 5%
@@ -43,17 +43,17 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
 
     function _delItem(uint256 _dragonID) private {
         require(dragonsOwner[_dragonID] != address(0));
-        countOwnerDragons[dragonsOwner[_dragonID]].sub(1);
+        countOwnerDragons[dragonsOwner[_dragonID]]--;
         delete(dragonsOwner[_dragonID]);
         delete(dragonPrices[_dragonID]);
         delete(dragonsEndBlock[_dragonID]);
-        if (totalDragonsToSale > 1) {
+        if (dragonsList.length > 1) {
             dragonsList[dragonsListIndex[_dragonID]] = dragonsList[dragonsList.length - 1];
             dragonsListIndex[dragonsList[dragonsList.length - 1]] = dragonsListIndex[_dragonID];
         }
         dragonsList.length--;
         delete(dragonsListIndex[_dragonID]);
-        totalDragonsToSale--;
+    //    totalDragonsToSale--;
     }
     function add2MarketPlace(address payable _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool) {
         require(msg.sender == address(mainContract));
@@ -66,7 +66,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         dragonsEndBlock[_dragonID] = block.number + _endBlockNumber;
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
-        totalDragonsToSale++;
+        //totalDragonsToSale++;
         return true;
     }
     
@@ -90,22 +90,48 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         dragonsOwner[_dragonID].transfer(msg.value - valueToReturn - _dragonCommisions);
         _delItem(_dragonID);        
     }
+    function totalDragonsToSale1() public view returns(uint256) {
+        return dragonsList.length;
+    }
     function getAllDragonsSale() external view returns(uint256[] memory) {
         return dragonsList;
+    }
+    function getSlicedDragonsSale(uint256 _firstIndex, uint256 _aboveLastIndex) external view returns(uint256[] memory) {
+        require(_firstIndex < dragonsList.length, "First index greater than totalDragonsToSale");
+        uint256 lastIndex = _aboveLastIndex;
+        if (_aboveLastIndex > dragonsList.length) lastIndex = dragonsList.length;
+        require(_firstIndex <= lastIndex, "First index greater than Last Index");
+        //chek condishion
+        uint256 resultCount = lastIndex - _firstIndex;
+        if (resultCount == 0) {
+            // Return an empty array
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](resultCount);
+            uint256 _dragonIndex;
+            uint256 _resultIndex = 0;
+
+            for (_dragonIndex = _firstIndex; _dragonIndex < lastIndex; _dragonIndex++) {
+                result[_resultIndex] = dragonsList[_dragonIndex];
+                _resultIndex++;
+            }
+
+            return result;
+        }
     }
     function getDragonsToSale() external view returns(uint256[] memory) {
         
 
-        if (totalDragonsToSale == 0) {
+        if (dragonsList.length == 0) {
             // Return an empty array
             return new uint256[](0);
         } else {
             // !!!!!! need to test on time go to future
-            uint256[] memory result = new uint256[](totalDragonsToSale);
+            uint256[] memory result = new uint256[](dragonsList.length);
             uint256 _dragonIndex;
             uint256 _resultIndex = 0;
 
-            for (_dragonIndex = 0; _dragonIndex < totalDragonsToSale; _dragonIndex++) {
+            for (_dragonIndex = 0; _dragonIndex < dragonsList.length; _dragonIndex++) {
                 uint256 _dragonID = dragonsList[_dragonIndex];
                 if (dragonsEndBlock[_dragonID] > block.number) {
                     result[_resultIndex] = _dragonID;
@@ -125,7 +151,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
             uint256 _dragonIndex;
             uint256 _resultIndex = 0;
 
-            for (_dragonIndex = 0; _dragonIndex < totalDragonsToSale; _dragonIndex++) {
+            for (_dragonIndex = 0; _dragonIndex < dragonsList.length; _dragonIndex++) {
                 uint256 _dragonID = dragonsList[_dragonIndex];
                 if (dragonsOwner[_dragonID] == _owner) {
                     result[_resultIndex] = _dragonID;
