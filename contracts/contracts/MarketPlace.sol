@@ -9,7 +9,7 @@ contract DragonsETH {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
         uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight,
-                             // 3 - breed market, 4 - breed auction, 5 - random breed 6 - market place ...
+                             // 3 - breed market, 4 - breed auction, 5 - random breed, 6 - market place ...
         uint240 gen2;
         uint256 nextBlock2Action;
     }
