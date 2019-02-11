@@ -26,7 +26,7 @@
 
 * MarketPlace.sol (FixMarketPlace)
 
-0x765b069ea2ae38f465d04eaa39ad0b5621483202
+0x901cd98ce6f459b874c241db263d093435239068
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
