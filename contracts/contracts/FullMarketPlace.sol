@@ -154,10 +154,11 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         }
     }
     function getOwnedDragonToSale(address _owner) external view returns(uint256[] memory) {
-        if (countOwnerDragons[_owner] == 0) {
+        uint256 countResaultDragons = countOwnerDragons[_owner];
+        if (countResaultDragons == 0) {
             return new uint256[](0);
         } else {
-            uint256[] memory result = new uint256[](countOwnerDragons[_owner]);
+            uint256[] memory result = new uint256[](countResaultDragons);
             uint256 _dragonIndex;
             uint256 _resultIndex = 0;
 
@@ -166,6 +167,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
                 if (dragonsOwner[_dragonID] == _owner) {
                     result[_resultIndex] = _dragonID;
                     _resultIndex++;
+                    if (_resultIndex == countResaultDragons) break;
                 }
             }
 
@@ -208,7 +210,16 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
             }
         }
     }
-   
+    function clearMarket(uint256[] calldata _dragonIDs) external onlyAdmin whenPaused {
+        uint256 dragonCount = _dragonIDs.length;
+        if (dragonCount > 0) {
+            for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
+                uint256 dragonID = _dragonIDs[dragonIndex];
+                mainContract.transferFrom(address(this), dragonsOwner[dragonID], dragonID);
+                _delItem(dragonID);
+            }
+        }
+    }
     function changeAddressMainContract(address _newAddress) external onlyAdmin {
         mainContract = DragonsETH(_newAddress);
     }
