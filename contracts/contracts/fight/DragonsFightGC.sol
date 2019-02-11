@@ -4,7 +4,7 @@ import "../security/Pausable.sol";
 //import "./math/SafeMath.sol";
 
 contract DragonsETH {
-            struct Dragon {
+    struct Dragon {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
         uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight,
