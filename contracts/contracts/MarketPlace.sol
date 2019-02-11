@@ -9,7 +9,7 @@ contract DragonsETH {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
         uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight,
-                             // 3 - breed market, 4 - breed auction, 5 - random breed ...
+                             // 3 - breed market, 4 - breed auction, 5 - random breed 6 - market place ...
         uint240 gen2;
         uint256 nextBlock2Action;
     }
@@ -18,6 +18,7 @@ contract DragonsETH {
     
     function transferFrom(address _from, address _to, uint256 _tokenId) public;
     function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
+    function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external;
 }
 
 contract FixMarketPlace is Pausable, ReentrancyGuard {
@@ -28,7 +29,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     mapping(uint256 => address payable) public dragonsOwner;
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsListIndex;
-    mapping(address => uint256) public countOwnerDragons;
+    mapping(address => uint256) public ownerDragonsCount;
     uint256[] public dragonsList;
     
     event SoldOut(address indexed _from, address indexed _to, uint256 _tokenId, uint256 _price);
@@ -38,18 +39,6 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     constructor(address payable _wallet) public {
         wallet = _wallet;
     }
-    function _delItem(uint256 _dragonID) private {
-        require(dragonsOwner[_dragonID] != address(0), "An attempt to remove an unregistered dragon");
-        countOwnerDragons[dragonsOwner[_dragonID]]--;
-        delete(dragonsOwner[_dragonID]);
-        delete(dragonPrices[_dragonID]);
-        if (dragonsList.length - 1 != dragonsListIndex[_dragonID]) {
-            dragonsList[dragonsListIndex[_dragonID]] = dragonsList[dragonsList.length - 1];
-            dragonsListIndex[dragonsList[dragonsList.length - 1]] = dragonsListIndex[_dragonID];
-        }
-        dragonsList.length--;
-        delete(dragonsListIndex[_dragonID]);
-    }
     function add2MarketPlace(address payable _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 /*_endBlockNumber*/) 
         external
         whenNotPaused
@@ -57,10 +46,11 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     {
         require(msg.sender == address(mainContract), "Only main contract can add dragons!");
         dragonsOwner[_dragonID] = _dragonOwner;
-        countOwnerDragons[_dragonOwner]++;
+        ownerDragonsCount[_dragonOwner]++;
         dragonPrices[_dragonID] = _dragonPrice;
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
+        mainContract.setCurrentAction(_dragonID, 6);
         emit ForSale(_dragonOwner, _dragonID, _dragonPrice);
         return true;
     }
@@ -85,7 +75,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         emit SoldOut(dragonsOwner[_dragonID], msg.sender, _dragonID, msg.value - valueToReturn - _dragonCommisions);
         _delItem(_dragonID);
     }
-    function totalDragonsToSale() public view returns(uint256) {
+    function totalDragonsToSale() external view returns(uint256) {
         return dragonsList.length;
     }
     function getAllDragonsSale() external view returns(uint256[] memory) {
@@ -113,7 +103,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         }
     }
     function getOwnedDragonToSale(address _owner) external view returns(uint256[] memory) {
-        uint256 countResaultDragons = countOwnerDragons[_owner];
+        uint256 countResaultDragons = ownerDragonsCount[_owner];
         if (countResaultDragons == 0) {
             return new uint256[](0);
         } else {
@@ -154,6 +144,19 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
 
             return result; 
         }
+    }
+     function _delItem(uint256 _dragonID) private {
+        require(dragonsOwner[_dragonID] != address(0), "An attempt to remove an unregistered dragon");
+        mainContract.setCurrentAction(_dragonID, 0);
+        ownerDragonsCount[dragonsOwner[_dragonID]]--;
+        delete(dragonsOwner[_dragonID]);
+        delete(dragonPrices[_dragonID]);
+        if (dragonsList.length - 1 != dragonsListIndex[_dragonID]) {
+            dragonsList[dragonsListIndex[_dragonID]] = dragonsList[dragonsList.length - 1];
+            dragonsListIndex[dragonsList[dragonsList.length - 1]] = dragonsListIndex[_dragonID];
+        }
+        dragonsList.length--;
+        delete(dragonsListIndex[_dragonID]);
     }
     function clearMarket(uint256[] calldata _dragonIDs) external onlyAdmin whenPaused {
         uint256 dragonCount = _dragonIDs.length;
