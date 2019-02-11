@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.5.3;
 
 import "../security/Pausable.sol";
 //import "./math/SafeMath.sol";
@@ -46,7 +46,7 @@ contract DragonsFightGC is Pausable {
     DragonsETH public mainContract;
     DragonsFight public dragonsFightContract;
     DragonsStats public dragonsStatsContract;
-    address wallet;
+    address payable wallet;
     uint256 public minFightWaitBloc = 80; // ~20 min
     uint256 public maxFightWaitBloc = 172800; // ~30 days??????
     uint256 public mutagenToWin = 10;
@@ -68,7 +68,7 @@ contract DragonsFightGC is Pausable {
     function changeAddressStatsContract(address _newAddress) external onlyAdmin {
         dragonsStatsContract = DragonsStats(_newAddress);
     }
-    function changeWallet(address _wallet) external onlyAdmin {
+    function changeWallet(address payable _wallet) external onlyAdmin {
         wallet = _wallet;
     }
 
@@ -95,7 +95,7 @@ contract DragonsFightGC is Pausable {
         addTime2Rest = _addTime2Rest;
     }
     function withdrawAllEther() external onlyAdmin {
-        require(wallet != 0);
+        require(wallet != address(0), "Withdraw address can't be zero!");
         wallet.transfer(address(this).balance);
     }
 }

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.3;
 
 import "./DragonsFightGC.sol";
 import "../security/ReentrancyGuard.sol";
@@ -14,7 +14,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
     uint256[] public dragonsList; 
     mapping(uint256 => uint256) public dragonsListIndex;
 
-    constructor(address _wallet) public {
+    constructor(address payable _wallet) public {
         wallet = _wallet;
     }
 
@@ -100,11 +100,11 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         _delItem(_thisDragonID);        
     }
     
-    function getAllDragonsFight() external view returns(uint256[]) {
+    function getAllDragonsFight() external view returns(uint256[] memory) {
         return dragonsList;
     }
     
-    function getFewDragons(uint256[] _dragonIDs) external view returns(uint256[]) {
+    function getFewDragons(uint256[] calldata _dragonIDs) external view returns(uint256[] memory) {
         uint256 dragonCount = _dragonIDs.length;
         if (dragonCount == 0) {
             return new uint256[](0);
@@ -126,7 +126,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         }
     }
     
-    function getAddressDragons(address _owner) external view returns(uint256[]) {
+    function getAddressDragons(address _owner) external view returns(uint256[] memory) {
         uint256 dragonCount = ownerDragonsCount[_owner];
         if (dragonCount == 0) {
             return new uint256[](0);
@@ -147,7 +147,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         }
     }
     
-    function clearFightPlace(uint256[] _dragonIDs) external onlyAdmin whenPaused {
+    function clearFightPlace(uint256[] calldata _dragonIDs) external onlyAdmin whenPaused {
         uint256 dragonCount = _dragonIDs.length;
         for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
             uint256 dragonID = _dragonIDs[dragonIndex];
