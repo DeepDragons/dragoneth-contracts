@@ -8,7 +8,8 @@ contract DragonsETH {
     struct Dragon {
         uint256 gen1;
         uint8 stage; // 0 - Dead, 1 - Egg, 2 - Young Dragon 
-        uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight, 3 - breed market, 4 - breed auction, 5 - random breed ...
+        uint8 currentAction; // 0 - free, 1 - fight place, 0xFF - Necropolis,  2 - random fight,
+                             // 3 - breed market, 4 - breed auction, 5 - random breed ...
         uint240 gen2;
         uint256 nextBlock2Action;
     }
@@ -58,10 +59,14 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         delete(dragonsListIndex[_dragonID]);
     //    totalDragonsToSale--;
     }
-    function add2MarketPlace(address payable _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) external whenNotPaused returns (bool) {
+    function add2MarketPlace(address payable _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 _endBlockNumber) 
+        external
+        whenNotPaused
+        returns (bool)
+    {
         require(msg.sender == address(mainContract));
-        require(_endBlockNumber  > minSellTime);
-        require(_endBlockNumber < maxSellTime ); //??????
+        require(_endBlockNumber > minSellTime);
+        require(_endBlockNumber < maxSellTime); // ??????
         require(_dragonPrice > 0);
         dragonsOwner[_dragonID] = _dragonOwner;
         countOwnerDragons[_dragonOwner]++;
@@ -149,8 +154,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         }
     }
     function getOwnedDragonToSale(address _owner) external view returns(uint256[] memory) {
-         if (countOwnerDragons[_owner] == 0) {
-            // Return an empty array
+        if (countOwnerDragons[_owner] == 0) {
             return new uint256[](0);
         } else {
             uint256[] memory result = new uint256[](countOwnerDragons[_owner]);
@@ -181,7 +185,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
 // chech to existance
                 result[resultIndex++] = dragonID;
                 uint8 tmp;
-                (,tmp,,,)= mainContract.dragons(dragonID);
+                (,tmp,,,) = mainContract.dragons(dragonID);
                 result[resultIndex++] = uint256(tmp);
                 result[resultIndex++] = uint256(dragonsOwner[dragonID]);
                 result[resultIndex++] = dragonPrices[dragonID];
@@ -195,7 +199,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     function clearStuxDragon(uint256 _start, uint256 _count) external whenNotPaused returns (uint256 _deleted) {
         uint256 _dragonIndex;
         
-        for(_dragonIndex=_start; _dragonIndex < _start + _count && _dragonIndex < dragonsList.length; _dragonIndex++) {
+        for(_dragonIndex = _start; _dragonIndex < _start + _count && _dragonIndex < dragonsList.length; _dragonIndex++) {
             uint256 _dragonID = dragonsList[_dragonIndex];
             if (dragonsEndBlock[_dragonID] < block.number) {
                 mainContract.transferFrom(address(this), dragonsOwner[_dragonID], _dragonID);
