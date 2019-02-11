@@ -241,7 +241,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     }
 
     function withdrawAllEther() external onlyAdmin {
-        require(wallet != address(0));
+        require(wallet != address(0), "Withdraw address can't be zero!");
         wallet.transfer(address(this).balance);
     }
 }
