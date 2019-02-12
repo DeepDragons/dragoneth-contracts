@@ -30,14 +30,13 @@
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
-0x6b112f193eb54b70fd0b347c5704cfa82b3dae3e
-
+0xc715922f554455fa04f1b7533204e7add43662ac
 
 # Other
 
 * DragonsFight.sol (DragonsFight)
 
-0x0e325e32b8f64d6389af29f4c78dd2bf4efab1a8
+see Kovan
 
 * Mutagen.sol (Mutagen)
 
