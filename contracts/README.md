@@ -37,7 +37,7 @@
 
 * DragonsFight.sol (DragonsFight)
 
-0xb738c8f2382fd00cd9fd358764bf74a38e595260
+0x0e325e32b8f64d6389af29f4c78dd2bf4efab1a8
 
 * Mutagen.sol (Mutagen)
 
