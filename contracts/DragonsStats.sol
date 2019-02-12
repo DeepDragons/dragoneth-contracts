@@ -1,8 +1,10 @@
 pragma solidity ^0.4.23;
 
-
-import "./contracts/SelfDestruct.sol";
-
+contract DESTROYER {
+    function destroy() external {
+        selfdestruct(msg.sender);
+    }
+}
 
 library Roles {
   struct Role {
