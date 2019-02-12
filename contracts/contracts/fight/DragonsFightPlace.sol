@@ -37,11 +37,13 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
         mainContract.setCurrentAction(_dragonID, 1);
+        emit AddDragonFP(dragonOwners[_dragonID], _dragonID);
         
     }
     
     function delFromFightPlace(uint256 _dragonID) external {
         require(mainContract.isApprovedOrOwner(msg.sender, _dragonID), "Only owner or approved address can do this!");
+        emit RemoveDragonFP(dragonOwners[_dragonID], _dragonID);
         _delItem(_dragonID);
     }
 
