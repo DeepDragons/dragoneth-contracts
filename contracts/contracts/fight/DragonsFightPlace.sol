@@ -2,60 +2,29 @@ pragma solidity ^0.5.3;
 
 import "./DragonsFightGC.sol";
 import "../security/ReentrancyGuard.sol";
+import "../math/SafeMath.sol";
 
-//TODO check to safeMath, add money return, refactor GC contract
+//TODO refactor GC contract
 contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
-    
-    uint256 public totalDragonsToFight;
+    using SafeMath for uint256;
     uint256 public priceToFight = 0.001 ether; // price for test
-    uint256 public priceToAdd = 0;  // price for test
+    uint256 public priceToAdd = 0.0001 ether;  // price for test
     mapping(uint256 => address) dragonOwners;
     mapping(address => uint256) public ownerDragonsCount;
-    uint256[] public dragonsList; 
     mapping(uint256 => uint256) public dragonsListIndex;
-
+    uint256[] public dragonsList;
+    
+    
     constructor(address payable _wallet) public {
         wallet = _wallet;
     }
 
-    function _delItem(uint256 _dragonID) private {
-        require(dragonOwners[_dragonID] != address(0));
-        mainContract.setCurrentAction(_dragonID, 0);
-        ownerDragonsCount[dragonOwners[_dragonID]] -= 1;
-        delete(dragonOwners[_dragonID]);
-//TODO check it to end of array, and 1 element array
-        if (totalDragonsToFight > 1) {
-            uint256 tmpDragonID;
-            tmpDragonID = dragonsList[dragonsList.length - 1];
-            dragonsList[dragonsListIndex[_dragonID]] = tmpDragonID;
-            dragonsListIndex[tmpDragonID] = dragonsListIndex[_dragonID];
-        }
-        dragonsList.length--;
-        delete(dragonsListIndex[_dragonID]);
-        totalDragonsToFight--;
-    }
-    
-    function _setFightResult(uint256 _dragonWin, uint256 _dragonLose) private {
-        dragonsStatsContract.incFightWin(_dragonWin);
-        dragonsStatsContract.incFightLose(_dragonLose);
-        dragonsStatsContract.setLastAction(_dragonWin, _dragonLose, 13);
-        dragonsStatsContract.setLastAction(_dragonLose, _dragonWin, 14);
-        emit Fight(_dragonWin, _dragonLose);
-            
-    }
-    
-    function _closeFight(uint256 _dragonWin, uint256 _dragonLose) private {
-        mainContract.setTime2Rest(_dragonWin, addTime2Rest);
-        mainContract.setTime2Rest(_dragonLose, addTime2Rest);
-        mutagenContract.mint(mainContract.ownerOf(_dragonWin), mutagenToWin);
-        mutagenContract.mint(mainContract.ownerOf(_dragonLose), mutagenToLose);
-    }
     
     function addToFightPlace(uint256 _dragonID) external payable whenNotPaused nonReentrant {
         require(mainContract.isApprovedOrOwner(msg.sender, _dragonID));
         require(msg.value >= priceToAdd);
         mainContract.checkDragonStatus(_dragonID, 2);
-        uint256 valueToReturn = msg.value - priceToAdd;
+        uint256 valueToReturn = msg.value.sub(priceToAdd);
         if (priceToAdd != 0) {
             wallet.transfer(priceToAdd);
         }
@@ -64,16 +33,15 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
             msg.sender.transfer(valueToReturn);
         }
         dragonOwners[_dragonID] = mainContract.ownerOf(_dragonID);
-        ownerDragonsCount[dragonOwners[_dragonID]] += 1;
+        ownerDragonsCount[dragonOwners[_dragonID]]++;
         dragonsListIndex[_dragonID] = dragonsList.length;
         dragonsList.push(_dragonID);
-        totalDragonsToFight++;
         mainContract.setCurrentAction(_dragonID, 1);
         
     }
     
     function delFromFightPlace(uint256 _dragonID) external {
-        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID));
+        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID), "Only owner or approved address can do this!");
         _delItem(_dragonID);
     }
 
@@ -134,7 +102,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
             uint256[] memory result = new uint256[](dragonCount * 2);
             uint256 resultIndex = 0;
 
-            for (uint256 dragonIndex = 0; dragonIndex < totalDragonsToFight; dragonIndex++) {
+            for (uint256 dragonIndex = 0; dragonIndex < dragonsList.length; dragonIndex++) {
                 uint256 dragonID = dragonsList[dragonIndex];
                 if (_owner != dragonOwners[dragonID])
                     continue;
@@ -145,6 +113,37 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
             }
             return result; 
         }
+    }
+    function totalDragonsToFight() external view returns(uint256) {
+        return dragonsList.length;
+    }
+    function _delItem(uint256 _dragonID) private {
+        require(dragonOwners[_dragonID] != address(0), "An attempt to remove an unregistered dragon");
+        mainContract.setCurrentAction(_dragonID, 0);
+        ownerDragonsCount[dragonOwners[_dragonID]]--;
+        delete(dragonOwners[_dragonID]);
+         if (dragonsList.length - 1 != dragonsListIndex[_dragonID]) {
+            dragonsList[dragonsListIndex[_dragonID]] = dragonsList[dragonsList.length - 1];
+            dragonsListIndex[dragonsList[dragonsList.length - 1]] = dragonsListIndex[_dragonID];
+        }
+        dragonsList.length--;
+        delete(dragonsListIndex[_dragonID]);
+    }
+    
+    function _setFightResult(uint256 _dragonWin, uint256 _dragonLose) private {
+        dragonsStatsContract.incFightWin(_dragonWin);
+        dragonsStatsContract.incFightLose(_dragonLose);
+        dragonsStatsContract.setLastAction(_dragonWin, _dragonLose, 13);
+        dragonsStatsContract.setLastAction(_dragonLose, _dragonWin, 14);
+        emit FightFP(_dragonWin, _dragonLose);
+            
+    }
+    
+    function _closeFight(uint256 _dragonWin, uint256 _dragonLose) private {
+        mainContract.setTime2Rest(_dragonWin, addTime2Rest);
+        mainContract.setTime2Rest(_dragonLose, addTime2Rest);
+        mutagenContract.mint(mainContract.ownerOf(_dragonWin), mutagenToWin);
+        mutagenContract.mint(mainContract.ownerOf(_dragonLose), mutagenToLose);
     }
     
     function clearFightPlace(uint256[] calldata _dragonIDs) external onlyAdmin whenPaused {
