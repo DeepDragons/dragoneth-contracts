@@ -71,7 +71,27 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
     function getAllDragonsFight() external view returns(uint256[] memory) {
         return dragonsList;
     }
-    
+    function getSlicedDragonsSale(uint256 _firstIndex, uint256 _aboveLastIndex) external view returns(uint256[] memory) {
+        require(_firstIndex < dragonsList.length, "First index greater than totalDragonsToFight");
+        uint256 lastIndex = _aboveLastIndex;
+        if (_aboveLastIndex > dragonsList.length) lastIndex = dragonsList.length;
+        require(_firstIndex <= lastIndex, "First index greater than Last Index");
+        uint256 resultCount = lastIndex - _firstIndex;
+        if (resultCount == 0) {
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](resultCount);
+            uint256 _dragonIndex;
+            uint256 _resultIndex = 0;
+
+            for (_dragonIndex = _firstIndex; _dragonIndex < lastIndex; _dragonIndex++) {
+                result[_resultIndex] = dragonsList[_dragonIndex];
+                _resultIndex++;
+            }
+
+            return result;
+        }
+    }
     function getFewDragons(uint256[] calldata _dragonIDs) external view returns(uint256[] memory) {
         uint256 dragonCount = _dragonIDs.length;
         if (dragonCount == 0) {
