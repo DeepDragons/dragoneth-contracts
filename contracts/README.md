@@ -37,7 +37,7 @@ see master branch
 
 * DragonsFight.sol (DragonsFight)
 
-0xb738c8f2382fd00cd9fd358764bf74a38e595260
+see master branch
 
 * Mutagen.sol (Mutagen)
 
