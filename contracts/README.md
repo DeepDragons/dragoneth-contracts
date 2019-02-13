@@ -36,7 +36,7 @@
 
 * DragonsFight.sol (DragonsFight)
 
-see Kovan
+0x7c9c37d65a10a9b2164df73738eee921b5756c37
 
 * Mutagen.sol (Mutagen)
 
