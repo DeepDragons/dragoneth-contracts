@@ -14,20 +14,29 @@ contract DragonsETH {
 
     Dragon[] public dragons;
     
-    function transferFrom(address _from, address _to, uint256 _tokenId) public;
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
+    //function transferFrom(address _from, address _to, uint256 _tokenId) public;
+    //function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
+    function ownerOf(uint256 _tokenId) public view returns (address _owner);
     function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external;
 }
 
+contract RNG {
+function get32b(address _from, uint256 _dragonID) external returns (bytes32 b32);
+}
 
 contract DragonsFight is RBACWithAdmin {
     DragonsETH public mainContract;
+    address private addressRNG;
+    event FightCourse(uint256 _dragonOneID, uint256 _dragonTwoID, uint256 dragonOneDamage, uint256 dragonTwoDamage,bytes32  random_number);
     
     constructor(address _addressMainContract) public {
         mainContract = DragonsETH(_addressMainContract);
     }
-    function getWinner(uint256 _dragonOneID, uint256 _dragonTwoID) external view returns (uint256 _winerID){
+    function getWinner(uint256 _dragonOneID, uint256 _dragonTwoID) external returns (uint256 _winerID){
         require(_dragonOneID != _dragonTwoID);
+        bytes32 random_number;
+        address _tmpAddress = address(uint(msg.sender) ^ uint(mainContract.ownerOf(_dragonTwoID)));
+        random_number = RNG(addressRNG).get32b(_tmpAddress, _dragonOneID ^ _dragonTwoID);
         uint240 gensDragonOne;
         uint240 gensDragonTwo;
         (,,,gensDragonOne,) = mainContract.dragons(_dragonOneID);
@@ -37,20 +46,52 @@ contract DragonsFight is RBACWithAdmin {
         uint256 dragonOneDamage;
         uint256 dragonTwoDamage;
         for (uint256 index = 0; index < 15; index++) {
-            if (bGensDragonOne[index] > bGensDragonTwo[15 + index]) {
-                dragonTwoDamage += uint8(bGensDragonOne[index]) - uint8(bGensDragonTwo[15 + index]);
+            uint8 tmpRN = uint8(random_number[index]);
+            uint8 tmpRN2 = uint8(random_number[index + 15]);
+            if (tmpRN < 200) {
+                if (bGensDragonOne[index] > bGensDragonTwo[15 + index]) {
+                    dragonTwoDamage += uint8(bGensDragonOne[index]) - uint8(bGensDragonTwo[15 + index]);
+                }
+                
+            } else {
+                if (tmpRN < 225) {
+                    if (uint8(bGensDragonOne[index]) > uint8(bGensDragonTwo[15 + index]) - (tmpRN - 200)) {
+                        dragonTwoDamage += uint8(bGensDragonOne[index]) - uint8(bGensDragonTwo[15 + index]) + (tmpRN - 200);
+                    }
+                } else {
+                    if (uint8(bGensDragonOne[index]) > uint8(bGensDragonTwo[15 + index]) + (tmpRN - 225)) {
+                        dragonTwoDamage += uint8(bGensDragonOne[index]) - uint8(bGensDragonTwo[15 + index]) - (tmpRN - 225);
+                    }
+                }
             }
-            if (bGensDragonTwo[index] > bGensDragonOne[15 + index]) {
-                dragonOneDamage += uint8(bGensDragonTwo[index]) - uint8(bGensDragonOne[15 + index]);
+            if (tmpRN2 < 200) {
+                if (bGensDragonTwo[index] > bGensDragonOne[15 + index]) {
+                    dragonOneDamage += uint8(bGensDragonTwo[index]) - uint8(bGensDragonOne[15 + index]);
+                }
+                
+            } else {
+                if (tmpRN2 < 225) {
+                    if (uint8(bGensDragonTwo[index]) > uint8(bGensDragonOne[15 + index])  - (tmpRN2 - 200)) {
+                        dragonOneDamage += uint8(bGensDragonTwo[index]) - uint8(bGensDragonOne[15 + index]) +  (tmpRN2 - 225);
+                    }
+                } else {
+                    if (uint8(bGensDragonTwo[index]) > uint8(bGensDragonOne[15 + index]) + (tmpRN2 - 225)) {
+                        dragonOneDamage += uint8(bGensDragonTwo[index]) - uint8(bGensDragonOne[15 + index]) - (tmpRN2 - 225);
+                    }
+                }
             }
+            
         }
-        
+        emit FightCourse( _dragonOneID, _dragonTwoID, dragonOneDamage, dragonTwoDamage, random_number);
         if (dragonOneDamage < dragonTwoDamage ) {
             return _dragonOneID;    
         } else {
             return _dragonTwoID;
         }
         
+    }
+    function changeAddressRNG(address _addressRNG) external onlyAdmin {
+        addressRNG = _addressRNG;
     }
 
 }
