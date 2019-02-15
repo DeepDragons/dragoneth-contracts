@@ -36,7 +36,7 @@
 
 * DragonsFight.sol (DragonsFight)
 
-0x086664cd430431999505268ea96ea841527b4a02
+0x1a0d7c4152b4ebaadbe10c4ad017498cca8d983f
 
 * Mutagen.sol (Mutagen)
 
@@ -117,17 +117,18 @@
 12. DragonETH            *func*  adminAddRole(address FixMarketPlace "", "ActionContract" string)
 13. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
 
-14. DragonStat		*func*	adminAddRole(address DragonsFightPlace "0x6b112f193eb54b70fd0b347c5704cfa82b3dae3e", "FightContract" string )
-15. DragonStat		*func*	adminAddRole(address DragonsFightPlace "0x6b112f193eb54b70fd0b347c5704cfa82b3dae3e", "ActionContract" string)
-16. DragonETH		*func*	adminAddRole(address DragonsFightPlace "0x6b112f193eb54b70fd0b347c5704cfa82b3dae3e", "ActionContract" string)
-17. Mutagen		*func*	adminAddRole(address DragonsFightPlace "0x6b112f193eb54b70fd0b347c5704cfa82b3dae3e", "MintAgent" string)
+14. DragonStat		*func*	adminAddRole(address DragonsFightPlace "", "FightContract" string )
+15. DragonStat		*func*	adminAddRole(address DragonsFightPlace "", "ActionContract" string)
+16. DragonETH		*func*	adminAddRole(address DragonsFightPlace "", "ActionContract" string)
+17. Mutagen		*func*	adminAddRole(address DragonsFightPlace "", "MintAgent" string)
 18. DragonsFightPlace	*func*	changeAddressMainContract(address DragonETH)
 19. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
 20. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
 21. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
 22. DragonsFight        *func*  changeAddressRNG(address RNG)
-23. RNG                  *func*  adminAddRole(address DragonsFight, string "GenRNG" )
- 
+23. RNG                 *func*  adminAddRole(address DragonsFight, string "GenRNG" )
+24. DragonsFight        *func*  adminAddRole(address DragonsFightPlace "", "FightContract" string )
+
 добавить в основной контракт роль "ActionContract" для всех котрактов действия которые имеют право дергть сответсвующую функцию
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
 добавить в контракт статистики роль "DeathContract" Для DragonETH и остальных смертельных контрактов
