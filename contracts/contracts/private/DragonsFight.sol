@@ -11,11 +11,8 @@ contract DragonsETH {
         uint240 gen2;
         uint256 nextBlock2Action;
     }
-
     Dragon[] public dragons;
     
-    //function transferFrom(address _from, address _to, uint256 _tokenId) public;
-    //function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
     function ownerOf(uint256 _tokenId) public view returns (address _owner);
     function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external;
 }
