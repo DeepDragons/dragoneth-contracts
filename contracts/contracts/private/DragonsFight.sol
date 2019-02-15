@@ -34,7 +34,7 @@ contract DragonsFight is RBACWithAdmin {
     constructor(address _addressMainContract) public {
         mainContract = DragonsETH(_addressMainContract);
     }
-    function getWinner(uint256 _dragonOneID, uint256 _dragonTwoID) external returns (uint256 _winerID){
+    function getWinner(uint256 _dragonOneID, uint256 _dragonTwoID) external onlyRole("FightContract") returns (uint256 _winerID){
         require(_dragonOneID != _dragonTwoID);
         bytes32 random_number;
         address _tmpAddress = address(uint(msg.sender) ^ uint(mainContract.ownerOf(_dragonTwoID)));
