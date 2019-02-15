@@ -36,7 +36,7 @@
 
 * DragonsFight.sol (DragonsFight)
 
-0x7c9c37d65a10a9b2164df73738eee921b5756c37
+0x086664cd430431999505268ea96ea841527b4a02
 
 * Mutagen.sol (Mutagen)
 
@@ -125,7 +125,9 @@
 19. DragonsFightPlace	*func*	changeAddressMutagenContract(address Mutagen)
 20. DragonsFightPlace	*func*	changeAddressFightContract(address DragonsFight)
 21. DragonsFightPlace	*func*	changeAddressStatsContract(address DragonStats)
-
+22. DragonsFight        *func*  changeAddressRNG(address RNG)
+23. RNG                  *func*  adminAddRole(address DragonsFight, string "GenRNG" )
+ 
 добавить в основной контракт роль "ActionContract" для всех котрактов действия которые имеют право дергть сответсвующую функцию
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
 добавить в контракт статистики роль "DeathContract" Для DragonETH и остальных смертельных контрактов
