@@ -21,14 +21,16 @@ contract DragonsETH {
 }
 
 contract RNG {
-function get32b(address _from, uint256 _dragonID) external returns (bytes32 b32);
+    function get32b(address _from, uint256 _dragonID) external returns (bytes32 b32);
 }
 
 contract DragonsFight is RBACWithAdmin {
     DragonsETH public mainContract;
     address private addressRNG;
-    event FightCourse(uint256 _dragonOneID, uint256 _dragonTwoID, uint256 dragonOneDamage, uint256 dragonTwoDamage,bytes32  random_number);
+    uint256 constant SF = 0xFFFFFFFF;
     
+    event FightCourse(uint256 _dragonOneID, uint256 _dragonTwoID, uint256 dragonOneDamage, uint256 dragonTwoDamage,bytes32  random_number);
+
     constructor(address _addressMainContract) public {
         mainContract = DragonsETH(_addressMainContract);
     }
@@ -83,16 +85,16 @@ contract DragonsFight is RBACWithAdmin {
             
         }
         emit FightCourse( _dragonOneID, _dragonTwoID, dragonOneDamage, dragonTwoDamage, random_number);
-        if (dragonOneDamage < dragonTwoDamage ) {
+        uint256 probOneWin = dragonTwoDamage * SF / (dragonOneDamage + dragonTwoDamage);
+        uint256 probRN = ((uint256(uint8(random_number[30])) << 8) + uint8(random_number[31]))* SF / 0xFFFF;
+        if (probRN <= probOneWin) {
             return _dragonOneID;    
         } else {
             return _dragonTwoID;
         }
-        
     }
     function changeAddressRNG(address _addressRNG) external onlyAdmin {
         addressRNG = _addressRNG;
     }
-
 }
 
