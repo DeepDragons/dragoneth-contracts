@@ -54,7 +54,7 @@ contract DragonsFightGC is Pausable {
     uint256 public mutagenToDeathWin = 100;
     uint256 public addTime2Rest = 240; // ~ 60 min
     
-    event FightFP(uint256 _winnerId, uint256 _loseerId);
+    event FightFP(uint256 _winnerId, uint256 _loserId, address _ownerWinner, address _onwerLoser);
     event AddDragonFP(address indexed _from, uint256 _tokenId);
     event RemoveDragonFP(address indexed _from, uint256 _tokenId);
     
