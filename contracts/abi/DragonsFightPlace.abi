@@ -41,20 +41,6 @@
         "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [],
-        "name": "minFightWaitBloc",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "constant": false,
         "inputs": [],
         "name": "withdrawAllEther",
@@ -79,39 +65,11 @@
     },
     {
         "constant": false,
-        "inputs": [
-            {
-                "name": "_mutagenToDeathWin",
-                "type": "uint256"
-            }
-        ],
-        "name": "changeMutagenToDeathWin",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
         "inputs": [],
         "name": "unpause",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "maxFightWaitBloc",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -280,20 +238,6 @@
     {
         "constant": true,
         "inputs": [],
-        "name": "mutagenToDeathWin",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
         "name": "getAllDragonsFight",
         "outputs": [
             {
@@ -314,34 +258,6 @@
             }
         ],
         "name": "changeMutagenToLose",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_maxFightWaitBloc",
-                "type": "uint256"
-            }
-        ],
-        "name": "changeMaxFightWaitBloc",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_minFightWaitBloc",
-                "type": "uint256"
-            }
-        ],
-        "name": "changeMinFightWaitBloc",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -721,8 +637,18 @@
             },
             {
                 "indexed": false,
-                "name": "_loseerId",
+                "name": "_loserId",
                 "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "_ownerWinner",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "_onwerLoser",
+                "type": "address"
             }
         ],
         "name": "FightFP",
