@@ -66,11 +66,11 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         if (dragonsFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
             _setFightResult(_yourDragonID, _thisDragonID);
             _closeFight(_yourDragonID, _thisDragonID);
-            emit FightFP(_yourDragonID, _thisDragonID, mainContract.ownerOf(_dragonID), dragonOwners[_thisDragonID]);
+            emit FightFP(_yourDragonID, _thisDragonID, mainContract.ownerOf(_yourDragonID), dragonOwners[_thisDragonID]);
         } else {
             _setFightResult(_thisDragonID, _yourDragonID);
             _closeFight(_thisDragonID, _yourDragonID);
-            emit FightFP(_thisDragonID, _yourDragonID, dragonOwners[_thisDragonID], mainContract.ownerOf(_dragonID));
+            emit FightFP(_thisDragonID, _yourDragonID, dragonOwners[_thisDragonID], mainContract.ownerOf(_yourDragonID));
         }
         _delItem(_thisDragonID);
         if (dragonOwners[_yourDragonID] != address(0))
