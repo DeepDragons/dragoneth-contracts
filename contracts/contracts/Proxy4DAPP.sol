@@ -144,10 +144,9 @@ contract Proxy4DAPP {
             return new string[](0);
         } else {
             string[] memory result = new string[](dragonCount);
-            uint256 resultIndex = 0;
-
+            
             for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
-                result[resultIndex++] = mainContract.dragonName(_dragonIDs[dragonIndex]);
+                result[dragonIndex] = mainContract.dragonName(_dragonIDs[dragonIndex]);
             }
         }
     }
