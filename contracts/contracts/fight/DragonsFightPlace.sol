@@ -4,7 +4,6 @@ import "./DragonsFightGC.sol";
 import "../security/ReentrancyGuard.sol";
 import "../math/SafeMath.sol";
 
-//TODO refactor GC contract
 contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
     using SafeMath for uint256;
     uint256 public priceToFight = 0.001 ether; // price for test
@@ -68,11 +67,11 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         if (dragonsFightContract.getWinner(_yourDragonID, _thisDragonID) == _yourDragonID ) {
             _setFightResult(_yourDragonID, _thisDragonID);
             _closeFight(_yourDragonID, _thisDragonID);
-            emit FightFP(_yourDragonID, _thisDragonID, msg.sender, dragonOwners[_thisDragonID]);
+            emit FightFP(_yourDragonID, _thisDragonID, mainContract.ownerOf(_dragonID), dragonOwners[_thisDragonID]);
         } else {
             _setFightResult(_thisDragonID, _yourDragonID);
             _closeFight(_thisDragonID, _yourDragonID);
-            emit FightFP(_thisDragonID, _yourDragonID, dragonOwners[_thisDragonID], msg.sender);
+            emit FightFP(_thisDragonID, _yourDragonID, dragonOwners[_thisDragonID], mainContract.ownerOf(_dragonID));
         }
         _delItem(_thisDragonID);
         if (dragonOwners[_yourDragonID] != address(0))
