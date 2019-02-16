@@ -11,6 +11,15 @@ contract CheckMutagenResistance {
     function checkResistance(uint256 _dragonID) external view returns (bool);
 }
 
+contract Mutagen {
+    function mint(address _to, uint256 _amount)  public returns (bool);
+}
+contract DragonsStats {
+    function incFightWin(uint256 _dragonID) external;
+    function incFightLose(uint256 _dragonID) external;
+    function incFightToDeathWin(uint256 _dragonID) external;
+    function setLastAction(uint256 _dragonID, uint256 _lastActionDragonID, uint8 _lastActionID) external;
+}
 
 contract Mutagen2Face is RBACWithAdmin  {
     DragonsETH public mainContract;
