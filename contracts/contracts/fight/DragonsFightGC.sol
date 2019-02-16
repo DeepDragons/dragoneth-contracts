@@ -18,8 +18,6 @@ contract DragonsETH {
     function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external;
     function setTime2Rest(uint256 _dragonID, uint256 _addNextBlock2Action) external;
     function isApprovedOrOwner(address _spender, uint256 _tokenId) public view returns (bool);
-
-    
 }
 
 contract DragonsFight {
