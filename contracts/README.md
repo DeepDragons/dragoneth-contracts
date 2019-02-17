@@ -44,7 +44,7 @@
 
 * Proxy4DAPP.sol
 
-0xd6e3f555c38cc2e23d366ee2fda65ed542a298fe
+0x08e9ee022b1c38cb93f1fd59fcabcb86216c26a8
 
 # Wallets
 
