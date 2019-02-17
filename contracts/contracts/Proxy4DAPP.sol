@@ -1,5 +1,8 @@
 pragma solidity ^0.5.3;
 pragma experimental ABIEncoderV2;
+// , DESTROYER, DESTROYER, DESTROYER
+import "./SelfDestruct.sol";
+// , DESTROYER, DESTROYER, DESTROYER
 
 contract DragonsETH {
     struct Dragon {
@@ -47,54 +50,14 @@ contract DragonsStats {
     
 }
 
-contract Proxy4DAPP {
+contract Proxy4DAPP is DESTROYER {
     DragonsETH public mainContract;
     DragonsStats public statsContract;
     
     constructor(address _addressMainContract, address _addressDragonsStats) public {
         mainContract = DragonsETH(_addressMainContract);
         statsContract = DragonsStats(_addressDragonsStats);
-    } /*
-    function getDragons(uint256[] calldata _dragonIDs) external view returns(uint256[] memory) {
-        if (_dragonIDs.length == 0) {
-            return new uint256[](0);
-        } else {
-            uint256[] memory result = new uint256[](_dragonIDs.length * 15 + 1);
-            uint256 resultIndex = 0;
-             result[resultIndex++] = block.number;
-            for (uint256 dragonIndex = 0; dragonIndex < _dragonIDs.length; dragonIndex++) {
-                uint256 dragonID = _dragonIDs[dragonIndex];
-                result[resultIndex++] = dragonID;
-                result[resultIndex++] = uint256(mainContract.ownerOf(dragonID));
-                uint8 tmp;
-                uint8 currentAction;
-                uint240 gen2;
-                (result[resultIndex++],tmp,currentAction,gen2,result[resultIndex++]) = mainContract.dragons(dragonID);
-                result[resultIndex++] = uint256(tmp); // stage
-                result[resultIndex++] = uint256(currentAction);
-                result[resultIndex++] = uint256(gen2);
-                uint248 lastActionDragonID;
-                (tmp, lastActionDragonID) = statsContract.lastActions(dragonID);
-                result[resultIndex++] = uint256(tmp); // lastActionID
-                result[resultIndex++] = uint256(lastActionDragonID);
-                uint32 fightWin;
-                uint32 fightLose;
-                uint32 children;
-                uint32 fightToDeathWin;
-                uint32 mutagenFight;
-                uint32 genLabFight;
-                (fightWin,fightLose,children,fightToDeathWin,,mutagenFight,,genLabFight) = statsContract.dragonStats(dragonID);
-                result[resultIndex++] = uint256(fightWin);
-                result[resultIndex++] = uint256(fightLose);
-                result[resultIndex++] = uint256(children);
-                result[resultIndex++] = uint256(fightToDeathWin);
-                result[resultIndex++] = uint256(mutagenFight);
-                result[resultIndex++] = uint256(genLabFight);
-            }
-
-            return result; 
-        }
-    } */
+    }
     function getDragons(uint256[] calldata _dragonIDs) external view returns(uint256[] memory) {
         if (_dragonIDs.length == 0) {
             return new uint256[](0);
@@ -148,6 +111,30 @@ contract Proxy4DAPP {
             for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
                 result[dragonIndex] = mainContract.dragonName(_dragonIDs[dragonIndex]);
             }
+            return result;
+        }
+    }
+    function getDragonsNameB32(uint256[] calldata _dragonIDs) external view returns(bytes32[] memory) {
+        uint256 dragonCount = _dragonIDs.length;
+        if (dragonCount == 0) {
+            return new bytes32[](0);
+        } else {
+            bytes32[] memory result = new bytes32[](dragonCount);
+            
+            for (uint256 dragonIndex = 0; dragonIndex < dragonCount; dragonIndex++) {
+                bytes memory tempEmptyStringTest = bytes(mainContract.dragonName(_dragonIDs[dragonIndex]));
+                bytes32 tmp;
+                if (tempEmptyStringTest.length == 0) {
+                    result[dragonIndex] = 0x0;
+                } else {
+
+                    assembly {
+                        tmp := mload(add(tempEmptyStringTest, 32))
+                    }
+                    result[dragonIndex] = tmp;
+                }
+            }
+            return result;
         }
     }
     function getDragonsStats(uint256[] calldata _dragonIDs) external view returns(uint256[] memory) {
@@ -169,7 +156,8 @@ contract Proxy4DAPP {
                 result[resultIndex++] = uint256(parentTwo);
                 result[resultIndex++] = statsContract.birthBlock(dragonID);
                 result[resultIndex++] = statsContract.deathBlock(dragonID);
-                }
+            }
+            return result;
         }
     }
 }
