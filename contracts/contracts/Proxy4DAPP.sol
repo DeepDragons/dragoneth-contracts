@@ -1,8 +1,7 @@
 pragma solidity ^0.5.3;
 pragma experimental ABIEncoderV2;
-// , DESTROYER, DESTROYER, DESTROYER
-import "./SelfDestruct.sol";
-// , DESTROYER, DESTROYER, DESTROYER
+
+import "./security/rbac/RBACWithAdmin.sol";
 
 contract DragonsETH {
     struct Dragon {
@@ -18,6 +17,8 @@ contract DragonsETH {
     mapping(uint256 => string) public dragonName;
     
     function ownerOf(uint256 _tokenId) public view returns (address);
+    function tokensOf(address _owner) external view returns (uint256[] memory);
+    //function balanceOf(address _owner) public view returns (uint256);
 }
 
 contract DragonsStats {
@@ -50,9 +51,14 @@ contract DragonsStats {
     
 }
 
-contract Proxy4DAPP is DESTROYER {
+contract FixMarketPlace {
+    function getOwnedDragonToSale(address _owner) external view returns(uint256[] memory);
+}
+
+contract Proxy4DAPP is RBACWithAdmin {
     DragonsETH public mainContract;
     DragonsStats public statsContract;
+    FixMarketPlace public fmpContractAddress;
     
     constructor(address _addressMainContract, address _addressDragonsStats) public {
         mainContract = DragonsETH(_addressMainContract);
@@ -159,5 +165,35 @@ contract Proxy4DAPP is DESTROYER {
             }
             return result;
         }
+    }
+    function tokensOf(address _owner) external view returns (uint256[] memory) {
+        uint256[] memory tmpMain = mainContract.tokensOf(_owner);
+        uint256[] memory tmpFMP;
+        if (address(fmpContractAddress) != address(0)) {
+            tmpFMP = fmpContractAddress.getOwnedDragonToSale(_owner);
+        } else {
+            tmpFMP = new uint256[](0);
+        }
+        if (tmpFMP.length + tmpMain.length == 0) {
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](tmpFMP.length + tmpMain.length);
+            uint256 index = 0;
+            for (; index < tmpMain.length; index++) {
+                result[index] = tmpMain[index];
+            }
+
+            uint256 j = 0;
+            while (j < tmpFMP.length) {
+                result[index++] = tmpFMP[j++];
+            }
+            return result;
+        }
+    }
+    
+    // попробовать реализовать функцию всю инфу по дракону одной функцией )
+    
+    function changeFMPcontractAddress(address _fmpContractAddress) external onlyAdmin {
+        fmpContractAddress = FixMarketPlace(_fmpContractAddress);
     }
 }
