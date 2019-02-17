@@ -1,22 +1,26 @@
-[
+
+nstant": false,
+        "inputs": [],
+        "name": "destroy",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
     {
-        "constant": true,
         "inputs": [
             {
-                "name": "_dragonIDs",
-                "type": "uint256[]"
-            }
-        ],
-        "name": "getDragons",
-        "outputs": [
+                "name": "_addressMainContract",
+                "type": "address"
+            },
             {
-                "name": "",
-                "type": "uint256[]"
+                "name": "_addressDragonsStats",
+                "type": "address"
             }
         ],
         "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+        "stateMutability": "nonpayable",
+        "type": "constructor"
     },
     {
         "constant": true,
@@ -26,7 +30,7 @@
                 "type": "uint256[]"
             }
         ],
-        "name": "getDragonsStats",
+        "name": "getDragons",
         "outputs": [
             {
                 "name": "",
@@ -58,12 +62,36 @@
     },
     {
         "constant": true,
-        "inputs": [],
-        "name": "statsContract",
+        "inputs": [
+            {
+                "name": "_dragonIDs",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "getDragonsNameB32",
         "outputs": [
             {
                 "name": "",
-                "type": "address"
+                "type": "bytes32[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "_dragonIDs",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "getDragonsStats",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256[]"
             }
         ],
         "payable": false,
@@ -85,18 +113,17 @@
         "type": "function"
     },
     {
-        "inputs": [
+        "constant": true,
+        "inputs": [],
+        "name": "statsContract",
+        "outputs": [
             {
-                "name": "_addressMainContract",
-                "type": "address"
-            },
-            {
-                "name": "_addressDragonsStats",
+                "name": "",
                 "type": "address"
             }
         ],
         "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "constructor"
+        "stateMutability": "view",
+        "type": "function"
     }
 ]
