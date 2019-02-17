@@ -44,7 +44,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         whenNotPaused
         returns (bool) 
     {
-        require(msg.sender == address(mainContract), "Only main contract can add dragons!");
+        require(msg.sender == address(mainContract), "Only the main contract can add dragons!");
         dragonsOwner[_dragonID] = _dragonOwner;
         ownerDragonsCount[_dragonOwner]++;
         dragonPrices[_dragonID] = _dragonPrice;
@@ -56,14 +56,14 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     }
     
     function delFromFixMarketPlace(uint256 _dragonID) external {
-        require(msg.sender == dragonsOwner[_dragonID], "Only owner can do it.");
+        require(msg.sender == dragonsOwner[_dragonID], "Only owners can do it!");
         mainContract.transferFrom(address(this), dragonsOwner[_dragonID], _dragonID);
         emit SaleCancel(dragonsOwner[_dragonID], _dragonID, dragonPrices[_dragonID]);
         _delItem(_dragonID);
     }
     function buyDragon(uint256 _dragonID) external payable nonReentrant whenNotPaused {
         uint256 _dragonCommisions = dragonPrices[_dragonID].mul(ownersPercent).div(1000);
-        require(msg.value >= dragonPrices[_dragonID].add(_dragonCommisions), "Not enough money!");
+        require(msg.value >= dragonPrices[_dragonID].add(_dragonCommisions), "Not enough Ether!");
         uint256 valueToReturn = msg.value.sub(dragonPrices[_dragonID]).sub(_dragonCommisions);
         if (valueToReturn != 0) {
             msg.sender.transfer(valueToReturn);
@@ -82,10 +82,10 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         return dragonsList;
     }
     function getSlicedDragonsSale(uint256 _firstIndex, uint256 _aboveLastIndex) external view returns(uint256[] memory) {
-        require(_firstIndex < dragonsList.length, "First index greater than totalDragonsToSale");
+        require(_firstIndex < dragonsList.length, "The first index greater than totalDragonsToSale!");
         uint256 lastIndex = _aboveLastIndex;
         if (_aboveLastIndex > dragonsList.length) lastIndex = dragonsList.length;
-        require(_firstIndex <= lastIndex, "First index greater than Last Index");
+        require(_firstIndex <= lastIndex, "The first index greater than last!");
         uint256 resultCount = lastIndex - _firstIndex;
         if (resultCount == 0) {
             return new uint256[](0);
@@ -146,7 +146,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         }
     }
      function _delItem(uint256 _dragonID) private {
-        require(dragonsOwner[_dragonID] != address(0), "An attempt to remove an unregistered dragon");
+        require(dragonsOwner[_dragonID] != address(0), "An attempt to remove an unregistered dragon!");
         mainContract.setCurrentAction(_dragonID, 0);
         ownerDragonsCount[dragonsOwner[_dragonID]]--;
         delete(dragonsOwner[_dragonID]);
