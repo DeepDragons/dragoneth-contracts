@@ -1,26 +1,21 @@
-
-nstant": false,
-        "inputs": [],
-        "name": "destroy",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
+[
     {
+        "constant": true,
         "inputs": [
             {
-                "name": "_addressMainContract",
+                "name": "addr",
                 "type": "address"
             },
             {
-                "name": "_addressDragonsStats",
-                "type": "address"
+                "name": "roleName",
+                "type": "string"
             }
         ],
+        "name": "checkRole",
+        "outputs": [],
         "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "constructor"
+        "stateMutability": "view",
+        "type": "function"
     },
     {
         "constant": true,
@@ -49,6 +44,136 @@ nstant": false,
                 "type": "uint256[]"
             }
         ],
+        "name": "getDragonsStats",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_fmpContractAddress",
+                "type": "address"
+            }
+        ],
+        "name": "changeFMPcontractAddress",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "name": "roleName",
+                "type": "string"
+            }
+        ],
+        "name": "hasRole",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "ROLE_PAUSE_ADMIN",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "fmpContractAddress",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "tokensOf",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "destroy",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "name": "roleName",
+                "type": "string"
+            }
+        ],
+        "name": "adminRemoveRole",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "_dragonIDs",
+                "type": "uint256[]"
+            }
+        ],
         "name": "getDragonsName",
         "outputs": [
             {
@@ -58,6 +183,38 @@ nstant": false,
         ],
         "payable": false,
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "statsContract",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "name": "roleName",
+                "type": "string"
+            }
+        ],
+        "name": "adminAddRole",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -81,25 +238,6 @@ nstant": false,
     },
     {
         "constant": true,
-        "inputs": [
-            {
-                "name": "_dragonIDs",
-                "type": "uint256[]"
-            }
-        ],
-        "name": "getDragonsStats",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256[]"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
         "inputs": [],
         "name": "mainContract",
         "outputs": [
@@ -115,15 +253,64 @@ nstant": false,
     {
         "constant": true,
         "inputs": [],
-        "name": "statsContract",
+        "name": "ROLE_ADMIN",
         "outputs": [
             {
                 "name": "",
-                "type": "address"
+                "type": "string"
             }
         ],
         "payable": false,
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_addressMainContract",
+                "type": "address"
+            },
+            {
+                "name": "_addressDragonsStats",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "roleName",
+                "type": "string"
+            }
+        ],
+        "name": "RoleAdded",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "roleName",
+                "type": "string"
+            }
+        ],
+        "name": "RoleRemoved",
+        "type": "event"
     }
 ]
