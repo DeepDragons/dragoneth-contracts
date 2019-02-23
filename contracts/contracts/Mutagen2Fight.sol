@@ -18,9 +18,11 @@ contract DragonsETH {
     function ownerOf(uint256 _tokenId) public view returns (address _owner);
     function setTime2Rest(uint256 _dragonID, uint256 _addNextBlock2Action) external;
     function isApprovedOrOwner(address _spender, uint256 _tokenId) public view returns (bool);
+    function changeDragonGen(uint256 _dragonID, uint256 _gen, uint8 _which) external;
 }
 contract Mutagen {
-    function mint(address _to, uint256 _amount)  public returns (bool);
+    function burn(address _from, uint256 _value) public;
+     function balanceOf(address _owner) public view returns (uint256 balance);
 }
 
 contract RNG {
@@ -28,18 +30,25 @@ contract RNG {
 }
 
 contract Mutagen2Fight is RBACWithAdmin {
+    Mutagen public mutagenContract;
     DragonsETH public mainContract;
     address private addressRNG;
-    
+    uint256 public addTime2Rest = 240; // ~ 60 min
+     
     event FightGensChanged(uint256 _dragonOneID, uint240 _oldGens, uint240 _newGens);
 
-    constructor(address _addressMainContract) public {
+    constructor(address _addressMainContract, address _addressMutagen) public {
         mainContract = DragonsETH(_addressMainContract);
+        mutagenContract = Mutagen(_addressMutagen);
     }
-    function mutateFightGens(uint256 _dragonID, uint256 _nutagenCount) external {
-        //require();
-        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID));
-    }    
+    function mutateFightGens(uint256 _dragonID, uint256 _mutagenCount) external {
+        require(mutagenContract.balanceOf(msg.sender) >= _mutagenCount);
+        require(mainContract.ownerOf(_dragonID) == msg.sender);
+        
+    }
+    function changeAddTime2Rest(uint256 _addTime2Rest) external onlyAdmin {
+        addTime2Rest = _addTime2Rest;
+    }
     function changeAddressRNG(address _addressRNG) external onlyAdmin {
         addressRNG = _addressRNG;
     }
