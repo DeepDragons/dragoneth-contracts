@@ -1,7 +1,9 @@
 pragma solidity ^0.5.4;
 
+
 //????
 import "./security/rbac/RBACWithAdmin.sol";
+
 
 contract DragonsETH {
     struct Dragon {
@@ -35,6 +37,7 @@ contract Mutagen2Fight is RBACWithAdmin {
     address private addressRNG;
     uint256 public addTime2Rest = 240; // ~ 60 min
     uint256 public mutagenCount = 300;
+    uint256 public priceMutagenWork = 0.5 ether;
      
     event FightGensChanged(uint256 _dragonOneID, uint240 _oldGens, uint240 _newGens);
 
@@ -42,17 +45,23 @@ contract Mutagen2Fight is RBACWithAdmin {
         mainContract = DragonsETH(_addressMainContract);
         mutagenContract = Mutagen(_addressMutagen);
     }
-    function mutateFightGensRandom(uint256 _dragonID, uint256 _genNum) external {
+    function mutateFightGensRandom(uint256 _dragonID, uint256 _genNum) external payable {
         require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
         require(_genNum <= 29);
+        
+        bytes32 random_number = RNG(addressRNG).get32b(msg.sender, _dragonID);
+        
         
     }
     function changeAddTime2Rest(uint256 _addTime2Rest) external onlyAdmin {
         addTime2Rest = _addTime2Rest;
     }
-    function changeMutagenCountt(uint256 _mutagenCount) external onlyAdmin {
+    function changeMutagenCount(uint256 _mutagenCount) external onlyAdmin {
         mutagenCount = _mutagenCount;
+    }
+    function changePriceMutagenWork(uint256 _priceMutagenWork) external onlyAdmin {
+        priceMutagenWork = _priceMutagenWork;
     }
     function changeAddressRNG(address _addressRNG) external onlyAdmin {
         addressRNG = _addressRNG;
