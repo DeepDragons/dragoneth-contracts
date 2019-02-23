@@ -20,7 +20,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
 
     
     function addToFightPlace(uint256 _dragonID) external payable whenNotPaused nonReentrant {
-        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID), "Sender is not owner!");
+        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID), "The sender is not an owner!");
         require(msg.value >= priceToAdd, "Not enough ether!");
         mainContract.checkDragonStatus(_dragonID, 2);
         uint256 valueToReturn = msg.value.sub(priceToAdd);
@@ -41,14 +41,14 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
     }
     
     function delFromFightPlace(uint256 _dragonID) external {
-        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID), "Only owner or approved address can do this!");
+        require(mainContract.isApprovedOrOwner(msg.sender, _dragonID), "Only the owner or approved address can do this!");
         emit RemoveDragonFP(dragonOwners[_dragonID], _dragonID);
         _delItem(_dragonID);
     }
 
     function fightWithDragon(uint256 _yourDragonID,uint256 _thisDragonID) external payable whenNotPaused nonReentrant {
         require(msg.value >= priceToFight, "Not enough ether!");
-        require(mainContract.isApprovedOrOwner(msg.sender, _yourDragonID), "Sender is not owner!");
+        require(mainContract.isApprovedOrOwner(msg.sender, _yourDragonID), "The sender is not an owner!");
         uint8 stage;
         uint8 currentAction;
         uint256 nextBlock2Action;
@@ -80,10 +80,10 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         return dragonsList;
     }
     function getSlicedDragonsSale(uint256 _firstIndex, uint256 _aboveLastIndex) external view returns(uint256[] memory) {
-        require(_firstIndex < dragonsList.length, "First index greater than totalDragonsToFight");
+        require(_firstIndex < dragonsList.length, "First index greater than totalDragonsToFight!");
         uint256 lastIndex = _aboveLastIndex;
         if (_aboveLastIndex > dragonsList.length) lastIndex = dragonsList.length;
-        require(_firstIndex <= lastIndex, "First index greater than Last Index");
+        require(_firstIndex <= lastIndex, "First index greater than last!");
         uint256 resultCount = lastIndex - _firstIndex;
         if (resultCount == 0) {
             return new uint256[](0);
@@ -145,7 +145,7 @@ contract DragonsFightPlace is DragonsFightGC, ReentrancyGuard {
         return dragonsList.length;
     }
     function _delItem(uint256 _dragonID) private {
-        require(dragonOwners[_dragonID] != address(0), "An attempt to remove an unregistered dragon");
+        require(dragonOwners[_dragonID] != address(0), "An attempt to remove an unregistered dragon!");
         mainContract.setCurrentAction(_dragonID, 0);
         ownerDragonsCount[dragonOwners[_dragonID]]--;
         delete(dragonOwners[_dragonID]);
