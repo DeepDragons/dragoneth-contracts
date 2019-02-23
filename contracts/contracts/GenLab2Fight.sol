@@ -35,6 +35,7 @@ contract Mutagen2Fight is RBACWithAdmin {
     Mutagen public mutagenContract;
     DragonsETH public mainContract;
     address private addressRNG;
+    address payable wallet;
     uint256 public addTime2Rest = 240; // ~ 60 min
     uint256 public mutagenCount = 300;
     uint256 public priceMutagenWork = 0.5 ether;
@@ -47,12 +48,23 @@ contract Mutagen2Fight is RBACWithAdmin {
     }
     function mutateFightGensRandom(uint256 _dragonID, uint256 _genNum) external payable {
         require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
+        require(msg.value >= priceMutagenWork);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
         require(_genNum <= 29);
-        
+        uint256 returnValue = msg.value - priceMutagenWork;
+        wallet.transfer(priceMutagenWork);
+        if (returnValue > 0) {
+            msg.sender.transfer(returnValue);
+        }
         bytes32 random_number = RNG(addressRNG).get32b(msg.sender, _dragonID);
-        
-        
+        uint240 gensDragon;
+        (,,,gensDragon,) = mainContract.dragons(_dragonID);
+        uint240 newGens;
+        if (uint256(uint8(bytes30(gensDragon)[_genNum])) + uint256(uint8(random_number[0])) <= 0xFF) {
+            uint240 tmp = uint240(uint8(random_number[0]));
+            newGens = gensDragon + (tmp << (29 - _genNum)); //checkit
+        } // need else
+//        bytes30(gensDragon)[_genNum] = random_number[0];
     }
     function changeAddTime2Rest(uint256 _addTime2Rest) external onlyAdmin {
         addTime2Rest = _addTime2Rest;
@@ -65,6 +77,9 @@ contract Mutagen2Fight is RBACWithAdmin {
     }
     function changeAddressRNG(address _addressRNG) external onlyAdmin {
         addressRNG = _addressRNG;
+    }
+    function changeWallet(address payable _wallet) external onlyAdmin {
+        wallet = _wallet;
     }
 }
 
