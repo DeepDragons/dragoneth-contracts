@@ -34,6 +34,7 @@ contract Mutagen2Fight is RBACWithAdmin {
     DragonsETH public mainContract;
     address private addressRNG;
     uint256 public addTime2Rest = 240; // ~ 60 min
+    uint256 public mutagenCount = 300;
      
     event FightGensChanged(uint256 _dragonOneID, uint240 _oldGens, uint240 _newGens);
 
@@ -41,13 +42,17 @@ contract Mutagen2Fight is RBACWithAdmin {
         mainContract = DragonsETH(_addressMainContract);
         mutagenContract = Mutagen(_addressMutagen);
     }
-    function mutateFightGens(uint256 _dragonID, uint256 _mutagenCount) external {
-        require(mutagenContract.balanceOf(msg.sender) >= _mutagenCount);
+    function mutateFightGensRandom(uint256 _dragonID, uint256 _genNum) external {
+        require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
+        require(_genNum <= 29);
         
     }
     function changeAddTime2Rest(uint256 _addTime2Rest) external onlyAdmin {
         addTime2Rest = _addTime2Rest;
+    }
+    function changeMutagenCountt(uint256 _mutagenCount) external onlyAdmin {
+        mutagenCount = _mutagenCount;
     }
     function changeAddressRNG(address _addressRNG) external onlyAdmin {
         addressRNG = _addressRNG;
