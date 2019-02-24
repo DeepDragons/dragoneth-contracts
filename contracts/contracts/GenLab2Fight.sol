@@ -56,6 +56,10 @@ contract Mutagen2Fight is RBACWithAdmin {
         if (returnValue > 0) {
             msg.sender.transfer(returnValue);
         }
+        uint240 gensDragon;
+        (,,,gensDragon,) = mainContract.dragons(_dragonID);
+        uint8 genAdd = 0xFF - uint8(bytes30(gensDragon)[_genNum]);
+        uint240 newGens = gensDragon + (genAdd << (29 - _genNum) * 8);
     }
     function mutateFightGensRandom(uint256 _dragonID, uint256 _genNum) external payable {
         require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
@@ -73,7 +77,7 @@ contract Mutagen2Fight is RBACWithAdmin {
         uint240 newGens;
         if (uint256(uint8(bytes30(gensDragon)[_genNum])) + uint256(uint8(random_number[0])) <= 0xFF) {
             uint240 tmp = uint240(uint8(random_number[0]));
-            newGens = gensDragon + (tmp << (29 - _genNum)); //checkit
+            newGens = gensDragon + (tmp << (29 - _genNum) * 8); //checkit
         } // need else
 //        bytes30(gensDragon)[_genNum] = random_number[0];
     }
