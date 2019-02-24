@@ -64,7 +64,7 @@ contract Mutagen2Fight is RBACWithAdmin {
         //TODO Write statistic!!!!!
         emit FightGensChanged(msg.sender, _dragonID, gensDragon, newGens);
     }
-    function mutateFightGensRandom(uint256 _dragonID, uint256 _genNum) external payable {
+    function mutateFightGenRandom(uint256 _dragonID, uint256 _genNum) external payable {
         require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
         require(msg.value >= priceMutagenWork);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
@@ -77,12 +77,14 @@ contract Mutagen2Fight is RBACWithAdmin {
         bytes32 random_number = RNG(addressRNG).get32b(msg.sender, _dragonID);
         uint240 gensDragon;
         (,,,gensDragon,) = mainContract.dragons(_dragonID);
-        uint240 newGens;
-        if (uint256(uint8(bytes30(gensDragon)[_genNum])) + uint256(uint8(random_number[0])) <= 0xFF) {
-            uint240 tmp = uint240(uint8(random_number[0]));
-            newGens = gensDragon + (tmp << (29 - _genNum) * 8); //checkit переделать иф на..
-        } // need else
-//        bytes30(gensDragon)[_genNum] = random_number[0];
+        uint240 genAdd = uint240(uint8(random_number[31]));
+        if ((uint240(uint8(bytes30(gensDragon)[_genNum])) + genAdd) > 0xFF) {
+            gensDragon -= uint240(uint256(1 << (30 - _genNum) * 8));
+        }
+        uint240 newGens = gensDragon + (genAdd << (29 - _genNum) * 8); //checkit
+        mainContract.changeDragonGen(_dragonID, newGens, 1);
+        //TODO Write statistic!!!!!
+        emit FightGensChanged(msg.sender, _dragonID, gensDragon, newGens);
     }
     function changeAddTime2Rest(uint256 _addTime2Rest) external onlyAdmin {
         addTime2Rest = _addTime2Rest;
