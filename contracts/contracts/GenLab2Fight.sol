@@ -38,7 +38,8 @@ contract Mutagen2Fight is RBACWithAdmin {
     address payable wallet;
     uint256 public addTime2Rest = 240; // ~ 60 min
     uint256 public mutagenCount = 300;
-    uint256 public priceMutagenWork = 0.5 ether;
+    uint256 public priceMutagenWork = 0.1 ether;
+    uint256 public priceMax = 1 ether;
      
     event FightGensChanged(uint256 _dragonOneID, uint240 _oldGens, uint240 _newGens);
 
@@ -74,6 +75,9 @@ contract Mutagen2Fight is RBACWithAdmin {
     }
     function changePriceMutagenWork(uint256 _priceMutagenWork) external onlyAdmin {
         priceMutagenWork = _priceMutagenWork;
+    }
+    function changePriceMaxk(uint256 _priceMax) external onlyAdmin {
+        priceMax = _priceMax;
     }
     function changeAddressRNG(address _addressRNG) external onlyAdmin {
         addressRNG = _addressRNG;
