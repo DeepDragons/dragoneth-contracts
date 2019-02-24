@@ -1,9 +1,6 @@
 pragma solidity ^0.5.4;
 
-
-//????
 import "./security/rbac/RBACWithAdmin.sol";
-
 
 contract DragonsETH {
     struct Dragon {
@@ -24,7 +21,7 @@ contract DragonsETH {
 }
 contract Mutagen {
     function burn(address _from, uint256 _value) public;
-     function balanceOf(address _owner) public view returns (uint256 balance);
+    function balanceOf(address _owner) public view returns (uint256 balance);
 }
 
 contract DragonsStats {
