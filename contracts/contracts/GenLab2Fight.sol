@@ -86,9 +86,9 @@ contract GenLab2Fight is RBACWithAdmin {
         if ((uint240(uint8(bytes30(gensDragon)[_genNum])) + genAdd) > 0xFF) {
             gensDragon -= uint240(uint256(1 << (30 - _genNum) * 8));
         }
-        uint240 newGens = gensDragon + (uint240(genAdd) << (29 - _genNum) * 8); //checkit
+        uint240 newGens = gensDragon + (genAdd << (29 - _genNum) * 8); //checkit
         _setResault(_dragonID, gensDragon, newGens);
-        //TODO add Burn Mutagen!!!
+        mutagenContract.burn(msg.sender, priceMutagenWork);
     }
     function _setResault(uint256 _dragonID, uint240 _oldGens, uint240 _newGens) private {
         mainContract.changeDragonGen(_dragonID, _newGens, 1);
