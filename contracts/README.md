@@ -46,6 +46,10 @@
 
 0x08e9ee022b1c38cb93f1fd59fcabcb86216c26a8
 
+* GenLab2Fight.sol
+
+
+
 # Wallets
 
 * ProxyWallet
@@ -89,7 +93,7 @@
 4. GenRNG.sol (GenRNG) + address RNG
 5. DragonETH.sol (DragonETH) + address ProxyWallet + address Necropolis + address DragonStats
 6. CrowdSale.sol (CrowdSaleDragonETH) + address ProxyWallet + address DragonETH
-
+7. Proxy4DAPP.sol
 
 
 *Other*
@@ -98,7 +102,7 @@
 8. Mutagen.sol
 9. DragonsFightPlace.sol (DragonsFightPlace) + address ProxyWallet
 10. DragonsFight.sol (DragonsFight)
-
+11. GenLab2Fight.sol (GenLab2Fight) address MainContract, address Mutagen, address Stats, address wallet
 
 #### Settings
 
@@ -132,6 +136,12 @@
 22. DragonsFight        *func*  changeAddressRNG(address RNG)
 23. RNG                 *func*  adminAddRole(address DragonsFight, string "GenRNG" )
 24. DragonsFight        *func*  adminAddRole(address DragonsFightPlace "", "FightContract" string )
+25. GenLab2Fight        *func*  changeAddressRNG(address RNG)
+26. RNG                 *func*  adminAddRole(address GenLab2Fight, string "GenRNG" )
+27. DragonStat          *func*  adminAddRole(address GenLab2Fight, "GenLabContract" string)
+28. DragonStat          *func*  adminAddRole(address GenLab2Fight, "ActionContract" string)
+29. DragonETH           *func*  adminAddRole(address GenLab2Fight, "ActionContract" string)
+30. DragonETH           *func*  adminAddRole(address GenLab2Fight, "ChangeContract" string)
 
 добавить в основной контракт роль "ActionContract" для всех котрактов действия которые имеют право дергть сответсвующую функцию
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
