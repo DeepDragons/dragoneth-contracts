@@ -95,5 +95,9 @@ contract Mutagen2Fight is RBACWithAdmin {
     function changeWallet(address payable _wallet) external onlyAdmin {
         wallet = _wallet;
     }
+    function withdrawAllEther() external onlyAdmin {
+        require(wallet != address(0), "Withdraw address can't be zero!");
+        wallet.transfer(address(this).balance);
+    }
 }
 
