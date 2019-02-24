@@ -88,15 +88,18 @@ contract GenLab2Fight is RBACWithAdmin {
         if ((uint240(uint8(bytes30(gensDragon)[_genNum])) + genAdd) > 0xFF) {
             gensDragon -= uint240(uint256(1 << (30 - _genNum) * 8));
         }
-        uint240 newGens = gensDragon + (genAdd << (29 - _genNum) * 8); //checkit
+        uint240 newGens = gensDragon + (genAdd << (29 - _genNum) * 8);
         _setResault(_dragonID, gensDragon, newGens);
         mutagenContract.burn(msg.sender, priceMutagenWork);
     }
+    function returnPrices() external view returns (uint256, uint256, uint256){
+        return (mutagenCount, priceMutagenWork, priceMax);
+    }
     function _setResault(uint256 _dragonID, uint240 _oldGens, uint240 _newGens) private {
         mainContract.changeDragonGen(_dragonID, _newGens, 1);
-        mainContract.setTime2Rest(_dragonID, addTime2Rest);
+        //mainContract.setTime2Rest(_dragonID, addTime2Rest);
         dragonsStatsContract.incGenLabFight(_dragonID);
-        // set _lastAction
+        dragonsStatsContract.setLastAction(_dragonID, _dragonID, 12);
         emit FightGensChanged(msg.sender, _dragonID, _oldGens, _newGens);
     }
     function changeAddTime2Rest(uint256 _addTime2Rest) external onlyAdmin {

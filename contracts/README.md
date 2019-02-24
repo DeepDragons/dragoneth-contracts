@@ -48,7 +48,7 @@
 
 * GenLab2Fight.sol
 
-
+0x2e6f4766c873b8430f8b726916beea9f05914d4c
 
 # Wallets
 
@@ -142,6 +142,7 @@
 28. DragonStat          *func*  adminAddRole(address GenLab2Fight, "ActionContract" string)
 29. DragonETH           *func*  adminAddRole(address GenLab2Fight, "ActionContract" string)
 30. DragonETH           *func*  adminAddRole(address GenLab2Fight, "ChangeContract" string)
+31. в мутаген "BurnAgent"
 
 добавить в основной контракт роль "ActionContract" для всех котрактов действия которые имеют право дергть сответсвующую функцию
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
