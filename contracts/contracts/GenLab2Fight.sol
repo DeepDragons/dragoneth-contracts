@@ -53,7 +53,6 @@ contract GenLab2Fight is RBACWithAdmin {
         wallet = _wallet;
     }
     function setMaxGen(uint256 _dragonID, uint256 _genNum) external payable {
-        //TODO check for Resting
         require(msg.value >= priceMax);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
         require(_genNum <= 29);
@@ -63,13 +62,14 @@ contract GenLab2Fight is RBACWithAdmin {
             msg.sender.transfer(returnValue);
         }
         uint240 gensDragon;
-        (,,,gensDragon,) = mainContract.dragons(_dragonID);
+        uint256 nextBlock2Action;
+        (,,,gensDragon,nextBlock2Action) = mainContract.dragons(_dragonID);
+        require(nextBlock2Action <= block.number);
         uint8 genAdd = 0xFF - uint8(bytes30(gensDragon)[_genNum]);
         uint240 newGens = gensDragon + (uint240(genAdd) << (29 - _genNum) * 8);
         _setResault(_dragonID, gensDragon, newGens);
     }
     function mutateFightGenRandom(uint256 _dragonID, uint256 _genNum) external payable {
-        //TODO check for Resting
         require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
         require(msg.value >= priceMutagenWork);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
@@ -81,7 +81,9 @@ contract GenLab2Fight is RBACWithAdmin {
         }
         bytes32 random_number = RNG(addressRNG).get32b(msg.sender, _dragonID);
         uint240 gensDragon;
-        (,,,gensDragon,) = mainContract.dragons(_dragonID);
+        uint256 nextBlock2Action;
+        (,,,gensDragon,nextBlock2Action) = mainContract.dragons(_dragonID);
+        require(nextBlock2Action <= block.number);
         uint240 genAdd = uint240(uint8(random_number[31]));
         if ((uint240(uint8(bytes30(gensDragon)[_genNum])) + genAdd) > 0xFF) {
             gensDragon -= uint240(uint256(1 << (30 - _genNum) * 8));
