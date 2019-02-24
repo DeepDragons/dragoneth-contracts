@@ -47,6 +47,16 @@ contract Mutagen2Fight is RBACWithAdmin {
         mainContract = DragonsETH(_addressMainContract);
         mutagenContract = Mutagen(_addressMutagen);
     }
+    function setMaxGen(uint256 _dragonID, uint256 _genNum) external payable {
+        require(msg.value >= priceMax);
+        require(mainContract.ownerOf(_dragonID) == msg.sender);
+        require(_genNum <= 29);
+        uint256 returnValue = msg.value - priceMax;
+        wallet.transfer(priceMax);
+        if (returnValue > 0) {
+            msg.sender.transfer(returnValue);
+        }
+    }
     function mutateFightGensRandom(uint256 _dragonID, uint256 _genNum) external payable {
         require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
         require(msg.value >= priceMutagenWork);
