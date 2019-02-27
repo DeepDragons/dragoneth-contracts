@@ -40,7 +40,7 @@ contract GenLab2Fight is RBACWithAdmin {
     address private addressRNG;
     address payable wallet;
     uint256 public addTime2Rest = 240; // ~ 60 min
-    uint256 public mutagenCount = 300;
+    uint256 public mutagenCount = 100;
     uint256 public priceMutagenWork = 0.1 ether;
     uint256 public priceMax = 1 ether;
      
@@ -53,6 +53,7 @@ contract GenLab2Fight is RBACWithAdmin {
         wallet = _wallet;
     }
     function setMaxGen(uint256 _dragonID, uint256 _genNum) external payable {
+        //add check to actions and refactor it
         require(msg.value >= priceMax);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
         require(_genNum <= 29);
@@ -70,6 +71,7 @@ contract GenLab2Fight is RBACWithAdmin {
         _setResault(_dragonID, gensDragon, newGens);
     }
     function mutateFightGenRandom(uint256 _dragonID, uint256 _genNum) external payable {
+        //add check to actions and refactor it
         require(mutagenContract.balanceOf(msg.sender) >= mutagenCount);
         require(msg.value >= priceMutagenWork);
         require(mainContract.ownerOf(_dragonID) == msg.sender);
