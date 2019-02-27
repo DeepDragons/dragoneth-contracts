@@ -30,6 +30,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsListIndex;
     mapping(address => uint256) public ownerDragonsCount;
+    // add like
     uint256[] public dragonsList;
     
     event SoldOut(address indexed _from, address indexed _to, uint256 _tokenId, uint256 _price);
