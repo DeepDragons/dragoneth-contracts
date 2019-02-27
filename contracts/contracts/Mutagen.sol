@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.5.4;
 
 import "./ERC20/MintableToken.sol";
 import "./ERC20/BurnableToken.sol";
