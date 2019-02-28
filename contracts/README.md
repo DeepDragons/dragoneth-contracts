@@ -48,7 +48,7 @@
 
 * GenLab2Fight.sol
 
-0x2e6f4766c873b8430f8b726916beea9f05914d4c
+0xc7130374e8fa2fc0235df0b6bca4285c4146ab26
 
 # Wallets
 
