@@ -26,7 +26,7 @@
 
 * MarketPlace.sol (FixMarketPlace)
 
-0x901cd98ce6f459b874c241db263d093435239068
+0x98f9c00705b6466b0f83f4ca19203dba89413659
 
 * DragonsFightPlace.sol (DragonsFightPlace)
 
@@ -123,8 +123,6 @@
 
 11. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
 12. DragonETH            *func*  adminAddRole(address FixMarketPlace "", "ActionContract" string)
-13. FixMarketPlace 	*func*	ChangeAddressMainContract(address DragonETH)
-
 14. DragonStat		*func*	adminAddRole(address DragonsFightPlace "", "FightContract" string )
 15. DragonStat		*func*	adminAddRole(address DragonsFightPlace "", "ActionContract" string)
 16. DragonETH		*func*	adminAddRole(address DragonsFightPlace "", "ActionContract" string)
