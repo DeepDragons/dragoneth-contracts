@@ -59,8 +59,7 @@ contract Proxy4DAPP is RBACWithAdmin {
     DragonsETH public mainContract;
     DragonsStats public statsContract;
     FixMarketPlace public fmpContractAddress;
-    //Add function second in block
-    //Add function name for picture
+    bytes constant firstPartPictureName = "dragon_";
     
     constructor(address _addressMainContract, address _addressDragonsStats) public {
         mainContract = DragonsETH(_addressMainContract);
@@ -197,5 +196,31 @@ contract Proxy4DAPP is RBACWithAdmin {
     
     function changeFMPcontractAddress(address _fmpContractAddress) external onlyAdmin {
         fmpContractAddress = FixMarketPlace(_fmpContractAddress);
+    }
+    function pictureName(uint256  _tokenId) external view returns (string memory) {
+        bytes memory tmpBytes = new bytes(96);
+        uint256 i = 0;
+        uint256 tokenId = _tokenId;
+        // for same use case need "if (tokenId == 0)" 
+        while (tokenId != 0) {
+            uint256 remainderDiv = tokenId % 10;
+            tokenId = tokenId / 10;
+            tmpBytes[i++] = byte(uint8(48 + remainderDiv));
+        }
+ 
+        bytes memory resaultBytes = new bytes(firstPartPictureName.length + i);
+        uint256 j;
+        for (j = 0; j < firstPartPictureName.length; j++) {
+            resaultBytes[j] = firstPartPictureName[j];
+        }
+        
+        i--;
+        
+        for (j = 0; j <= i; j++) {
+            resaultBytes[j + firstPartPictureName.length] = tmpBytes[i - j];
+        }
+        
+        return string(resaultBytes);
+        
     }
 }
