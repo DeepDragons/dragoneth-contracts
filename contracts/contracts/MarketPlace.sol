@@ -30,7 +30,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     mapping(uint256 => uint256) public dragonPrices;
     mapping(uint256 => uint256) public dragonsListIndex;
     mapping(address => uint256) public ownerDragonsCount;
-    // add like
+    mapping(uint256 => uint256) public dragonsLikes;
     uint256[] public dragonsList;
     
     event SoldOut(address indexed _from, address indexed _to, uint256 _tokenId, uint256 _price);
@@ -75,6 +75,9 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         dragonsOwner[_dragonID].transfer(msg.value - valueToReturn - _dragonCommisions);
         emit SoldOut(dragonsOwner[_dragonID], msg.sender, _dragonID, msg.value - valueToReturn - _dragonCommisions);
         _delItem(_dragonID);
+    }
+    function likeDragon(uint256 _dragonID) external whenNotPaused {
+        dragonsLikes[_dragonID]++;
     }
     function totalDragonsToSale() external view returns(uint256) {
         return dragonsList.length;
@@ -152,6 +155,7 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
         ownerDragonsCount[dragonsOwner[_dragonID]]--;
         delete(dragonsOwner[_dragonID]);
         delete(dragonPrices[_dragonID]);
+        delete(dragonsLikes[_dragonID]);
         if (dragonsList.length - 1 != dragonsListIndex[_dragonID]) {
             dragonsList[dragonsListIndex[_dragonID]] = dragonsList[dragonsList.length - 1];
             dragonsListIndex[dragonsList[dragonsList.length - 1]] = dragonsListIndex[_dragonID];
