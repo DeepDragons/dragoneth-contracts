@@ -123,6 +123,7 @@
 
 11. DragonETH		*func*	changeFMPcontractAddress(address FixMarketPlace)
 12. DragonETH            *func*  adminAddRole(address FixMarketPlace "", "ActionContract" string)
+13. Proxy4DAPP          *func*  changeFMPcontractAddress(address FixMarketPlace)
 14. DragonStat		*func*	adminAddRole(address DragonsFightPlace "", "FightContract" string )
 15. DragonStat		*func*	adminAddRole(address DragonsFightPlace "", "ActionContract" string)
 16. DragonETH		*func*	adminAddRole(address DragonsFightPlace "", "ActionContract" string)
