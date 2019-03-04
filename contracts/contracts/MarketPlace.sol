@@ -37,8 +37,9 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
     event ForSale(address indexed _from, uint256 _tokenId, uint256 _price);
     event SaleCancel(address indexed _from, uint256 _tokenId, uint256 _price);
     
-    constructor(address payable _wallet) public {
+    constructor(address payable _wallet, address _mainContract) public {
         wallet = _wallet;
+        mainContract = DragonsETH(_mainContract);
     }
     function add2MarketPlace(address payable _dragonOwner, uint256 _dragonID, uint256 _dragonPrice, uint256 /*_endBlockNumber*/) 
         external
@@ -172,9 +173,6 @@ contract FixMarketPlace is Pausable, ReentrancyGuard {
                 _delItem(dragonID);
             }
         }
-    }
-    function changeAddressMainContract(address _newAddress) external onlyAdmin {
-        mainContract = DragonsETH(_newAddress);
     }
     function changeWallet(address payable _wallet) external onlyAdmin {
         wallet = _wallet;
