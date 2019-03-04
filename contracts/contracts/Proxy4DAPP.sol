@@ -59,6 +59,8 @@ contract Proxy4DAPP is RBACWithAdmin {
     DragonsETH public mainContract;
     DragonsStats public statsContract;
     FixMarketPlace public fmpContractAddress;
+    //Add function second in block
+    //Add function name for picture
     
     constructor(address _addressMainContract, address _addressDragonsStats) public {
         mainContract = DragonsETH(_addressMainContract);
