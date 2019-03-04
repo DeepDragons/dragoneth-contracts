@@ -3,24 +3,6 @@
         "constant": false,
         "inputs": [
             {
-                "name": "_dragonID",
-                "type": "uint256"
-            },
-            {
-                "name": "_genNum",
-                "type": "uint256"
-            }
-        ],
-        "name": "mutateFightGenRandom",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
                 "name": "addr",
                 "type": "address"
             },
@@ -29,168 +11,7 @@
                 "type": "string"
             }
         ],
-        "name": "checkRole",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "addr",
-                "type": "address"
-            },
-            {
-                "name": "roleName",
-                "type": "string"
-            }
-        ],
-        "name": "hasRole",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "returnPrices",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [],
-        "name": "withdrawAllEther",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "addTime2Rest",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "ROLE_PAUSE_ADMIN",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "mutagenCount",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_priceMax",
-                "type": "uint256"
-            }
-        ],
-        "name": "changePriceMax",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_addTime2Rest",
-                "type": "uint256"
-            }
-        ],
-        "name": "changeAddTime2Rest",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "dragonsStatsContract",
-        "outputs": [
-            {
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_priceMutagenWork",
-                "type": "uint256"
-            }
-        ],
-        "name": "changePriceMutagenWork",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [],
-        "name": "destroy",
+        "name": "adminAddRole",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -218,6 +39,76 @@
         "constant": false,
         "inputs": [
             {
+                "name": "_addressRNG",
+                "type": "address"
+            }
+        ],
+        "name": "changeAddressRNG",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_addTime2Rest",
+                "type": "uint256"
+            }
+        ],
+        "name": "changeAddTime2Rest",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_mutagenCount",
+                "type": "uint256"
+            }
+        ],
+        "name": "changeMutagenCount",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_priceMax",
+                "type": "uint256"
+            }
+        ],
+        "name": "changePriceMax",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_priceMutagenWork",
+                "type": "uint256"
+            }
+        ],
+        "name": "changePriceMutagenWork",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
                 "name": "_wallet",
                 "type": "address"
             }
@@ -230,48 +121,29 @@
     },
     {
         "constant": false,
-        "inputs": [
-            {
-                "name": "addr",
-                "type": "address"
-            },
-            {
-                "name": "roleName",
-                "type": "string"
-            }
-        ],
-        "name": "adminAddRole",
+        "inputs": [],
+        "name": "destroy",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [],
-        "name": "mainContract",
-        "outputs": [
+        "constant": false,
+        "inputs": [
             {
-                "name": "",
-                "type": "address"
+                "name": "_dragonID",
+                "type": "uint256"
+            },
+            {
+                "name": "_genNum",
+                "type": "uint256"
             }
         ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "ROLE_ADMIN",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
+        "name": "mutateFightGenRandom",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
         "type": "function"
     },
     {
@@ -293,70 +165,9 @@
         "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [],
-        "name": "mutagenContract",
-        "outputs": [
-            {
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "priceMutagenWork",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "constant": false,
-        "inputs": [
-            {
-                "name": "_addressRNG",
-                "type": "address"
-            }
-        ],
-        "name": "changeAddressRNG",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
         "inputs": [],
-        "name": "priceMax",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_mutagenCount",
-                "type": "uint256"
-            }
-        ],
-        "name": "changeMutagenCount",
+        "name": "withdrawAllEther",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -445,5 +256,194 @@
         ],
         "name": "RoleRemoved",
         "type": "event"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "addTime2Rest",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "name": "roleName",
+                "type": "string"
+            }
+        ],
+        "name": "checkRole",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "dragonsStatsContract",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "name": "roleName",
+                "type": "string"
+            }
+        ],
+        "name": "hasRole",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "mainContract",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "mutagenContract",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "mutagenCount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "priceMax",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "priceMutagenWork",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "returnPrices",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "ROLE_ADMIN",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "ROLE_PAUSE_ADMIN",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     }
 ]
