@@ -137,20 +137,6 @@
         "type": "function"
     },
     {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_newAddress",
-                "type": "address"
-            }
-        ],
-        "name": "changeAddressMainContract",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "constant": true,
         "inputs": [
             {
@@ -518,6 +504,10 @@
         "inputs": [
             {
                 "name": "_wallet",
+                "type": "address"
+            },
+            {
+                "name": "_mainContract",
                 "type": "address"
             }
         ],
