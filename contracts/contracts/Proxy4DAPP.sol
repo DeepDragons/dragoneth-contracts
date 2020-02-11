@@ -191,9 +191,6 @@ contract Proxy4DAPP is RBACWithAdmin {
             return result;
         }
     }
-    
-    // попробовать реализовать функцию всю инфу по дракону одной функцией )
-    
     function changeFMPcontractAddress(address _fmpContractAddress) external onlyAdmin {
         fmpContractAddress = FixMarketPlace(_fmpContractAddress);
     }
@@ -221,6 +218,5 @@ contract Proxy4DAPP is RBACWithAdmin {
         }
         
         return string(resaultBytes);
-        
     }
 }
