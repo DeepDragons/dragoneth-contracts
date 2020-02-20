@@ -90,9 +90,9 @@ def main():
 	args = parser.parse_args()
 
 	if args.solc_paths:
-		solc_args = ["solc", args.solc_paths, "--ast", args.target_solidity_file]
+		solc_args = ["solc", args.solc_paths, "--ast-compact-json", args.target_solidity_file]
 	else:
-		solc_args = ["solc", "--ast", args.target_solidity_file]
+		solc_args = ["solc", "--ast-compact-json", args.target_solidity_file]
 	solc_proc = subprocess.run(solc_args, stdout=subprocess.PIPE, universal_newlines=True)
 	solc_proc.check_returncode()
 	flatten_contract(solc_proc.stdout, args.output)
