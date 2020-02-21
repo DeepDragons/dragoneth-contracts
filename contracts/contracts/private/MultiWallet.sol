@@ -1,6 +1,5 @@
 pragma solidity ^0.6.1;
 
-
 /**
  * @title Helps contracts guard agains reentrancy attacks.
  * @author Remco Bloemen <remco@2π.com>
@@ -32,15 +31,15 @@ contract ReentrancyGuard {
 }
 
 contract MultiWallet is ReentrancyGuard {
-    address payable wallet1_10 = 0x98F04b28946C73D049c04A63Ac1F3352689F23bf; // Rinat
+    address payable wallet1_10 = 0x5410c9762d3C5E12299e0d1175471d1D8c8b2C05; // Rinat
     address payable wallet2_10 = 0x36d9399A33C4851526D541E0e4B577E5dAdc6be0; // Igor
-    address payable wallet3_10 = 0x4044f3164AE9465c249963ffF008420171a3E522; // Alexander
-    address payable wallet4_10 = 0x181d493A0499E81726FB7dfFa698d2923e780669; // Ivan
-    address payable wallet5_60 = 0xb2406fe92dA73f6ed175862007b5cb7d781d881D; //  prodaction Igor
+    address payable wallet3_10 = 0x1D351463823C0726E8334469f09E47Ac01ddE16C; // Alexander
+    address payable wallet4_10 = 0x3DCB1c27b0c9251bA4877ec4DC83baE9C65d1310; // Ivan
+    address payable wallet5_60 = 0xb2406fe92dA73f6ed175862007b5cb7d781d881D; // prodaction Igor
 
-    receive() external payable { }
-    
-    function divide() external nonReentrant {
+  receive() external payable { }
+  
+  function divide() external nonReentrant {
         uint256 totalBalance = address(this).balance;
         uint256 w10 = totalBalance * 1 / 10;
         
