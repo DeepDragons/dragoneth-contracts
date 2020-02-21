@@ -1,4 +1,4 @@
-pragma solidity ^0.5.3;
+pragma solidity ^0.6.1;
 
 import "./security/Pausable.sol";
 import "./math/SafeMath.sol";
@@ -21,7 +21,7 @@ contract DragonsETH {
     function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external;
 }
 
-contract MarketPlace is Pausable, ReentrancyGuard {
+contract FixMarketPlace is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     DragonsETH public mainContract;
     address payable wallet;
