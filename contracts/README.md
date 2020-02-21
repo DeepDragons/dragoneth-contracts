@@ -28,8 +28,10 @@
 
 
 * wallet
- 
-0x787afd5a10fa6b212c1161461bca9ddc52788aee
+
+0xd0d50AE97443AA9615d87129feb9681417e92F41
+
+old_wallet 0x787afd5a10fa6b212c1161461bca9ddc52788aee
 
 
 ### Deployment
