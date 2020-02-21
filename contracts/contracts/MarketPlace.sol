@@ -21,7 +21,7 @@ contract DragonsETH {
     function setCurrentAction(uint256 _dragonID, uint8 _currentAction) external;
 }
 
-contract FixMarketPlace is Pausable, ReentrancyGuard {
+contract MarketPlace is Pausable, ReentrancyGuard {
     using SafeMath for uint256;
     DragonsETH public mainContract;
     address payable wallet;
