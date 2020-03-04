@@ -42,6 +42,10 @@
 
 0xF575336F7E5714a480E9a65167133d15faA0EeD6
 
+* DragonsFight.sol (DragonsFight) localhost/contracts/privat/Dr...
+
+0x0789EF7915fb1209683DCBD1232236fCB3A8e7BC
+
 * wallet
 
 0xd0d50AE97443AA9615d87129feb9681417e92F41
