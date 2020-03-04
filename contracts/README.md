@@ -16,13 +16,13 @@
 
 0xBf662FB1C4Ab0657bDA2Fbfec620F3a2E0589AbF
 
-* DragonStats.sol (DragonStats) real!!! withot source code on etherscan
+* DragonStats.sol (DragonStats)
 
 
 0x3c29ef59bebe160bbc59c02130b8f637fa11a978
 
 
-* Necropolis.sol (Necropolis)
+* Necropolis.sol (Necropolis)  real??? withot source code on etherscan
 
 0xC8157b670C89F4efdC9B6F00a208036BA1CF8Dee
 
