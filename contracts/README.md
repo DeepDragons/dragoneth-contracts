@@ -141,7 +141,7 @@
 28. DragonStat          *func*  adminAddRole(address GenLab2Fight, "ActionContract" string)
 29. DragonETH           *func*  adminAddRole(address GenLab2Fight, "ActionContract" string)
 30. DragonETH           *func*  adminAddRole(address GenLab2Fight, "ChangeContract" string)
-31. в мутаген "BurnAgent"
+31. Mutagen     func    adminAddRole(address GenLab2Fight "", "BurnAgent" string) 
 
 добавить в основной контракт роль "ActionContract" для всех котрактов действия которые имеют право дергть сответсвующую функцию
 добавить в контракт некрополь роль "DeathContract" Для DragonETH и остальных смертельных контрактов
